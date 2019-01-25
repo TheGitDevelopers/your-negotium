@@ -11,6 +11,17 @@ import { CauponaHeaderComponent } from './caupona-header/caupona-header.componen
 import {DashboardComponent} from './caupona-content/dashboard/dashboard.component';
 import {CauponaContentComponent} from './caupona-content/caupona-content.component';
 import { OrdersComponent } from './caupona-content/orders/orders.component';
+import { WarehouseComponent } from './caupona-content/warehouse/warehouse.component';
+import { FinanceComponent } from './caupona-content/finance/finance.component';
+import { EmployeesComponent } from './caupona-content/employees/employees.component';
+import { ReservationsComponent } from './caupona-content/reservations/reservations.component';
+import { CalendarComponent } from './caupona-content/calendar/calendar.component';
+import { TargetsComponent } from './caupona-content/targets/targets.component';
+import { PartnersComponent } from './caupona-content/partners/partners.component';
+import { SalesComponent } from './caupona-content/sales/sales.component';
+import { CustomersComponent } from './caupona-content/customers/customers.component';
+import { ReportsComponent } from './caupona-content/reports/reports.component';
+import { NotFoundComponent } from './caupona-content/not-found/not-found.component';
 
 
 @NgModule({
@@ -21,6 +32,17 @@ import { OrdersComponent } from './caupona-content/orders/orders.component';
     CauponaContentComponent,
     CauponaHeaderComponent,
     OrdersComponent,
+    WarehouseComponent,
+    FinanceComponent,
+    EmployeesComponent,
+    ReservationsComponent,
+    CalendarComponent,
+    TargetsComponent,
+    PartnersComponent,
+    SalesComponent,
+    CustomersComponent,
+    ReportsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
