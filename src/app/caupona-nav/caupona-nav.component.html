@@ -1,81 +1,59 @@
 <div *ngIf="!mobileView">
   <nav class="side-nav" *ngIf="!mobileView && counter === 0">
     <div class="nav-wrapper">
-      <i class="fas fa-caret-down"
-         [ngClass]="menuStatus ? 'active-wrap-btn' : 'inactive-wrap-btn'"></i>
+      <i
+        class="fas fa-caret-down"
+        [ngClass]="menuStatus ? 'active-wrap-btn' : 'inactive-wrap-btn'"
+      ></i>
       <div class="nav-logo">
         <i class="fas fa-utensils"></i>
-        <h1>
-          caupona
-        </h1>
+        <h1>caupona</h1>
       </div>
       <span class="nav-logo-line"></span>
+
       <ul>
-        <li class="nav-item-active"><a routerLink="/caupona-content" routerLinkActive="active"><i class="fas fa-chart-line"></i>
-          <p *ngIf="!menuStatus">dashboard</p></a></li>
-        <li><a routerLink="/caupona-content" routerLinkActive="active"><i class="fas fa-tasks"></i>
-          <p *ngIf="!menuStatus">orders</p></a></li>
-        <li><i class="fas fa-store"></i>
-          <p *ngIf="!menuStatus">warehouse</p></li>
-        <li><i class="fas fa-piggy-bank"></i>
-          <p *ngIf="!menuStatus">finance</p></li>
-        <li><i class="fas fa-user-tie"></i>
-          <p *ngIf="!menuStatus">employees</p></li>
-        <li><i class="far fa-envelope"></i>
-          <p *ngIf="!menuStatus">reservations</p></li>
-        <li><i class="far fa-calendar-alt"></i>
-          <p *ngIf="!menuStatus">calendar</p></li>
-        <li><i class="fas fa-business-time"></i>
-          <p *ngIf="!menuStatus">targets</p></li>
-        <li><i class="fas fa-handshake"></i>
-          <p *ngIf="!menuStatus">partners</p></li>
-        <li><i class="fas fa-money-check-alt"></i>
-          <p *ngIf="!menuStatus">sale</p></li>
-        <li><i class="fas fa-user"></i>
-          <p *ngIf="!menuStatus">customers</p></li>
-        <li><i class="far fa-file-alt"></i>
-          <p *ngIf="!menuStatus">reports</p></li>
+        <li
+          *ngFor="let menuItem of menuItems"
+          routerLinkActive="nav-item-active"
+        >
+          <a routerLink="{{ menuItem.name }}"
+            ><i [class]="menuItem.icon"></i>
+            <p *ngIf="!menuStatus">{{ menuItem.name }}</p></a
+          >
+        </li>
       </ul>
     </div>
   </nav>
-  <i class="fas fa-caret-down" (click)="wrapMenu()"
-     [ngClass]="menuStatus ? 'active-wrap-btn' : 'inactive-wrap-btn'"></i>
-  <nav class="side-nav" *ngIf="counter > 0" [ngClass]="menuStatus ? 'hidden' : 'opened'">
+  <i
+    class="fas fa-caret-down"
+    (click)="wrapMenu()"
+    [ngClass]="menuStatus ? 'active-wrap-btn' : 'inactive-wrap-btn'"
+  ></i>
+  <nav
+    class="side-nav"
+    *ngIf="counter > 0"
+    [ngClass]="menuStatus ? 'hidden' : 'opened'"
+  >
     <div class="nav-wrapper">
       <div class="nav-logo">
-        <i [ngClass]="logoText === 'Caupona' ? 'show-ics' : 'hide-ics'" class="fas fa-utensils"></i>
-        <h1>
-          {{logoText}}
-        </h1>
+        <i
+          [ngClass]="logoText === 'Caupona' ? 'show-ics' : 'hide-ics'"
+          class="fas fa-utensils"
+        ></i>
+        <h1>{{ logoText }}</h1>
       </div>
       <span class="nav-logo-line"></span>
       <ul [ngClass]="menuStatus ? 'small-ics' : 'normal-ics'">
-        <li class="nav-item-active"><a routerLink="/main" routerLinkActive="active"><i class="fas fa-chart-line"></i>
-          <p *ngIf="!menuStatus">dashboard</p></a></li>
-        <li><a routerLink="/main" routerLinkActive="active"><i class="fas fa-tasks"></i>
-          <p *ngIf="!menuStatus">orders</p></a></li>
-        <li><i class="fas fa-store"></i>
-          <p *ngIf="!menuStatus">warehouse</p></li>
-        <li><i class="fas fa-piggy-bank"></i>
-          <p *ngIf="!menuStatus">finance</p></li>
-        <li><i class="fas fa-user-tie"></i>
-          <p *ngIf="!menuStatus">employees</p></li>
-        <li><i class="far fa-envelope"></i>
-          <p *ngIf="!menuStatus">reservations</p></li>
-        <li><i class="far fa-calendar-alt"></i>
-          <p *ngIf="!menuStatus">calendar</p></li>
-        <li><i class="fas fa-business-time"></i>
-          <p *ngIf="!menuStatus">targets</p></li>
-        <li><i class="fas fa-handshake"></i>
-          <p *ngIf="!menuStatus">partners</p></li>
-        <li><i class="fas fa-money-check-alt"></i>
-          <p *ngIf="!menuStatus">sale</p></li>
-        <li><i class="fas fa-user"></i>
-          <p *ngIf="!menuStatus">customers</p></li>
-        <li><i class="far fa-file-alt"></i>
-          <p *ngIf="!menuStatus">reports</p></li>
+        <li
+          *ngFor="let menuItem of menuItems"
+          routerLinkActive="nav-item-active"
+        >
+          <a routerLink="{{ menuItem.name }}"
+            ><i [class]="menuItem.icon"></i>
+            <p *ngIf="!menuStatus">{{ menuItem.name }}</p></a
+          >
+        </li>
       </ul>
     </div>
   </nav>
 </div>
-<router-outlet></router-outlet>
