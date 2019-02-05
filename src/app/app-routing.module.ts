@@ -50,7 +50,16 @@ import { DownloadReportComponent } from "./caupona-content/reports/download-repo
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   { path: "dashboard", component: DashboardComponent },
-  { path: "orders", component: OrdersComponent },
+  {
+    path: "orders",
+    component: OrdersComponent,
+    children: [
+      { path: "", pathMatch: "full", redirectTo: "menu" },
+      { path: "menu", component: MenuComponent },
+      { path: "online", component: OnlineOrdersComponent },
+      { path: "local", component: LocalOrdersComponent }
+    ]
+  },
   { path: "warehouse", component: WarehouseComponent },
   { path: "finance", component: FinanceComponent },
   { path: "employees", component: EmployeesComponent },
