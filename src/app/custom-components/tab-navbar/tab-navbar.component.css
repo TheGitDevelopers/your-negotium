@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.container .tab-container {
+  width: 100%;
+  justify-content: space-between;
+  justify-items: center;
+  background: #eaeaea;
+  display: flex;
+  color: #1a1f2b;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.tab {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+  order: 1;
+}
+
+.tab.active {
+  background: #dfe1e2;
+}
+
+.tab.active h3 {
+  color: #ff5656;
+}
+
+.tab h3 {
+  font-size: 1.4em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.2s all ease-in-out;
+}
+
+.tab h3:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
