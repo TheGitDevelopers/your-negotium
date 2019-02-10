@@ -7,13 +7,11 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class TabNavbarComponent implements OnInit {
   @Input() titles: string[];
-  @Input() tab: any[];
+  @Input() tabs: object[];
 
   constructor() {}
 
-  ngOnInit() {}
-
-  // showTabContent(tab) {
-  //   tab.content = true;
-  // }
+  ngOnInit() {
+    console.log(this.tabs);
+  }
 }

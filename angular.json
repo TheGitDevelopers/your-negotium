@@ -22,7 +22,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css",
-              "theme.scss"
+              "src/theme.scss"
             ],
             "scripts": []
           },

@@ -6,11 +6,24 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./warehouse.component.scss"]
 })
 export class WarehouseComponent implements OnInit {
-  titles: string[];
+  tabs: object[];
 
   constructor() {}
 
   ngOnInit() {
-    this.titles = ["title_one", "title_two", "title_three"];
+    this.tabs = [
+      {
+        title: "title I",
+        content: "content for tab I goes here"
+      },
+      {
+        title: "title II",
+        content: "content for tab II goes here"
+      },
+      {
+        title: "title III",
+        content: "content for tab III goes here"
+      }
+    ];
   }
 }

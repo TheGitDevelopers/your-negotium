@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
+import { MatTabsModule } from "@angular/material";
 import { AppRoutingModule } from "./app-routing.module";
 import {
   MatButtonModule,
@@ -60,7 +61,8 @@ import { TabNavbarComponent } from "./custom-components/tab-navbar/tab-navbar.co
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

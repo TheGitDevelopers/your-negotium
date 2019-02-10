@@ -1,10 +1,8 @@
 <div class="container">
-  <div class="tab-container">
-    <div *ngFor="let title of titles" class="tab">
-      <h3>{{ title }}</h3>
-    </div>
-  </div>
-  <div class="tab-content">
-    <ng-content></ng-content>
-  </div>
+  <mat-tab-group>
+    <mat-tab *ngFor="let tab of tabs" [label]="tab.title">
+      {{ tab.content }}
+      <ng-content></ng-content>
+    </mat-tab>
+  </mat-tab-group>
 </div>
