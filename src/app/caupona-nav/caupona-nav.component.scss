@@ -30,12 +30,12 @@ nav {
 }
 
 .hidden {
-  animation: slide-menu-hidden .3s;
+  animation: slide-menu-hidden 0.3s;
   width: 90px;
 }
 
 .opened {
-  animation: slide-menu-opened .3s;
+  animation: slide-menu-opened 0.3s;
   display: block;
 }
 
@@ -51,7 +51,8 @@ h1 {
   margin: 10px 0;
 }
 
-.fas, .far {
+.fas,
+.far {
   margin-right: 5px;
 }
 
@@ -69,9 +70,9 @@ h1 {
 
 .fas.fa-caret-down.active-wrap-btn {
   display: block;
-  color: #00A5A5;
+  color: #00a5a5;
   top: 91px;
-  animation: show-arrow .3s;
+  animation: show-arrow 0.3s;
 }
 
 .fas.fa-caret-down.inactive-wrap-btn {
@@ -146,7 +147,7 @@ nav .nav-wrapper ul li p {
 }
 
 nav .nav-wrapper ul li.nav-item-active {
-  background: #FF5656;
+  background: #ff5656;
 }
 
 nav .nav-wrapper ul li:first-child {
@@ -155,7 +156,7 @@ nav .nav-wrapper ul li:first-child {
 }
 
 nav .nav-wrapper ul li:hover {
-  background: #00A5A5;
+  background: #00a5a5;
   -webkit-box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
   box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
   cursor: pointer;
@@ -163,29 +164,40 @@ nav .nav-wrapper ul li:hover {
 
 nav .nav-wrapper ul li.nav-item-active:hover {
   -webkit-box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
-  background: #FF5656;
+  background: #ff5656;
   box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
   cursor: pointer;
 }
 
 @keyframes slide-menu-hidden {
-  from {width: 300px}
-  to{width: 90px;}
+  from {
+    width: 300px;
+  }
+  to {
+    width: 90px;
+  }
 }
 
 @keyframes slide-menu-opened {
-  from {width: 90px}
-  to{width: 300px;}
+  from {
+    width: 90px;
+  }
+  to {
+    width: 300px;
+  }
 }
 
 @keyframes show-arrow {
-  from {left: 319px}
-  to {left: 109px}
+  from {
+    left: 319px;
+  }
+  to {
+    left: 109px;
+  }
 }
 
-@media screen and (max-width: 720px ){
+@media screen and (max-width: 720px) {
   nav .nav-wrapper ul {
     height: 400px;
   }
 }
-
