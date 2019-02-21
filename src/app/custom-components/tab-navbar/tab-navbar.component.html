@@ -2,7 +2,9 @@
   <mat-tab-group>
     <mat-tab *ngFor="let tab of tabs" [label]="tab.title">
       {{ tab.content }}
-      <ng-content></ng-content>
     </mat-tab>
   </mat-tab-group>
+  <div class="ng-wrap">
+    <ng-content></ng-content>
+  </div>
 </div>

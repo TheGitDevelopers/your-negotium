@@ -2,15 +2,19 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
-import { MatTabsModule } from "@angular/material";
-import { AppRoutingModule } from "./app-routing.module";
+import { HttpClientModule } from "@angular/common/http";
 import {
   MatButtonModule,
   MatIconModule,
   MatListModule,
+  MatPaginatorModule,
   MatSidenavModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
+import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
 import { CauponaNavComponent } from "./caupona-nav/caupona-nav.component";
@@ -62,7 +66,12 @@ import { TabNavbarComponent } from "./custom-components/tab-navbar/tab-navbar.co
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
