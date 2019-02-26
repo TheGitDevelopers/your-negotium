@@ -10,19 +10,30 @@ import { ProductDataSource } from "../../data-sources/product-data-source";
 export class WarehouseComponent implements OnInit {
   tabs: object[];
   dataSource = new ProductDataSource(this.productService);
-  displayedColumns = ["title", "id"];
+  displayedColumns = ["id", "name", "quantity", "price", "expiryDate"];
 
   constructor(private productService: ProductService) {}
+
+  findObjectParam(e, i) {
+    const category = Object.keys(e)[i];
+    return e[category];
+  }
 
   ngOnInit() {
     this.tabs = [
       {
         title: "Permanent product",
-        content: "content for tab I goes here"
+        dataSource: this.dataSource,
+        labels: ["expiryDate", "id", "name", "price", "quantity"],
+        findObjectParam: this.findObjectParam,
+        displayedColumns: this.displayedColumns
       },
       {
         title: "Temporary product",
-        content: "content for tab II goes here"
+        dataSource: this.dataSource,
+        labels: ["expiryDate", "id", "name", "price", "quantity"],
+        findObjectParam: this.findObjectParam,
+        displayedColumns: this.displayedColumns
       }
     ];
   }

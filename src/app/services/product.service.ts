@@ -2,16 +2,25 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 import { Product } from "../models/product";
+import { AngularFireDatabase } from "@angular/fire/database";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  serviceUrl = "https://jsonplaceholder.typicode.com/posts";
+  items: Observable<any[]>;
+  products: any;
+  private db: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, db: AngularFireDatabase) {
+    this.db = db;
+  }
 
   getProduct(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.serviceUrl);
+    this.items = this.db.list("products").valueChanges();
+    this.items.subscribe(products => {
+      this.products = products;
+    });
+    return this.items;
   }
 }

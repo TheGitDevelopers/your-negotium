@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./tab-navbar.component.scss"]
 })
 export class TabNavbarComponent implements OnInit {
-  @Input() titles: string[];
   @Input() tabs: object[];
 
   constructor() {}

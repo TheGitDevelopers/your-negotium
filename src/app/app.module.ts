@@ -34,6 +34,9 @@ import { CustomersComponent } from "./caupona-content/customers/customers.compon
 import { ReportsComponent } from "./caupona-content/reports/reports.component";
 import { NotFoundComponent } from "./caupona-content/not-found/not-found.component";
 import { TabNavbarComponent } from "./custom-components/tab-navbar/tab-navbar.component";
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "../environments/environment";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ import { TabNavbarComponent } from "./custom-components/tab-navbar/tab-navbar.co
     MatPaginatorModule,
     MatSortModule,
     HttpClientModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
