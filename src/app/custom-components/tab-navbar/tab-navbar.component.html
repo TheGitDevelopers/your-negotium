@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-tab-group>
+    <mat-tab *ngFor="let tab of tabs" [label]="tab.title">
+      <div class="table-wrap">
+        <mat-table [dataSource]="tab.dataSource">
+          <ng-container
+            *ngFor="let label of tab.labels; let i = index"
+            [attr.data-index]="i"
+            [matColumnDef]="label"
+          >
+            <mat-header-cell *matHeaderCellDef>
+              {{ label }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ tab.findObjectParam(element, i) }}
+            </mat-cell>
+          </ng-container>
+          <mat-header-row
+            *matHeaderRowDef="tab.displayedColumns"
+          ></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: tab.displayedColumns"
+          ></mat-row>
+        </mat-table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

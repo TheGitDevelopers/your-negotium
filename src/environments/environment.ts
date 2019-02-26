@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyC7PyZSFVCqaTLdwbJhfMLeLMQssNwwZtA",
+    authDomain: "caupona.firebaseapp.com",
+    databaseURL: "https://caupona.firebaseio.com",
+    projectId: "caupona",
+    storageBucket: "caupona.appspot.com",
+    messagingSenderId: "248599801913"
+  }
 };
 
 /*

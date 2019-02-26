@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "app-caupona-nav",
   templateUrl: "./caupona-nav.component.html",
-  styleUrls: ["./caupona-nav.component.css"]
+  styleUrls: ["./caupona-nav.component.scss"]
 })
 export class CauponaNavComponent implements OnInit {
   private menuItems = [
