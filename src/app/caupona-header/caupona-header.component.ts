@@ -7,7 +7,7 @@ import { angularMath } from "angular-ts-math";
   styleUrls: ["./caupona-header.component.scss"]
 })
 export class CauponaHeaderComponent implements OnInit {
-  private hint = "";
+  hint = "";
   private hintsList = [
     "no guts, no story.",
     "screw it, let’s do it.",

@@ -23,7 +23,7 @@ export class CauponaNavComponent implements OnInit {
 
   private menuStatus = false;
   private counter = 0;
-  private mobileView = false;
+  mobileView = false;
   private logoText = "caupona";
 
   constructor() {
