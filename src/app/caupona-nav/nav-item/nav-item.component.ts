@@ -7,8 +7,9 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class NavItemComponent implements OnInit {
   @Input() menuItem;
+  @Input() menuStatus;
 
-  private isSubMenuOpened;
+  isSubMenuOpened;
 
   constructor() {
     this.isSubMenuOpened = false;
