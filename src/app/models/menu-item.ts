@@ -1,5 +1,5 @@
 export interface MenuItem {
   name: string;
   icon: string;
-  submenuItems: Array;
+  submenuItems: Array<string>;
 }
