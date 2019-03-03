@@ -1,0 +1,21 @@
+<li
+  [ngClass]="menuStatus ? 'small-ics' : 'normal-ics'"
+  routerLinkActive="nav-item-active"
+  (click)="toggleSubMenu()"
+>
+  <div>
+    <a routerLink="{{ menuItem.name }}">
+      <i [class]="menuItem.icon"></i>
+      <p *ngIf="!menuItem.menuStatus">{{ menuItem.name }}</p>
+    </a>
+    <div [ngClass]="menuItem.menuStatus ? 'hide' : 'show'">
+      <i
+        [ngClass]="isSubMenuOpened ? 'down' : 'left'"
+        class="fas fa-chevron-down sub-arrow"
+      ></i>
+    </div>
+  </div>
+  <ul [ngClass]="isSubMenuOpened ? 'show' : 'hide'" #submenu class="submenu">
+    <li *ngFor="let subItem of menuItem.submenuItems">{{ subItem }}</li>
+  </ul>
+</li>

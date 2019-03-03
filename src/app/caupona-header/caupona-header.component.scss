@@ -37,9 +37,10 @@
 
 .header-menu ul li {
   color: #2c3c4b;
+  display: flex;
+  justify-content: center;
   text-align: center;
   padding: 9px 30px;
-  width: 100px;
   cursor: pointer;
   border-left: 1px dashed rgba(0, 0, 0, 0.175);
 }
@@ -59,6 +60,7 @@
 .fas {
   margin-right: 7px;
   transition: 0.2s all ease-in-out;
+  align-self: center;
 }
 
 @media screen and (max-width: 990px) {

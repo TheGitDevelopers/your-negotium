@@ -37,6 +37,7 @@ import { TabNavbarComponent } from "./custom-components/tab-navbar/tab-navbar.co
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { NavItemComponent } from "./caupona-nav/nav-item/nav-item.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
     CustomersComponent,
     ReportsComponent,
     NotFoundComponent,
-    TabNavbarComponent
+    TabNavbarComponent,
+    NavItemComponent
   ],
   imports: [
     BrowserModule,
