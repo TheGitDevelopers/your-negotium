@@ -10,17 +10,10 @@
         <h1>caupona</h1>
       </div>
       <span class="nav-logo-line"></span>
-
       <ul>
-        <li
-          *ngFor="let menuItem of menuItems"
-          routerLinkActive="nav-item-active"
-        >
-          <a routerLink="{{ menuItem.name }}"
-            ><i [class]="menuItem.icon"></i>
-            <p *ngIf="!menuStatus">{{ menuItem.name }}</p></a
-          >
-        </li>
+        <ng-container *ngFor="let menuItem of menuItems">
+          <app-nav-item [menuItem]="menuItem"></app-nav-item>
+        </ng-container>
       </ul>
     </div>
   </nav>
@@ -43,16 +36,10 @@
         <h1>{{ logoText }}</h1>
       </div>
       <span class="nav-logo-line"></span>
-      <ul [ngClass]="menuStatus ? 'small-ics' : 'normal-ics'">
-        <li
-          *ngFor="let menuItem of menuItems"
-          routerLinkActive="nav-item-active"
-        >
-          <a routerLink="{{ menuItem.name }}"
-            ><i [class]="menuItem.icon"></i>
-            <p *ngIf="!menuStatus">{{ menuItem.name }}</p></a
-          >
-        </li>
+      <ul>
+        <ng-container *ngFor="let menuItem of menuItems">
+          <app-nav-item [menuItem]="menuItem"></app-nav-item>
+        </ng-container>
       </ul>
     </div>
   </nav>

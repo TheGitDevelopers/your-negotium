@@ -114,61 +114,6 @@ nav .nav-wrapper ul {
   height: 80vh;
 }
 
-nav .nav-wrapper ul.small-ics li i {
-  padding: 18px;
-  margin-top: 0;
-}
-
-nav .nav-wrapper ul.normal-ics li i {
-  margin-top: 18px;
-  padding: 0;
-}
-
-nav .nav-wrapper ul li {
-  display: block;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
-  transition: 0.15s;
-}
-
-nav .nav-wrapper ul li a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
-  padding: 10px;
-}
-
-nav .nav-wrapper ul li i {
-  display: inline-block;
-}
-
-nav .nav-wrapper ul li p {
-  display: inline-block;
-}
-
-nav .nav-wrapper ul li.nav-item-active {
-  background: #ff5656;
-}
-
-nav .nav-wrapper ul li:first-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
-  border-top: 1px solid rgba(255, 255, 255, 0.075);
-}
-
-nav .nav-wrapper ul li:hover {
-  background: #00a5a5;
-  -webkit-box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
-  box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
-  cursor: pointer;
-}
-
-nav .nav-wrapper ul li.nav-item-active:hover {
-  -webkit-box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
-  background: #ff5656;
-  box-shadow: 5px 11px 15px 5px rgba(0, 0, 0, 0.375);
-  cursor: pointer;
-}
-
 @keyframes slide-menu-hidden {
   from {
     width: 300px;

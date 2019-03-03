@@ -1,0 +1,126 @@
+li {
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+  transition: 0.15s;
+  &:hover {
+    border: none;
+  }
+  &.nav-item-active {
+    &:first-child {
+      border: none;
+    }
+    border: none;
+    div {
+      background: #ff5656;
+      &:hover {
+        background: #ff5656;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+  div {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    &:hover {
+      border: none;
+      background: #00a5a5;
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      width: 100%;
+      padding: 10px;
+    }
+    div {
+      display: flex;
+      position: absolute;
+      right: 0;
+      align-self: center;
+      justify-content: center;
+      &.show {
+        display: flex;
+      }
+      &.hide {
+        display: none;
+      }
+      i.sub-arrow {
+        width: 32px;
+        height: 32px;
+        margin: 0;
+        display: flex;
+        align-self: center;
+        &.left:before {
+          margin-top: 5px;
+          transform: rotate(90deg);
+        }
+        &:before {
+          display: flex;
+          align-self: center;
+        }
+      }
+    }
+  }
+  &.small-ics i {
+    padding: 18px;
+    margin-top: 0;
+  }
+  &.normal-ics i {
+    margin-top: 18px;
+    padding: 0;
+  }
+  p {
+    display: inline-block;
+  }
+  i {
+    display: inline-block;
+  }
+  &:first-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+    border-top: 1px solid rgba(255, 255, 255, 0.075);
+  }
+  ul.submenu {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    &.show {
+      display: flex;
+      animation: slideIn 0.5s;
+    }
+    &.hide {
+      display: none;
+    }
+    li {
+      width: 100%;
+      background: #495c6b;
+      color: #768d9e;
+      cursor: pointer;
+      padding: 8px 0;
+      text-align: center;
+      border: none;
+      &:hover {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-90%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

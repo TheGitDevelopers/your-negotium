@@ -12,7 +12,7 @@ export class ProductService {
   products: any;
   private db: any;
 
-  constructor(private http: HttpClient, db: AngularFireDatabase) {
+  constructor(db: AngularFireDatabase) {
     this.db = db;
   }
 
