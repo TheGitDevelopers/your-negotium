@@ -98,12 +98,17 @@ li {
     }
     li {
       width: 100%;
+      outline: none;
       background: #495c6b;
       color: #768d9e;
       cursor: pointer;
       padding: 8px 0;
       text-align: center;
       border: none;
+      &.sub-item-active {
+        background: #394f5c;
+        color: #ffffff;
+      }
       &:hover {
         -webkit-box-shadow: none;
         box-shadow: none;

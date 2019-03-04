@@ -12,7 +12,10 @@
       <span class="nav-logo-line"></span>
       <ul>
         <ng-container *ngFor="let menuItem of menuItems">
-          <app-nav-item [menuItem]="menuItem"></app-nav-item>
+          <app-nav-item
+            [menuItem]="menuItem"
+            [menuStatus]="menuStatus"
+          ></app-nav-item>
         </ng-container>
       </ul>
     </div>
