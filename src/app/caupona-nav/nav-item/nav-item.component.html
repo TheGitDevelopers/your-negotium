@@ -15,7 +15,7 @@
       ></i>
     </div>
   </div>
-  <ul [ngClass]="isSubMenuOpened ? 'show' : 'hide'" #submenu class="submenu">
+  <ul [@slide]="stateStatus" #submenu class="submenu">
     <ng-container *ngFor="let subItem of menuItem.submenuItems">
       <li
         (click)="$event.stopPropagation()"
