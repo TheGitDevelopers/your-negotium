@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import {
   MatButtonModule,
   MatIconModule,
@@ -69,6 +69,11 @@ import { ClientDataComponent } from "./caupona-content/customers/client-data/cli
 import { NewClientComponent } from "./caupona-content/customers/new-client/new-client.component";
 import { AskForReportComponent } from "./caupona-content/reports/ask-for-report/ask-for-report.component";
 import { DownloadReportComponent } from "./caupona-content/reports/download-report/download-report.component";
+import { LoadingInterceptorComponent } from "./global-components/loading-interceptor/loading-interceptor.component";
+import { HttpListenerService } from "./services/httplistener.service";
+import { HttpStatusService } from "./services/httpstatus.service";
+
+const RxJS_Services = [HttpListenerService, HttpStatusService];
 
 @NgModule({
   declarations: [
@@ -121,7 +126,8 @@ import { DownloadReportComponent } from "./caupona-content/reports/download-repo
     ClientDataComponent,
     NewClientComponent,
     AskForReportComponent,
-    DownloadReportComponent
+    DownloadReportComponent,
+    LoadingInterceptorComponent
   ],
   imports: [
     BrowserModule,
@@ -142,7 +148,14 @@ import { DownloadReportComponent } from "./caupona-content/reports/download-repo
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [
+    ...RxJS_Services,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpListenerService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
