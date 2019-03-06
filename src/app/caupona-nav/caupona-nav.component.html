@@ -1,52 +1,22 @@
 <div *ngIf="!mobileView">
-  <nav class="side-nav" *ngIf="!mobileView && counter === 0">
-    <div class="nav-wrapper">
-      <i
-        class="fas fa-caret-down"
-        [ngClass]="menuStatus ? 'active-wrap-btn' : 'inactive-wrap-btn'"
-      ></i>
-      <div class="nav-logo">
-        <i class="fas fa-utensils"></i>
-        <h1>caupona</h1>
-      </div>
-      <span class="nav-logo-line"></span>
-      <ul>
-        <ng-container *ngFor="let menuItem of menuItems">
-          <app-nav-item
-            [menuItem]="menuItem"
-            [menuStatus]="menuStatus"
-          ></app-nav-item>
-        </ng-container>
-      </ul>
+  <nav class="side-nav" [ngClass]="menuStatus ? 'hidden' : 'opened'">
+    <div class="nav-logo">
+      <i class="nav-logo-icon fas fa-utensils"></i>
+      <h1>{{ logoText }}</h1>
     </div>
-  </nav>
-  <i
-    class="fas fa-caret-down"
-    (click)="wrapMenu()"
-    [ngClass]="menuStatus ? 'active-wrap-btn' : 'inactive-wrap-btn'"
-  ></i>
-  <nav
-    class="side-nav"
-    *ngIf="counter > 0"
-    [ngClass]="menuStatus ? 'hidden' : 'opened'"
-  >
-    <div class="nav-wrapper">
-      <div class="nav-logo">
-        <i
-          [ngClass]="logoText === 'Caupona' ? 'show-ics' : 'hide-ics'"
-          class="fas fa-utensils"
-        ></i>
-        <h1>{{ logoText }}</h1>
-      </div>
-      <span class="nav-logo-line"></span>
-      <ul>
-        <ng-container *ngFor="let menuItem of menuItems">
-          <app-nav-item
-            [menuItem]="menuItem"
-            [menuStatus]="menuStatus"
-          ></app-nav-item>
-        </ng-container>
-      </ul>
+    <div class="nav-toggler">
+      <span class="toggler-icon fa-stack fa-2x" (click)="wrapMenu()">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-caret-left fa-stack-2x"></i>
+      </span>
     </div>
+    <ul class="nav-menu">
+      <ng-container *ngFor="let menuItem of menuItems">
+        <app-nav-item
+          [menuItem]="menuItem"
+          [menuStatus]="menuStatus"
+        ></app-nav-item>
+      </ng-container>
+    </ul>
   </nav>
 </div>

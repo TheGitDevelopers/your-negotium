@@ -1,3 +1,9 @@
+// ------ CONFIG ------------
+$width-open: 300px;
+$width-hidden: 90px;
+
+// ---------------------------------------
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -15,36 +21,102 @@
 }
 
 nav {
-  width: 300px;
-  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "logo"
+    "toggler"
+    "menu";
+
+  height: 100vh;
+  padding-top: 40px;
+  margin: 0;
+  overflow: hidden;
+
   background: #2c3c4b;
   color: #ffffff;
+
+  text-align: center;
   font-size: 18px;
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 4px;
-  margin: 0;
-  // position: fixed;
+
+  .nav-logo {
+    grid-area: logo;
+
+    margin: 0 0.5em;
+
+    font-size: 26px;
+    border-bottom: 1px solid rgba(253, 253, 253, 0.675);
+
+    h1 {
+      display: inline;
+    }
+  }
+
+  .nav-toggler {
+    grid-area: toggler;
+  }
+
+  ul.nav-menu {
+    grid-area: menu;
+
+    width: $width-open;
+
+    margin-top: 0;
+    padding: 0;
+    overflow-y: auto;
+
+    list-style: none;
+  }
 }
 
-.hidden {
+nav.hidden {
   animation: slide-menu-hidden 0.3s;
-  width: 90px;
+  & ul.nav-menu {
+    animation: slide-menu-hidden 0.3s;
+    width: $width-hidden;
+  }
 }
 
-.opened {
+nav.opened {
   animation: slide-menu-opened 0.3s;
-  display: block;
+  & ul.nav-menu {
+    animation: slide-menu-opened 0.3s;
+  }
 }
 
-.show-ics.fas.fa-utensils {
-  display: block;
+.toggler-icon {
+  color: #00a5a5;
+  margin: 1em 0;
+  transition: transform 0.3s;
+  font-size: 20px;
+  cursor: pointer;
+
+  i.fa-caret-left {
+    left: -0.05em;
+    color: #2c3c4b;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  .hidden & {
+    transform: rotate(-180deg);
+  }
 }
 
-.hide-ics {
-  display: none;
+.nav-logo-icon {
+  display: inline;
+  margin: 22px 4px;
+
+  .hidden & {
+    display: none;
+  }
 }
 
 h1 {
@@ -56,93 +128,20 @@ h1 {
   margin-right: 5px;
 }
 
-.fas.fa-caret-down {
-  position: fixed;
-  top: 95px;
-  z-index: 2;
-  left: 109px;
-  transform: rotate(90deg);
-  font-size: 49px;
-  height: 0;
-  width: 0;
-  cursor: pointer;
-}
-
-.fas.fa-caret-down.active-wrap-btn {
-  display: block;
-  color: #00a5a5;
-  top: 91px;
-  animation: show-arrow 0.3s;
-}
-
-.fas.fa-caret-down.inactive-wrap-btn {
-  color: white;
-  left: 319px;
-}
-
-nav .nav-wrapper {
-  text-align: center;
-  padding-top: 40px;
-}
-
-nav .nav-wrapper .nav-logo {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  justify-content: center;
-  font-size: 26px;
-}
-
-nav .nav-wrapper span.nav-logo-line {
-  display: flex;
-  width: 90%;
-  margin: 0 5%;
-  border-bottom: 1px solid rgba(253, 253, 253, 0.675);
-}
-
-nav .nav-wrapper .nav-logo .fas.fa-utensils {
-  margin: 22px 4px;
-}
-
-nav .nav-wrapper ul {
-  margin-top: 60px;
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  height: 80vh;
-}
-
 @keyframes slide-menu-hidden {
   from {
-    width: 300px;
+    width: $width-open;
   }
   to {
-    width: 90px;
+    width: $width-hidden;
   }
 }
 
 @keyframes slide-menu-opened {
   from {
-    width: 90px;
+    width: $width-hidden;
   }
   to {
-    width: 300px;
-  }
-}
-
-@keyframes show-arrow {
-  from {
-    left: 319px;
-  }
-  to {
-    left: 109px;
-  }
-}
-
-@media screen and (max-width: 720px) {
-  nav .nav-wrapper ul {
-    height: 400px;
+    width: $width-open;
   }
 }
