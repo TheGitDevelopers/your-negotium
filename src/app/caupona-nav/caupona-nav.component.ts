@@ -26,67 +26,198 @@ export class CauponaNavComponent implements OnInit {
       {
         name: "dashboard",
         icon: "fas fa-chart-line",
-        submenuItems: ["charts", "tables"]
+        submenuItems: [
+          {
+            label: "charts",
+            path: "charts"
+          },
+          {
+            label: "tables",
+            path: "tables"
+          }
+        ]
       },
       {
         name: "orders",
         icon: "fas fa-tasks",
-        submenuItems: ["menu", "temporary", "online orders", "local orders"]
+        submenuItems: [
+          {
+            label: "temporary",
+            path: "temporary"
+          },
+          {
+            label: "online orders",
+            path: "online-orders"
+          },
+          {
+            label: "local orders",
+            path: "local-orders"
+          }
+        ]
       },
       {
         name: "warehouse",
         icon: "fas fa-store",
         submenuItems: [
-          "fixed products",
-          "temporary products",
-          "special products",
-          "new product"
+          {
+            label: "fixed products",
+            path: "fixed-products"
+          },
+          {
+            label: "temporary products",
+            path: "temporary-products"
+          },
+          {
+            label: "special products",
+            path: "special-products"
+          },
+          {
+            label: "add new",
+            path: "new-product"
+          }
         ]
       },
       {
         name: "finance",
         icon: "fas fa-piggy-bank",
-        submenuItems: ["costs", "carriage", "consumption", "leasing"]
+        submenuItems: [
+          {
+            label: "costs",
+            path: "costs"
+          },
+          {
+            label: "carriage",
+            path: "carriage"
+          },
+          {
+            label: "consumption",
+            path: "consumption"
+          },
+          {
+            label: "leasing",
+            path: "leasing"
+          }
+        ]
       },
       {
         name: "employees",
         icon: "fas fa-user-tie",
-        submenuItems: ["holiday", "availability", "trainings"]
+        submenuItems: [
+          {
+            label: "holiday",
+            path: "holiday"
+          },
+          {
+            label: "availability",
+            path: "availability"
+          },
+          {
+            label: "trainings",
+            path: "trainings"
+          }
+        ]
       },
       {
         name: "reservations",
         icon: "far fa-envelope",
-        submenuItems: ["general", "add new reservation"]
+        submenuItems: [
+          {
+            label: "general",
+            path: "general"
+          },
+          {
+            label: "add new",
+            path: "add-new-reservation"
+          },
+          {
+            label: "local orders",
+            path: "local-orders"
+          }
+        ]
       },
       {
         name: "calendar",
         icon: "far fa-calendar-alt",
-        submenuItems: ["meetings", "company events", "add new event"]
+        submenuItems: [
+          {
+            label: "meetings",
+            path: "meetings"
+          },
+          {
+            label: "company events",
+            path: "company-events"
+          },
+          {
+            label: "add new",
+            path: "add-new-event"
+          }
+        ]
       },
       {
         name: "targets",
         icon: "fas fa-business-time",
-        submenuItems: ["general", "add new target"]
+        submenuItems: [
+          {
+            label: "general",
+            path: "general"
+          },
+          {
+            label: "add new",
+            path: "add-new-target"
+          }
+        ]
       },
       {
         name: "partners",
         icon: "fas fa-handshake",
-        submenuItems: ["general", "add new partner"]
+        submenuItems: [
+          {
+            label: "general",
+            path: "general"
+          },
+          {
+            label: "add new",
+            path: "add-new-partner"
+          }
+        ]
       },
       {
         name: "sale",
         icon: "fas fa-money-check-alt",
-        submenuItems: ["discounts"]
+        submenuItems: [
+          {
+            label: "discounts",
+            path: "discounts"
+          }
+        ]
       },
       {
         name: "customers",
         icon: "fas fa-user",
-        submenuItems: ["client data", "add new client"]
+        submenuItems: [
+          {
+            label: "client data",
+            path: "client-data"
+          },
+          {
+            label: "add new",
+            path: "add-new-client"
+          }
+        ]
       },
       {
         name: "reports",
         icon: "far fa-file-alt",
-        submenuItems: ["ask for report", "download report"]
+        submenuItems: [
+          {
+            label: "ask for report",
+            path: "ask-for-report"
+          },
+          {
+            label: "download",
+            path: "download-report"
+          }
+        ]
       }
     ];
   }

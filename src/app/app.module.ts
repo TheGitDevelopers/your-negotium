@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import {
   MatButtonModule,
   MatIconModule,
@@ -38,6 +38,42 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { NavItemComponent } from "./caupona-nav/nav-item/nav-item.component";
+import { ChartsComponent } from "./caupona-content/dashboard/charts/charts.component";
+import { TablesComponent } from "./caupona-content/dashboard/tables/tables.component";
+import { MenuComponent } from "./caupona-content/orders/menu/menu.component";
+import { TemporaryComponent } from "./caupona-content/orders/temporary/temporary.component";
+import { OnlineOrdersComponent } from "./caupona-content/orders/online-orders/online-orders.component";
+import { LocalOrdersComponent } from "./caupona-content/orders/local-orders/local-orders.component";
+import { FixedProductsComponent } from "./caupona-content/warehouse/fixed-products/fixed-products.component";
+import { TemporaryProductsComponent } from "./caupona-content/warehouse/temporary-products/temporary-products.component";
+import { SpecialProductsComponent } from "./caupona-content/warehouse/special-products/special-products.component";
+import { NewProductComponent } from "./caupona-content/warehouse/new-product/new-product.component";
+import { CostsComponent } from "./caupona-content/finance/costs/costs.component";
+import { CarriageComponent } from "./caupona-content/finance/carriage/carriage.component";
+import { ConsumptionComponent } from "./caupona-content/finance/consumption/consumption.component";
+import { LeasingComponent } from "./caupona-content/finance/leasing/leasing.component";
+import { HolidayComponent } from "./caupona-content/employees/holiday/holiday.component";
+import { AvailabilityComponent } from "./caupona-content/employees/availability/availability.component";
+import { TrainingsComponent } from "./caupona-content/employees/trainings/trainings.component";
+import { GeneralReservationsComponent } from "./caupona-content/reservations/general-reservations/general-reservations.component";
+import { NewReservationComponent } from "./caupona-content/reservations/new-reservation/new-reservation.component";
+import { MeetingsComponent } from "./caupona-content/calendar/meetings/meetings.component";
+import { CompanyEventsComponent } from "./caupona-content/calendar/company-events/company-events.component";
+import { NewEventComponent } from "./caupona-content/calendar/new-event/new-event.component";
+import { GeneralTargetsComponent } from "./caupona-content/targets/general-targets/general-targets.component";
+import { NewTargetComponent } from "./caupona-content/targets/new-target/new-target.component";
+import { GeneralPartnersComponent } from "./caupona-content/partners/general-partners/general-partners.component";
+import { NewPartnerComponent } from "./caupona-content/partners/new-partner/new-partner.component";
+import { DiscountsComponent } from "./caupona-content/sales/discounts/discounts.component";
+import { ClientDataComponent } from "./caupona-content/customers/client-data/client-data.component";
+import { NewClientComponent } from "./caupona-content/customers/new-client/new-client.component";
+import { AskForReportComponent } from "./caupona-content/reports/ask-for-report/ask-for-report.component";
+import { DownloadReportComponent } from "./caupona-content/reports/download-report/download-report.component";
+import { LoadingInterceptorComponent } from "./global-components/loading-interceptor/loading-interceptor.component";
+import { HttpListenerService } from "./services/httplistener.service";
+import { HttpStatusService } from "./services/httpstatus.service";
+
+const RxJS_Services = [HttpListenerService, HttpStatusService];
 
 @NgModule({
   declarations: [
@@ -59,7 +95,39 @@ import { NavItemComponent } from "./caupona-nav/nav-item/nav-item.component";
     ReportsComponent,
     NotFoundComponent,
     TabNavbarComponent,
-    NavItemComponent
+    NavItemComponent,
+    ChartsComponent,
+    TablesComponent,
+    MenuComponent,
+    TemporaryComponent,
+    OnlineOrdersComponent,
+    LocalOrdersComponent,
+    FixedProductsComponent,
+    TemporaryProductsComponent,
+    SpecialProductsComponent,
+    NewProductComponent,
+    CostsComponent,
+    CarriageComponent,
+    ConsumptionComponent,
+    LeasingComponent,
+    HolidayComponent,
+    AvailabilityComponent,
+    TrainingsComponent,
+    GeneralReservationsComponent,
+    NewReservationComponent,
+    MeetingsComponent,
+    CompanyEventsComponent,
+    NewEventComponent,
+    GeneralTargetsComponent,
+    NewTargetComponent,
+    GeneralPartnersComponent,
+    NewPartnerComponent,
+    DiscountsComponent,
+    ClientDataComponent,
+    NewClientComponent,
+    AskForReportComponent,
+    DownloadReportComponent,
+    LoadingInterceptorComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +148,14 @@ import { NavItemComponent } from "./caupona-nav/nav-item/nav-item.component";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [
+    ...RxJS_Services,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpListenerService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

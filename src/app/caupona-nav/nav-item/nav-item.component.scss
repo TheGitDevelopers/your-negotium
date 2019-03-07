@@ -91,36 +91,28 @@ li {
     flex-direction: column;
     &.show {
       display: flex;
-      animation: slideIn 0.5s;
     }
     &.hide {
       display: none;
     }
     li {
       width: 100%;
+      outline: none;
       background: #495c6b;
       color: #768d9e;
       cursor: pointer;
       padding: 8px 0;
       text-align: center;
       border: none;
+      &.sub-item-active {
+        background: #394f5c;
+        color: #ffffff;
+      }
       &:hover {
         -webkit-box-shadow: none;
         box-shadow: none;
         color: #ffffff;
       }
     }
-  }
-}
-
-@keyframes slideIn {
-  from {
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(-90%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
   }
 }
