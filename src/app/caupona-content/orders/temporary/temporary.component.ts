@@ -24,7 +24,7 @@ export class TemporaryComponent implements OnInit {
       {
         title: "Permanent product",
         dataSource: this.dataSource,
-        labels: ["expiryDate", "id", "name", "price", "quantity"],
+        labels: ["expiryDate", "id", "name", "quantity", "price"],
         findObjectParam: this.findObjectParam,
         displayedColumns: this.displayedColumns
       },
