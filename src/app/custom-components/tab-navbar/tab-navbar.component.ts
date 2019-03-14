@@ -11,4 +11,9 @@ export class TabNavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  findObjectParam(e, i) {
+    const category = Object.keys(e)[i];
+    return e[category];
+  }
 }
