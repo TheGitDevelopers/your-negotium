@@ -54,10 +54,11 @@ const appRoutes: Routes = [
     path: "orders",
     component: OrdersComponent,
     children: [
-      { path: "", pathMatch: "full", redirectTo: "menu" },
+      { path: "", pathMatch: "full", redirectTo: "temporary" },
       { path: "menu", component: MenuComponent },
-      { path: "online", component: OnlineOrdersComponent },
-      { path: "local", component: LocalOrdersComponent }
+      { path: "temporary", component: TemporaryComponent },
+      { path: "online-orders", component: OnlineOrdersComponent },
+      { path: "local-orders", component: LocalOrdersComponent }
     ]
   },
   { path: "warehouse", component: WarehouseComponent },
@@ -73,10 +74,7 @@ const appRoutes: Routes = [
   { path: "reports", component: ReportsComponent },
   { path: "dashboard/charts", component: ChartsComponent },
   { path: "dashboard/tables", component: TablesComponent },
-  { path: "orders/menu", component: MenuComponent },
-  { path: "orders/temporary", component: TemporaryComponent },
-  { path: "orders/online-orders", component: OnlineOrdersComponent },
-  { path: "orders/local-orders", component: LocalOrdersComponent },
+
   { path: "warehouse/fixed-products", component: FixedProductsComponent },
   {
     path: "warehouse/temporary-products",

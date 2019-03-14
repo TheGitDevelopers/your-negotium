@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ProductDataSource } from "../../../data-sources/product-data-source";
+import { ProductService } from "../../../services/product.service";
 
 @Component({
   selector: "app-temporary",
@@ -6,7 +8,33 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./temporary.component.scss"]
 })
 export class TemporaryComponent implements OnInit {
-  constructor() {}
+  tabs: object[];
+  dataSource = new ProductDataSource(this.productService);
+  displayedColumns = ["id", "name", "quantity", "price", "expiryDate"];
 
-  ngOnInit() {}
+  constructor(private productService: ProductService) {}
+
+  findObjectParam(e, i) {
+    const category = Object.keys(e)[i];
+    return e[category];
+  }
+
+  ngOnInit() {
+    this.tabs = [
+      {
+        title: "Permanent product",
+        dataSource: this.dataSource,
+        labels: ["expiryDate", "id", "name", "price", "quantity"],
+        findObjectParam: this.findObjectParam,
+        displayedColumns: this.displayedColumns
+      },
+      {
+        title: "Temporary product",
+        dataSource: this.dataSource,
+        labels: ["expiryDate", "id", "name", "price", "quantity"],
+        findObjectParam: this.findObjectParam,
+        displayedColumns: this.displayedColumns
+      }
+    ];
+  }
 }
