@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductDataSource } from "../../../data-sources/product-data-source";
-import { ProductService } from "../../../services/product.service";
+import { FirebaseService } from "src/app/services/firebase.service";
+import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 
 @Component({
   selector: "app-temporary",
@@ -9,31 +9,23 @@ import { ProductService } from "../../../services/product.service";
 })
 export class TemporaryComponent implements OnInit {
   tabs: object[];
-  dataSource = new ProductDataSource(this.productService);
-  displayedColumns = ["id", "name", "quantity", "price", "expiryDate"];
+  dataSource = new FromFirebaseDataSource(this.firebaseService, "products");
 
-  constructor(private productService: ProductService) {}
-
-  findObjectParam(e, i) {
-    const category = Object.keys(e)[i];
-    return e[category];
-  }
+  constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit() {
     this.tabs = [
       {
-        title: "Permanent product",
-        dataSource: this.dataSource,
-        labels: ["expiryDate", "id", "name", "quantity", "price"],
-        findObjectParam: this.findObjectParam,
-        displayedColumns: this.displayedColumns
-      },
-      {
-        title: "Temporary product",
+        title: "Get products short",
         dataSource: this.dataSource,
         labels: ["expiryDate", "id", "name", "price", "quantity"],
-        findObjectParam: this.findObjectParam,
-        displayedColumns: this.displayedColumns
+        displayedColumns: ["id", "name"] // define which columns are being displayed and the order (names have to match exactly labels)
+      },
+      {
+        title: "Products all",
+        dataSource: this.dataSource,
+        labels: ["expiryDate", "id", "name", "price", "quantity"],
+        displayedColumns: ["id", "name", "price", "quantity", "expiryDate"]
       }
     ];
   }
