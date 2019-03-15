@@ -10,23 +10,23 @@ import { OrderService } from "src/app/services/order.service";
 export class OnlineOrdersComponent implements OnInit {
   tabs: object[];
   dataSource = new OrderDataSource(this.orderService);
-  displayedColumns = ["price", "name"];
 
   constructor(private orderService: OrderService) {}
 
-  findObjectParam(e, i) {
-    const category = Object.keys(e)[i];
-    return e[category];
-  }
-
   ngOnInit() {
+    console.log(this.dataSource);
     this.tabs = [
       {
         title: "Just orders",
         dataSource: this.dataSource,
-        labels: ["name", "price"],
-        findObjectParam: this.findObjectParam,
-        displayedColumns: this.displayedColumns
+        labels: ["id", "name", "price"],
+        displayedColumns: ["id", "name"] // define which columns are being displayed and the order (names have to match exactly labels)
+      },
+      {
+        title: "Just orders 2",
+        dataSource: this.dataSource,
+        labels: ["id", "name", "price"],
+        displayedColumns: ["price", "name", "id"]
       }
     ];
   }
