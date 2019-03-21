@@ -21,8 +21,26 @@ export class OnlineOrdersComponent implements OnInit {
       {
         title: "Online orders",
         dataSource: this.dataSource,
-        labels: ["from", "id", "name"],
-        displayedColumns: ["from", "name", "id"] // define which columns are being displayed and the order (names have to match exactly labels)
+        labels: [
+          "cost",
+          "from",
+          "id",
+          "ordered",
+          "price",
+          "rating",
+          "time",
+          "tip"
+        ], //labels for order property (have to be the same order like in firebase)
+        displayedColumns: [
+          "id",
+          "ordered",
+          "from",
+          "cost",
+          "price",
+          "rating",
+          "time",
+          "tip"
+        ] // define which columns are being displayed and the order (names have to match exactly labels)
       }
     ];
   }
