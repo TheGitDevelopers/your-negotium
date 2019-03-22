@@ -9,23 +9,25 @@ import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-s
 })
 export class LocalOrdersComponent implements OnInit {
   tabs: object[];
-  dataSource = new FromFirebaseDataSource(this.firebaseService, "orders");
+  dataSource = new FromFirebaseDataSource(this.firebaseService, "local-orders");
 
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit() {
     this.tabs = [
       {
-        title: "Just orders",
+        title: "Local orders",
         dataSource: this.dataSource,
-        labels: ["id", "name", "price"],
-        displayedColumns: ["id", "name"] // define which columns are being displayed and the order (names have to match exactly labels)
-      },
-      {
-        title: "Just orders 2",
-        dataSource: this.dataSource,
-        labels: ["id", "name", "price"],
-        displayedColumns: ["name", "id", "price"]
+        labels: ["cost", "id", "ordered", "price", "rating", "time", "tip"], // has to be the same order as in firebase
+        displayedColumns: [
+          "id",
+          "ordered",
+          "cost",
+          "price",
+          "rating",
+          "time",
+          "tip"
+        ] // define which columns are being displayed and the order (names have to match exactly labels)
       }
     ];
   }
