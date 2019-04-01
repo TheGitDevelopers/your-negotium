@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductService } from "../../services/product.service";
-import { ProductDataSource } from "../../data-sources/product-data-source";
+import { FirebaseService } from "src/app/services/firebase.service";
+import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 
 @Component({
   selector: "app-warehouse",
@@ -9,31 +9,26 @@ import { ProductDataSource } from "../../data-sources/product-data-source";
 })
 export class WarehouseComponent implements OnInit {
   tabs: object[];
-  dataSource = new ProductDataSource(this.productService);
-  displayedColumns = ["id", "name", "quantity", "price", "expiryDate"];
-
-  constructor(private productService: ProductService) {}
-
-  findObjectParam(e, i) {
-    const category = Object.keys(e)[i];
-    return e[category];
-  }
-
+  constructor(private firebaseService: FirebaseService) {}
   ngOnInit() {
     this.tabs = [
       {
-        title: "Permanent product",
-        dataSource: this.dataSource,
+        title: "Fixed product",
+        dataSource: new FromFirebaseDataSource(
+          this.firebaseService,
+          "fixedProducts"
+        ),
         labels: ["expiryDate", "id", "name", "price", "quantity"],
-        findObjectParam: this.findObjectParam,
-        displayedColumns: this.displayedColumns
+        displayedColumns: ["id", "name", "quantity", "price", "expiryDate"]
       },
       {
         title: "Temporary product",
-        dataSource: this.dataSource,
+        dataSource: new FromFirebaseDataSource(
+          this.firebaseService,
+          "temporaryProducts"
+        ),
         labels: ["expiryDate", "id", "name", "price", "quantity"],
-        findObjectParam: this.findObjectParam,
-        displayedColumns: this.displayedColumns
+        displayedColumns: ["id", "name", "quantity", "price", "expiryDate"]
       }
     ];
   }
