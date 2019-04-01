@@ -48,10 +48,6 @@ export class CauponaNavComponent implements OnInit {
           {
             label: "local orders",
             path: "local-orders"
-          },
-          {
-            label: "temporary",
-            path: "temporary"
           }
         ]
       },

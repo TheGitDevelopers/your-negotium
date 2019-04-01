@@ -18,7 +18,6 @@ import { NotFoundComponent } from "./caupona-content/not-found/not-found.compone
 import { ChartsComponent } from "./caupona-content/dashboard/charts/charts.component";
 import { TablesComponent } from "./caupona-content/dashboard/tables/tables.component";
 import { MenuComponent } from "./caupona-content/orders/menu/menu.component";
-import { TemporaryComponent } from "./caupona-content/orders/temporary/temporary.component";
 import { OnlineOrdersComponent } from "./caupona-content/orders/online-orders/online-orders.component";
 import { LocalOrdersComponent } from "./caupona-content/orders/local-orders/local-orders.component";
 import { FixedProductsComponent } from "./caupona-content/warehouse/fixed-products/fixed-products.component";
@@ -56,7 +55,6 @@ const appRoutes: Routes = [
     children: [
       { path: "", pathMatch: "full", redirectTo: "temporary" },
       { path: "menu", component: MenuComponent },
-      { path: "temporary", component: TemporaryComponent },
       { path: "online-orders", component: OnlineOrdersComponent },
       { path: "local-orders", component: LocalOrdersComponent }
     ]
