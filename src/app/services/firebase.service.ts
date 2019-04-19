@@ -1,25 +1,25 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
-import { Product } from "../models/product";
 import { AngularFireDatabase } from "@angular/fire/database";
+import { Order } from "../models/order";
+import { Product } from "../models/product";
 
 @Injectable({
   providedIn: "root"
 })
-export class ProductService {
+export class FirebaseService {
   items: Observable<any[]>;
-  products: any;
+  data: any;
   private db: any;
 
   constructor(db: AngularFireDatabase) {
     this.db = db;
   }
 
-  getProduct(): Observable<Product[]> {
-    this.items = this.db.list("products").valueChanges();
-    this.items.subscribe(products => {
-      this.products = products;
+  getData(table: string): Observable<Order[] | Product[]> {
+    this.items = this.db.list(table).valueChanges();
+    this.items.subscribe(data => {
+      this.data = data;
     });
     return this.items;
   }

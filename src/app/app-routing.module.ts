@@ -18,7 +18,6 @@ import { NotFoundComponent } from "./caupona-content/not-found/not-found.compone
 import { ChartsComponent } from "./caupona-content/dashboard/charts/charts.component";
 import { TablesComponent } from "./caupona-content/dashboard/tables/tables.component";
 import { MenuComponent } from "./caupona-content/orders/menu/menu.component";
-import { TemporaryComponent } from "./caupona-content/orders/temporary/temporary.component";
 import { OnlineOrdersComponent } from "./caupona-content/orders/online-orders/online-orders.component";
 import { LocalOrdersComponent } from "./caupona-content/orders/local-orders/local-orders.component";
 import { FixedProductsComponent } from "./caupona-content/warehouse/fixed-products/fixed-products.component";
@@ -50,7 +49,16 @@ import { DownloadReportComponent } from "./caupona-content/reports/download-repo
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   { path: "dashboard", component: DashboardComponent },
-  { path: "orders", component: OrdersComponent },
+  {
+    path: "orders",
+    component: OrdersComponent,
+    children: [
+      { path: "", pathMatch: "full", redirectTo: "temporary" },
+      { path: "menu", component: MenuComponent },
+      { path: "online-orders", component: OnlineOrdersComponent },
+      { path: "local-orders", component: LocalOrdersComponent }
+    ]
+  },
   { path: "warehouse", component: WarehouseComponent },
   { path: "finance", component: FinanceComponent },
   { path: "employees", component: EmployeesComponent },
@@ -64,10 +72,7 @@ const appRoutes: Routes = [
   { path: "reports", component: ReportsComponent },
   { path: "dashboard/charts", component: ChartsComponent },
   { path: "dashboard/tables", component: TablesComponent },
-  { path: "orders/menu", component: MenuComponent },
-  { path: "orders/temporary", component: TemporaryComponent },
-  { path: "orders/online-orders", component: OnlineOrdersComponent },
-  { path: "orders/local-orders", component: LocalOrdersComponent },
+
   { path: "warehouse/fixed-products", component: FixedProductsComponent },
   {
     path: "warehouse/temporary-products",

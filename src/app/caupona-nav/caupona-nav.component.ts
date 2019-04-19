@@ -42,10 +42,6 @@ export class CauponaNavComponent implements OnInit {
         icon: "fas fa-tasks",
         submenuItems: [
           {
-            label: "temporary",
-            path: "temporary"
-          },
-          {
             label: "online orders",
             path: "online-orders"
           },
