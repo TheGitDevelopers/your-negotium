@@ -136,6 +136,10 @@ export class CauponaNavComponent implements OnInit {
         icon: "far fa-calendar-alt",
         submenuItems: [
           {
+            label: "calendar",
+            path: ""
+          },
+          {
             label: "meetings",
             path: "meetings"
           },
@@ -146,6 +150,14 @@ export class CauponaNavComponent implements OnInit {
           {
             label: "add new",
             path: "add-new-event"
+          },
+          {
+            label: "edit event",
+            path: "edit-event"
+          },
+          {
+            label: "calendar settings",
+            path: "calendar-settings"
           }
         ]
       },

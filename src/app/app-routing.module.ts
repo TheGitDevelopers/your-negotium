@@ -36,6 +36,7 @@ import { NewReservationComponent } from "./caupona-content/reservations/new-rese
 import { MeetingsComponent } from "./caupona-content/calendar/meetings/meetings.component";
 import { CompanyEventsComponent } from "./caupona-content/calendar/company-events/company-events.component";
 import { NewEventComponent } from "./caupona-content/calendar/new-event/new-event.component";
+import { CalendarSettingsComponent } from "./caupona-content/calendar/calendar-settings/calendar-settings.component";
 import { GeneralTargetsComponent } from "./caupona-content/targets/general-targets/general-targets.component";
 import { GeneralPartnersComponent } from "./caupona-content/partners/general-partners/general-partners.component";
 import { NewTargetComponent } from "./caupona-content/targets/new-target/new-target.component";
@@ -45,6 +46,7 @@ import { ClientDataComponent } from "./caupona-content/customers/client-data/cli
 import { NewClientComponent } from "./caupona-content/customers/new-client/new-client.component";
 import { AskForReportComponent } from "./caupona-content/reports/ask-for-report/ask-for-report.component";
 import { DownloadReportComponent } from "./caupona-content/reports/download-report/download-report.component";
+import { EditEventComponent } from "./caupona-content/calendar/edit-event/edit-event.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -95,6 +97,8 @@ const appRoutes: Routes = [
   { path: "calendar/meetings", component: MeetingsComponent },
   { path: "calendar/company-events", component: CompanyEventsComponent },
   { path: "calendar/add-new-event", component: NewEventComponent },
+  { path: "calendar/edit-event", component: EditEventComponent },
+  { path: "calendar/calendar-settings", component: CalendarSettingsComponent },
   { path: "targets/general", component: GeneralTargetsComponent },
   { path: "targets/add-new-target", component: NewTargetComponent },
   { path: "partners/general", component: GeneralPartnersComponent },

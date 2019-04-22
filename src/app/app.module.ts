@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatButtonModule,
   MatIconModule,
@@ -12,8 +13,14 @@ import {
   MatSortModule,
   MatTableModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatFormFieldModule
 } from "@angular/material";
+// import {} from "@angular/material/datepicker";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
@@ -71,6 +78,9 @@ import { DownloadReportComponent } from "./caupona-content/reports/download-repo
 import { LoadingInterceptorComponent } from "./global-components/loading-interceptor/loading-interceptor.component";
 import { HttpListenerService } from "./services/httplistener.service";
 import { HttpStatusService } from "./services/httpstatus.service";
+import { CalendarSettingsComponent } from "./caupona-content/calendar/calendar-settings/calendar-settings.component";
+import { EditEventComponent } from "./caupona-content/calendar/edit-event/edit-event.component";
+import { EventFormComponent } from "./custom-components/event-form/event-form.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -125,12 +135,17 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     NewClientComponent,
     AskForReportComponent,
     DownloadReportComponent,
-    LoadingInterceptorComponent
+    LoadingInterceptorComponent,
+    CalendarSettingsComponent,
+    EditEventComponent,
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -141,6 +156,11 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatFormFieldModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

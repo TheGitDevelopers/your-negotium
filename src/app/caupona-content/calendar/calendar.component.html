@@ -1,3 +1,12 @@
-<p>
-  calendar works!
-</p>
+<div class="calendar">
+  <div class="day" *ngFor="let day of days">
+    <header>
+      <b>{{ day.name }}</b>
+      <b class="hour"> 19</b>
+    </header>
+    <div class="event" *ngFor="let event of day.events">
+      <time>{{ event.time }}</time>
+      <p>{{ event.description }}</p>
+    </div>
+  </div>
+</div>

@@ -16,8 +16,9 @@ export class FirebaseService {
     this.db = db;
   }
 
-  getData(table: string): Observable<Order[] | Product[]> {
+  getData(table: string): Observable<any[]> {
     this.items = this.db.list(table).valueChanges();
+
     this.items.subscribe(data => {
       this.data = data;
     });

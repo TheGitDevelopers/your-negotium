@@ -7,6 +7,8 @@ import { Component, OnInit } from "@angular/core";
 })
 export class NewEventComponent implements OnInit {
   constructor() {}
-
   ngOnInit() {}
+  createEvent(event) {
+    window.alert(JSON.stringify(event.value));
+  }
 }
