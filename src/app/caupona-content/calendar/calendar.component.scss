@@ -47,15 +47,21 @@
     }
 
     .event {
+      outline: none;
+      cursor: pointer;
       display: flex;
       flex-flow: column;
       background: hsla(0, 0%, 95%, 1);
       margin: 0.5em;
-      padding: 0.5em;
+      padding: 1em;
       width: 100%;
       justify-content: space-around;
       border-right: 1px solid #e8e8e8;
       border-left: 1px solid #e8e8e8;
+
+      &:focus {
+        background: hsla(0, 0%, 93%, 1);
+      }
 
       time {
         color: red;

@@ -152,10 +152,6 @@ export class CauponaNavComponent implements OnInit {
             path: "add-new-event"
           },
           {
-            label: "edit event",
-            path: "edit-event"
-          },
-          {
             label: "calendar settings",
             path: "calendar-settings"
           }

@@ -4,9 +4,13 @@
       <b>{{ day.name }}</b>
       <b class="hour"> 19</b>
     </header>
-    <div class="event" *ngFor="let event of day.events">
+    <div
+      class="event"
+      *ngFor="let event of day.events"
+      [routerLink]="['/calendar/edit-event', event.eventId]"
+    >
       <time>{{ event.time }}</time>
-      <p>{{ event.description }}</p>
+      <p>{{ event.notes }}</p>
     </div>
   </div>
 </div>

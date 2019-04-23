@@ -1,4 +1,11 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  Input,
+  OnChanges
+} from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 // import { EventEmitter } from '@angular/core/src/event_emitter';
 
@@ -7,10 +14,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
   templateUrl: "./event-form.component.html",
   styleUrls: ["./event-form.component.scss"]
 })
-export class EventFormComponent implements OnInit {
+export class EventFormComponent implements OnInit, OnChanges {
+  @Input() myEvent;
   @Output() formEvent: EventEmitter<any> = new EventEmitter();
 
-  constructor(fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this.options = fb.group({
       name: "",
       startDate: "",
@@ -25,7 +33,15 @@ export class EventFormComponent implements OnInit {
   }
   options: FormGroup;
   remindMeSwitch: String;
-
+  ngOnChanges() {
+    if (Object.values(this.myEvent).length) {
+      delete this.myEvent.eventId;
+      this.options = this.fb.group({
+        ...this.options.controls,
+        ...this.myEvent
+      });
+    }
+  }
   ngOnInit() {
     const startAt = new Date();
   }

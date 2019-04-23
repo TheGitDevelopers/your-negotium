@@ -97,7 +97,7 @@ const appRoutes: Routes = [
   { path: "calendar/meetings", component: MeetingsComponent },
   { path: "calendar/company-events", component: CompanyEventsComponent },
   { path: "calendar/add-new-event", component: NewEventComponent },
-  { path: "calendar/edit-event", component: EditEventComponent },
+  { path: "calendar/edit-event/:id", component: EditEventComponent },
   { path: "calendar/calendar-settings", component: CalendarSettingsComponent },
   { path: "targets/general", component: GeneralTargetsComponent },
   { path: "targets/add-new-target", component: NewTargetComponent },

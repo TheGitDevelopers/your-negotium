@@ -10,7 +10,7 @@ export class FromFirebaseDataSource extends DataSource<any> {
     super();
   }
 
-  connect(): Observable<Order[] | Product[]> {
+  connect(): Observable<any> {
     return this.firebaseService.getData(this.table);
   }
 
