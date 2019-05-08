@@ -70,6 +70,9 @@ export class GoogleAuthService {
 
     // SEND EVENTS
     // this.http.post('api', events);
+    this.http
+      .get("http://localhost:9000/api/events")
+      .subscribe(e => console.log(e));
 
     return events;
   }

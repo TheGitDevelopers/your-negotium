@@ -12,7 +12,7 @@ export class CalendarComponent implements OnInit {
   dataSource = new FromFirebaseDataSource(this.firebaseService, "calendar");
   constructor(
     private firebaseService: FirebaseService,
-    private GoogleAuthService: GoogleAuthService
+    private googleAuthService: GoogleAuthService
   ) {}
   days;
   daysArr;
@@ -27,8 +27,8 @@ export class CalendarComponent implements OnInit {
   }
   loadView() {
     return new Promise(async (resolve, reject) => {
-      await this.GoogleAuthService.initClient();
-      const events = await this.GoogleAuthService.getCalendar();
+      await this.googleAuthService.initClient();
+      const events = await this.googleAuthService.getCalendar();
 
       // events.result.items.forEach(event => {
       //   let day = new Date(event.start.DateTime).getDate();
