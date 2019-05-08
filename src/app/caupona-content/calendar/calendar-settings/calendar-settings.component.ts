@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { GoogleAuthService } from "src/app/services/googleauth.service";
 
 @Component({
   selector: "app-calendar-settings",
@@ -6,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./calendar-settings.component.scss"]
 })
 export class CalendarSettingsComponent implements OnInit {
-  constructor() {}
+  constructor(public auth: GoogleAuthService) {}
   googleintegration: boolean;
   ngOnInit() {}
   activateApi(event) {
