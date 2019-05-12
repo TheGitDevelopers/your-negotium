@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/internal/Observable";
+import { switchMap } from "rxjs/operators";
 
 declare let gapi: any;
 
@@ -46,7 +48,10 @@ export class GoogleAuthService {
     const token = googleUser.getAuthResponse().id_token;
 
     // SEND TOKEN
-    // this.http.post('API', token);
+
+    this.http
+      .post("http://localhost:9000/api/token", { tokenID: token })
+      .subscribe(e => console.log(e), e => console.log(e));
     console.log(token);
 
     // const credential = auth.GoogleAuthProvider.credential(token);
@@ -57,6 +62,7 @@ export class GoogleAuthService {
       .isSignedIn()
       .get();
   }
+
   async getCalendar() {
     const events = await gapi.client.calendar.events.list({
       calendarId: "primary",
@@ -66,15 +72,15 @@ export class GoogleAuthService {
       maxResults: 100,
       orderBy: "startTime"
     });
-    console.log(events);
 
-    // SEND EVENTS
-    // this.http.post('api', events);
+    //
+    // SEND&GET EVENTS
+    //
+
     this.http
-      .get("http://localhost:9000/api/events")
-      .subscribe(e => console.log(e));
-
+      .post("http://localhost:9000/api/events", events)
+      .pipe(switchMap(() => this.http.get("http://localhost:9000/api/events")))
+      .subscribe(console.log);
     return events;
   }
-  sendEvents() {}
 }
