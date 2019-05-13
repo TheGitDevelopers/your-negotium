@@ -63,8 +63,8 @@ export class GoogleAuthService {
       .get();
   }
 
-  async getCalendar() {
-    const events = await gapi.client.calendar.events.list({
+  fetchEvents() {
+    return gapi.client.calendar.events.list({
       calendarId: "primary",
       timeMin: new Date().toISOString(),
       showDeleted: false,
@@ -72,15 +72,37 @@ export class GoogleAuthService {
       maxResults: 100,
       orderBy: "startTime"
     });
-
-    //
-    // SEND&GET EVENTS
-    //
-
-    this.http
-      .post("http://localhost:9000/api/events", events)
-      .pipe(switchMap(() => this.http.get("http://localhost:9000/api/events")))
-      .subscribe(console.log);
-    return events;
   }
+
+  postEvents(events) {
+    return this.http.post("http://localhost:9000/api/events", events);
+  }
+
+  async modifyEvents() {
+    const events = await this.fetchEvents();
+    const data = await this.postEvents(events);
+    data.subscribe(console.log);
+    console.log(events);
+  }
+
+  // async getCalendar() {
+  //   // const events = await gapi.client.calendar.events.list({
+  //   //   calendarId: "primary",
+  //   //   timeMin: new Date().toISOString(),
+  //   //   showDeleted: false,
+  //   //   singleEvents: true,
+  //   //   maxResults: 100,
+  //   //   orderBy: "startTime"
+  //   // });
+
+  //   //
+  //   // SEND&GET EVENTS
+  //   //
+
+  //   this.http
+  //     .post("http://localhost:9000/api/events", events)
+  //     .pipe(switchMap(() => this.http.get("http://localhost:9000/api/events")))
+  //     .subscribe(console.log);
+  //   return events;
+  // }
 }

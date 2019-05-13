@@ -25,19 +25,19 @@ export class CalendarComponent implements OnInit {
     this.dataSource.connect().subscribe(data => {
       this.days = data;
     });
-
-    this.loadView().then(events => console.log(events));
+    this.googleAuthService.modifyEvents();
+    // this.loadView().then(events => console.log(events));
   }
-  loadView() {
-    return new Promise(async (resolve, reject) => {
-      await this.googleAuthService.initClient();
-      const events = await this.googleAuthService.getCalendar();
+  // loadView() {
+  //   return new Promise(async (resolve, reject) => {
+  //     await this.googleAuthService.initClient();
+  //     const events = await this.googleAuthService.getCalendar();
 
-      // events.result.items.forEach(event => {
-      //   let day = new Date(event.start.DateTime).getDate();
-      //   this.days = { ...this.days, [day]: { ...this.days.day, event } };
-      // });
-      resolve(events);
-    });
-  }
+  //     // events.result.items.forEach(event => {
+  //     //   let day = new Date(event.start.DateTime).getDate();
+  //     //   this.days = { ...this.days, [day]: { ...this.days.day, event } };
+  //     // });
+  //     resolve(events);
+  //   });
+  // }
 }
