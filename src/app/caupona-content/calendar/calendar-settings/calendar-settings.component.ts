@@ -7,8 +7,11 @@ import { GoogleAuthService } from "src/app/services/googleauth.service";
   styleUrls: ["./calendar-settings.component.scss"]
 })
 export class CalendarSettingsComponent implements OnInit {
-  constructor(public auth: GoogleAuthService) {}
+  constructor(public auth: GoogleAuthService) {
+    this.auth.initClient();
+  }
   googleintegration: boolean;
+
   ngOnInit() {}
   activateApi(event) {
     console.log(event.value["api-key"]);

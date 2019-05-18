@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-edit-event",
@@ -11,14 +12,14 @@ import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-s
 export class EditEventComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private http: HttpClient
   ) {}
   id;
   myEvent = {};
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.id = params.get("id");
-      //  this.http.get('api', this.id)....
+      this.id = parseInt(params.get("id"));
       const calendarEvents = new FromFirebaseDataSource(
         this.firebaseService,
         "calendar"
@@ -35,13 +36,13 @@ export class EditEventComponent implements OnInit {
           });
         });
     });
-    // let costam = {...this.myEvent, dateTime: this.myEvent.end.dateTime};
-    // delete costam.end
   }
   editEvent(event) {
+    this.http.put(`http://localhost:9000/api/event/${this.id}`, event);
     window.alert(JSON.stringify(event.value));
   }
-  deleteEvent() {
+  deleteEvent(event) {
+    this.http.delete(`http://localhost:9000/api/event/${this.id}`);
     window.alert("Edit event");
   }
 }

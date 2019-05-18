@@ -52,10 +52,29 @@ export class GoogleAuthService {
     this.http
       .post("http://localhost:9000/api/token", { tokenID: token })
       .subscribe(e => console.log(e), e => console.log(e));
-    console.log(token);
-
-    // const credential = auth.GoogleAuthProvider.credential(token);
   }
+
+  async logout() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    await auth2.signOut().then(function() {
+      auth2.disconnect();
+    });
+  }
+
+  userInfo() {
+    const gapiUser = gapi.auth2.getAuthInstance();
+    if (gapiUser.isSignedIn.get()) {
+      return {
+        name: gapiUser.currentUser
+          .get()
+          .getBasicProfile()
+          .getName()
+      };
+    } else {
+      return false;
+    }
+  }
+
   checkLogin() {
     return gapi.auth2
       .getAuthInstance()
@@ -81,28 +100,6 @@ export class GoogleAuthService {
   async modifyEvents() {
     const events = await this.fetchEvents();
     const data = await this.postEvents(events);
-    data.subscribe(console.log);
-    console.log(events);
+    return data;
   }
-
-  // async getCalendar() {
-  //   // const events = await gapi.client.calendar.events.list({
-  //   //   calendarId: "primary",
-  //   //   timeMin: new Date().toISOString(),
-  //   //   showDeleted: false,
-  //   //   singleEvents: true,
-  //   //   maxResults: 100,
-  //   //   orderBy: "startTime"
-  //   // });
-
-  //   //
-  //   // SEND&GET EVENTS
-  //   //
-
-  //   this.http
-  //     .post("http://localhost:9000/api/events", events)
-  //     .pipe(switchMap(() => this.http.get("http://localhost:9000/api/events")))
-  //     .subscribe(console.log);
-  //   return events;
-  // }
 }
