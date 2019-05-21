@@ -12,8 +12,17 @@ export class CalendarSettingsComponent implements OnInit {
   }
   googleintegration: boolean;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.googleintegration = JSON.parse(
+      sessionStorage.getItem("turnGoogleIntegration")
+    );
+  }
   activateApi(event) {
     console.log(event.value["api-key"]);
+  }
+  test() {
+    if (this.googleintegration)
+      sessionStorage.setItem("turnGoogleIntegration", "true");
+    else sessionStorage.setItem("turnGoogleIntegration", "false");
   }
 }

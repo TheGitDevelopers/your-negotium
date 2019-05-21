@@ -38,11 +38,15 @@ export class EditEventComponent implements OnInit {
     });
   }
   editEvent(event) {
-    this.http.put(`http://localhost:9000/api/event/${this.id}`, event);
+    this.http
+      .put(`http://localhost:9000/api/events`, event)
+      .subscribe(console.log);
     window.alert(JSON.stringify(event.value));
   }
-  deleteEvent(event) {
-    this.http.delete(`http://localhost:9000/api/event/${this.id}`);
-    window.alert("Edit event");
+  deleteEvent() {
+    this.http
+      .delete(`http://localhost:9000/api/events/${this.id}`)
+      .subscribe(console.log);
+    window.alert("Delete event");
   }
 }

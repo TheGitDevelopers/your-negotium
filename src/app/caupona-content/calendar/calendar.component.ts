@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit {
     return new Promise(async (resolve, reject) => {
       await this.googleAuthService.initClient();
       const events = await this.googleAuthService.modifyEvents();
-      events.subscribe(event => resolve(event), err => reject(err));
+      events.subscribe(event => resolve(event));
     });
   }
 }

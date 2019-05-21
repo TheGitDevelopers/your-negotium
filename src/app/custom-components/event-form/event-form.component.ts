@@ -46,6 +46,6 @@ export class EventFormComponent implements OnInit, OnChanges {
     const startAt = new Date();
   }
   submitEvent(event) {
-    this.formEvent.emit(event);
+    this.formEvent.emit(event.value);
   }
 }

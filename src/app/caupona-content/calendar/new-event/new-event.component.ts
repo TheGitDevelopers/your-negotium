@@ -10,7 +10,9 @@ export class NewEventComponent implements OnInit {
   constructor(private http: HttpClient) {}
   ngOnInit() {}
   createEvent(event) {
-    this.http.post("http://localhost:9000/api/event", event.value);
-    window.alert(JSON.stringify(event.value));
+    console.log(event);
+    this.http
+      .post("http://localhost:9000/api/event", event)
+      .subscribe(console.log);
   }
 }

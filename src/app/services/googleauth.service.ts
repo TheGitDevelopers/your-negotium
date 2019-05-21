@@ -99,7 +99,9 @@ export class GoogleAuthService {
 
   async modifyEvents() {
     const events = await this.fetchEvents();
+    console.log(events);
     const data = await this.postEvents(events);
+    console.log(data);
     return data;
   }
 }
