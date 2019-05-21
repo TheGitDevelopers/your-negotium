@@ -1,6 +1,9 @@
 <div class="flex flex-column">
   <label>Google calendar integration</label>
-  <mat-radio-group [(ngModel)]="googleintegration" (change)="test()">
+  <mat-radio-group
+    [(ngModel)]="googleintegration"
+    (change)="setGoogleIntegration()"
+  >
     <mat-radio-button [value]="true">Turn on</mat-radio-button>
     <mat-radio-button [value]="false">Turn off</mat-radio-button>
   </mat-radio-group>

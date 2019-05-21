@@ -20,7 +20,7 @@ export class CalendarSettingsComponent implements OnInit {
   activateApi(event) {
     console.log(event.value["api-key"]);
   }
-  test() {
+  setGoogleIntegration() {
     if (this.googleintegration)
       sessionStorage.setItem("turnGoogleIntegration", "true");
     else sessionStorage.setItem("turnGoogleIntegration", "false");
