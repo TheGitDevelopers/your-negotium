@@ -13,10 +13,12 @@ export class CheckMonthDayDirective implements OnChanges {
   @Input() appCheckMonthDay;
   constructor(private el: ElementRef, private renderer2: Renderer2) {}
   ngOnChanges() {
+    const { currentMonth } = this.appCheckMonthDay;
+    let { week } = this.appCheckMonthDay;
+    week = week ? week.getDate() : null;
     if (
-      this.appCheckMonthDay.week === new Date().getDate() &&
-      this.appCheckMonthDay.currentMonth ===
-        new Date().toLocaleString("en-us", { month: "short" })
+      week === new Date().getDate() &&
+      currentMonth === new Date().toLocaleString("en-us", { month: "short" })
     ) {
       this.renderer2.addClass(this.el.nativeElement, "highligted-day");
     } else {

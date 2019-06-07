@@ -26,6 +26,7 @@ export class CalendarComponent implements OnInit {
   ) {}
   sliderValue;
   actualMode;
+  paramsDate;
   days;
   convertedDays;
   daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -43,6 +44,10 @@ export class CalendarComponent implements OnInit {
           params.mode === "week" ||
           params.mode === "day"
         ) {
+          this.paramsDate =
+            params.d && params.m && params.d
+              ? new Date(params.y, params.m - 1, params.d)
+              : undefined;
           this.actualMode = params.mode;
           // Reset view
           this.convertedDaysOfWeek = this.daysOfWeek;
@@ -132,7 +137,7 @@ export class CalendarComponent implements OnInit {
         this.setMonthDays();
         break;
       case "week":
-        this.setDate(0, -7);
+        this.setDate(0, -6);
         this.setWeekDays();
         break;
       case "day":
@@ -161,7 +166,7 @@ export class CalendarComponent implements OnInit {
         this.setMonthDays();
         break;
       case "week":
-        this.setDate(0, 7);
+        this.setDate(0, 6);
         this.setWeekDays();
         break;
       case "day":
@@ -173,30 +178,53 @@ export class CalendarComponent implements OnInit {
   }
 
   handleDayMode() {
-    this.startDate = new Date();
-    this.endDate = new Date();
+    this.startDate = this.paramsDate ? this.paramsDate : new Date();
+    this.endDate = this.paramsDate ? this.paramsDate : new Date();
     this.setMonthName();
     this.setDayDays();
   }
 
   handleWeekMode() {
-    this.startDate = this.getDate(-new Date().getDay() + 1);
-    this.endDate = this.getDate(-new Date().getDay() + 1 + 6);
+    const now = new Date();
+    this.startDate = this.paramsDate
+      ? new Date(
+          this.paramsDate.getFullYear(),
+          this.paramsDate.getMonth(),
+          this.paramsDate.getDate() -
+            this.paramsDate.getDay() +
+            (this.paramsDate.getDay() === 0 ? -6 : 1)
+        )
+      : new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() - now.getDay() + (now.getDay() === 0 ? -6 : 1)
+        );
+    this.endDate = new Date(
+      this.startDate.getFullYear(),
+      this.startDate.getMonth(),
+      this.startDate.getDate() + 6
+    );
     this.setMonthName();
     this.setWeekDays();
   }
 
   handleMonthMode() {
     const now = new Date();
-    this.startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-    this.endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    this.startDate = this.paramsDate
+      ? new Date(this.paramsDate.getFullYear(), this.paramsDate.getMonth(), 1)
+      : new Date(now.getFullYear(), now.getMonth(), 1);
+    this.endDate = new Date(
+      this.startDate.getFullYear(),
+      this.startDate.getMonth() + 1,
+      0
+    );
     this.setMonthName();
     this.setMonthDays();
   }
 
   setDayDays() {
     this.actualMode = "day";
-    this.convertedDays = [this.startDate.getDate()];
+    this.convertedDays = [this.startDate];
     this.convertedDaysOfWeek = [
       this.startDate.toLocaleDateString("en-us", {
         weekday: "short"
@@ -213,7 +241,7 @@ export class CalendarComponent implements OnInit {
       i = new Date(i.getTime() + 24 * 60 * 60 * 1000)
     ) {
       tempDays.push({});
-      this.week.push(i.getDate());
+      this.week.push(i);
     }
     tempDays.push(...this.days.slice(0, 8 - new Date().getDay()));
     this.convertedDays = tempDays;
@@ -234,18 +262,20 @@ export class CalendarComponent implements OnInit {
         i = new Date(i.getTime() + 24 * 60 * 60 * 1000)
       ) {
         tempDays.push({});
-        this.week.push(i.getDate());
+        this.week.push(i);
       }
     }
     for (let i = 1; i <= this.endDate.getDate(); i++) {
       tempDays.push({ events: [{ name: "Lorem ipsum" }] });
       this.week.push(
-        new Date(this.endDate.getYear(), this.endDate.getMonth(), i).getDate()
+        new Date(this.endDate.getFullYear(), this.endDate.getMonth(), i)
       );
     }
     if (this.endDate.getDay() !== 0) {
       for (let i = 1; i <= 7 - this.endDate.getDay(); i++) {
-        this.week.push(i);
+        this.week.push(
+          new Date(this.endDate.getFullYear(), this.endDate.getMonth() + 1, i)
+        );
         tempDays.push({});
       }
     }

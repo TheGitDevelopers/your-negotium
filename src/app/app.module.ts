@@ -84,6 +84,7 @@ import { EventFormComponent } from "./custom-components/event-form/event-form.co
 import { EventsLengthPipe } from "./pipes/events-length.pipe";
 import { EventsLengthDirective } from "./directives/events-length.directive";
 import { CheckMonthDayDirective } from "./check-month-day.directive";
+import { GetDatePipe } from "./get-date.pipe";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -144,7 +145,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EventFormComponent,
     EventsLengthPipe,
     EventsLengthDirective,
-    CheckMonthDayDirective
+    CheckMonthDayDirective,
+    GetDatePipe
   ],
   imports: [
     BrowserModule,
