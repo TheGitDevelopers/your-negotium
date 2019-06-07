@@ -137,7 +137,7 @@ export class CauponaNavComponent implements OnInit {
         submenuItems: [
           {
             label: "calendar",
-            path: ""
+            path: "week"
           },
           {
             label: "add new",

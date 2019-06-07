@@ -9,12 +9,12 @@ import {
 @Directive({
   selector: "[appEventsLength]"
 })
-export class EventsLengthDirective {
+export class EventsLengthDirective implements OnChanges {
   @Input() appEventsLength;
   constructor(private el: ElementRef, private renderer2: Renderer2) {}
   ngOnChanges() {
     const { eventIndex, monthMode } = this.appEventsLength;
-    let nativeEl = this.el.nativeElement;
+    const nativeEl = this.el.nativeElement;
     if (!monthMode) {
       this.renderer2.removeClass(nativeEl, "hidden-event");
     }

@@ -2,7 +2,7 @@
   min="0"
   max="2"
   step="1"
-  value="1"
+  [(ngModel)]="sliderValue"
   (change)="handleChangeMode($event)"
   [displayWith]="formatLabel"
   thumbLabel
@@ -12,30 +12,38 @@
   <button (click)="pastDays()">
     <
   </button>
-  <span *ngIf="weekMode"> {{ startDate.getDate() }} -</span>
-  <span *ngIf="!monthMode"> {{ endDate.getDate() }}</span>
+  <span *ngIf="actualMode === 'week'"> {{ startDate.getDate() }} -</span>
+  <span *ngIf="actualMode !== 'month'"> {{ endDate.getDate() }}</span>
 
   <span> {{ monthName }} </span>
-  <span *ngIf="monthMode">{{ currentYear }} </span>
+  <span *ngIf="actualMode === 'month'">{{ currentYear }} </span>
   <button (click)="futureDays()">></button>
 </div>
 <div
   [ngClass]="{
     calendar: true,
-    'month-mode': monthMode,
-    'day-mode': dayMode,
-    'week-mode': weekMode
+    'month-mode': actualMode === 'month' ? true : false,
+    'day-mode': actualMode === 'day' ? true : false,
+    'week-mode': actualMode === 'week' ? true : false
   }"
 >
   <header
-    [ngClass]="{ 'calendar-header': true, 'aspect-ratio-out-70': weekMode }"
+    [ngClass]="{
+      'calendar-header': true,
+      'aspect-ratio-out-70': actualMode === 'week' ? true : false
+    }"
     *ngFor="let day of convertedDaysOfWeek; let index = index"
     [appCheckMonthDay]="{
       week: week[index],
       currentMonth: monthName
     }"
   >
-    <div [ngClass]="{ 'aspect-ratio-in': weekMode, 'flex-center': true }">
+    <div
+      [ngClass]="{
+        'aspect-ratio-in': actualMode === 'week' ? true : false,
+        'flex-center': true
+      }"
+    >
       <div class="cal-head-in">
         <b class="day-of-week">{{ day }}</b>
         <b class="date">{{ week[index] }}</b>
@@ -43,16 +51,24 @@
     </div>
   </header>
   <div
-    [ngClass]="{ day: true, 'aspect-ratio-out-70': monthMode }"
+    [ngClass]="{
+      day: true,
+      'aspect-ratio-out-70': actualMode === 'month' ? true : false
+    }"
     *ngFor="let day of convertedDays; let dayIndex = index"
     [appCheckMonthDay]="{
       week: week[dayIndex]
     }"
-    [routerLink]="monthMode ? ['/calendar/day-mode'] : []"
+    [routerLink]="actualMode === 'month' ? ['/calendar/day-mode'] : []"
   >
-    <div [ngClass]="{ 'aspect-ratio-in': monthMode, 'day-inner': true }">
+    <div
+      [ngClass]="{
+        'aspect-ratio-in': actualMode === 'month' ? true : false,
+        'day-inner': true
+      }"
+    >
       <header
-        *ngIf="monthMode"
+        *ngIf="actualMode === 'month' ? true : false"
         class="day-header"
         [appCheckMonthDay]="{
           week: week[dayIndex],
@@ -62,15 +78,25 @@
         <b class="date">{{ week[dayIndex] }}</b>
       </header>
       <div
-        [ngClass]="{ event: true, 'aspect-ratio-out-90': weekMode }"
+        [ngClass]="{
+          event: true,
+          'aspect-ratio-out-90': actualMode === 'week' ? true : false
+        }"
         *ngFor="let event of day.events; let eventIndex = index"
-        [routerLink]="weekMode ? ['/calendar/edit-event', event.eventId] : []"
+        [routerLink]="
+          actualMode === 'week' ? ['/calendar/edit-event', event.eventId] : []
+        "
         [appEventsLength]="{
           eventIndex: eventIndex,
-          monthMode: monthMode
+          monthMode: actualMode === 'month' ? true : false
         }"
       >
-        <div [ngClass]="{ 'aspect-ratio-in': weekMode, 'event-inner': true }">
+        <div
+          [ngClass]="{
+            'aspect-ratio-in': actualMode === 'week' ? true : false,
+            'event-inner': true
+          }"
+        >
           <time>{{ event.time }}</time>
           <b>{{ event.name }}</b>
           <span class="event-location">
