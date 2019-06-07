@@ -116,6 +116,7 @@ export class CalendarComponent implements OnInit {
   }
 
   pastDays() {
+    this.week = [];
     switch (this.actualMode) {
       case "month":
         this.startDate = new Date(
@@ -128,7 +129,6 @@ export class CalendarComponent implements OnInit {
           this.endDate.getMonth(),
           0
         );
-        this.week = [];
         this.setMonthDays();
         break;
       case "week":
@@ -144,6 +144,7 @@ export class CalendarComponent implements OnInit {
   }
 
   futureDays() {
+    this.week = [];
     switch (this.actualMode) {
       case "month":
         this.startDate = new Date(
@@ -157,7 +158,6 @@ export class CalendarComponent implements OnInit {
           this.endDate.getMonth() + 2,
           0
         );
-        this.week = [];
         this.setMonthDays();
         break;
       case "week":
@@ -207,7 +207,6 @@ export class CalendarComponent implements OnInit {
   setWeekDays() {
     this.actualMode = "week";
     const tempDays = [];
-    this.week = [];
     for (
       let i = this.startDate;
       this.endDate >= i;
