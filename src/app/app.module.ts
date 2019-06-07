@@ -18,9 +18,9 @@ import {
   MatNativeDateModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatSliderModule
 } from "@angular/material";
-// import {} from "@angular/material/datepicker";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
@@ -81,6 +81,9 @@ import { HttpStatusService } from "./services/httpstatus.service";
 import { CalendarSettingsComponent } from "./caupona-content/calendar/calendar-settings/calendar-settings.component";
 import { EditEventComponent } from "./caupona-content/calendar/edit-event/edit-event.component";
 import { EventFormComponent } from "./custom-components/event-form/event-form.component";
+import { EventsLengthPipe } from "./pipes/events-length.pipe";
+import { EventsLengthDirective } from "./directives/events-length.directive";
+import { CheckMonthDayDirective } from "./check-month-day.directive";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -138,7 +141,10 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     LoadingInterceptorComponent,
     CalendarSettingsComponent,
     EditEventComponent,
-    EventFormComponent
+    EventFormComponent,
+    EventsLengthPipe,
+    EventsLengthDirective,
+    CheckMonthDayDirective
   ],
   imports: [
     BrowserModule,
@@ -161,6 +167,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatNativeDateModule,
     MatRadioModule,
     MatFormFieldModule,
+    MatSliderModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

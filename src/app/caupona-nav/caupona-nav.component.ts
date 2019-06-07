@@ -140,14 +140,6 @@ export class CauponaNavComponent implements OnInit {
             path: ""
           },
           {
-            label: "meetings",
-            path: "meetings"
-          },
-          {
-            label: "company events",
-            path: "company-events"
-          },
-          {
             label: "add new",
             path: "add-new-event"
           },
