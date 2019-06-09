@@ -7,7 +7,6 @@ import {
   OnChanges
 } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-// import { EventEmitter } from '@angular/core/src/event_emitter';
 
 @Component({
   selector: "app-event-form",
@@ -17,6 +16,9 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class EventFormComponent implements OnInit, OnChanges {
   @Input() myEvent;
   @Output() formEvent: EventEmitter<any> = new EventEmitter();
+
+  options: FormGroup;
+  remindMeSwitch: String;
 
   constructor(private fb: FormBuilder) {
     this.options = fb.group({
@@ -31,8 +33,7 @@ export class EventFormComponent implements OnInit, OnChanges {
       remindDate: ""
     });
   }
-  options: FormGroup;
-  remindMeSwitch: String;
+
   ngOnChanges() {
     if (Object.values(this.myEvent).length) {
       delete this.myEvent.eventId;

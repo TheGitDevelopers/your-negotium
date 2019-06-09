@@ -10,13 +10,13 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./edit-event.component.scss"]
 })
 export class EditEventComponent implements OnInit {
+  id;
+  myEvent = {};
   constructor(
     private route: ActivatedRoute,
     private firebaseService: FirebaseService,
     private http: HttpClient
   ) {}
-  id;
-  myEvent = {};
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = parseInt(params.get("id"));

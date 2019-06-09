@@ -11,7 +11,17 @@ export const environment = {
     projectId: "caupona",
     storageBucket: "caupona.appspot.com",
     messagingSenderId: "248599801913"
-  }
+  },
+  google: {
+    apiKey: "AIzaSyD3qpODUvKs-enaIFtUI_utPG7odT_Fa6Q",
+    clientId:
+      "860001357683-jp11qsi0d9id3re62dmo5ac2ju9fen1i.apps.googleusercontent.com",
+    discoveryDocs: [
+      "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+    ],
+    scope: "https://www.googleapis.com/auth/calendar"
+  },
+  calendarAPIUrl: "http://localhost:9000/api"
 };
 
 /*

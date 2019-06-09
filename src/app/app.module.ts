@@ -81,7 +81,6 @@ import { HttpStatusService } from "./services/httpstatus.service";
 import { CalendarSettingsComponent } from "./caupona-content/calendar/calendar-settings/calendar-settings.component";
 import { EditEventComponent } from "./caupona-content/calendar/edit-event/edit-event.component";
 import { EventFormComponent } from "./custom-components/event-form/event-form.component";
-import { EventsLengthPipe } from "./pipes/events-length.pipe";
 import { EventsLengthDirective } from "./directives/events-length.directive";
 import { CheckMonthDayDirective } from "./check-month-day.directive";
 import { GetDatePipe } from "./get-date.pipe";
@@ -143,7 +142,6 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     CalendarSettingsComponent,
     EditEventComponent,
     EventFormComponent,
-    EventsLengthPipe,
     EventsLengthDirective,
     CheckMonthDayDirective,
     GetDatePipe

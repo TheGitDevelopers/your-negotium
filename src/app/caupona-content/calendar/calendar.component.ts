@@ -10,6 +10,7 @@ import { FirebaseService } from "src/app/services/firebase.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
+import calendarProperties from "./calendarProperties";
 
 @Component({
   selector: "app-calendar",
@@ -29,11 +30,11 @@ export class CalendarComponent implements OnInit {
   paramsDate;
   days;
   convertedDays;
-  daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  daysOfWeek = calendarProperties.daysOfWeek;
   convertedDaysOfWeek;
   week = [];
-  startDate: any;
-  endDate: any;
+  startDate: Date;
+  endDate: Date;
   monthName;
   currentYear = new Date().getFullYear();
   ngOnInit() {
@@ -97,11 +98,7 @@ export class CalendarComponent implements OnInit {
     );
   }
 
-  getDate(ref) {
-    return new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * ref);
-  }
-
-  setDate(month = 0, day = 0) {
+  changeDate(month = 0, day = 0) {
     this.startDate = new Date(
       this.startDate.getFullYear(),
       this.startDate.getMonth() + month,
@@ -114,7 +111,7 @@ export class CalendarComponent implements OnInit {
     );
   }
 
-  setMonthName() {
+  changeMonthName() {
     this.monthName = this.startDate.toLocaleString("en-us", {
       month: "short"
     });
@@ -137,15 +134,15 @@ export class CalendarComponent implements OnInit {
         this.setMonthDays();
         break;
       case "week":
-        this.setDate(0, -6);
+        this.changeDate(0, -7);
         this.setWeekDays();
         break;
       case "day":
-        this.setDate(0, -1);
+        this.changeDate(0, -1);
         this.setDayDays();
         break;
     }
-    this.setMonthName();
+    this.changeMonthName();
   }
 
   futureDays() {
@@ -166,21 +163,21 @@ export class CalendarComponent implements OnInit {
         this.setMonthDays();
         break;
       case "week":
-        this.setDate(0, 6);
+        this.changeDate(0, 7);
         this.setWeekDays();
         break;
       case "day":
-        this.setDate(0, 1);
+        this.changeDate(0, 1);
         this.setDayDays();
         break;
     }
-    this.setMonthName();
+    this.changeMonthName();
   }
 
   handleDayMode() {
     this.startDate = this.paramsDate ? this.paramsDate : new Date();
     this.endDate = this.paramsDate ? this.paramsDate : new Date();
-    this.setMonthName();
+    this.changeMonthName();
     this.setDayDays();
   }
 
@@ -204,7 +201,7 @@ export class CalendarComponent implements OnInit {
       this.startDate.getMonth(),
       this.startDate.getDate() + 6
     );
-    this.setMonthName();
+    this.changeMonthName();
     this.setWeekDays();
   }
 
@@ -218,7 +215,7 @@ export class CalendarComponent implements OnInit {
       this.startDate.getMonth() + 1,
       0
     );
-    this.setMonthName();
+    this.changeMonthName();
     this.setMonthDays();
   }
 
@@ -316,7 +313,9 @@ export class CalendarComponent implements OnInit {
     return new Promise(async (resolve, reject) => {
       await this.googleAuthService.initClient();
       const events = await this.googleAuthService.modifyEvents();
-      events.subscribe(event => resolve(event));
+      events.subscribe(event => {
+        resolve(event);
+      });
     });
   }
 }

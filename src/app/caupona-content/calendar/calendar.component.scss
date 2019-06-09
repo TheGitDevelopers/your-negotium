@@ -105,6 +105,10 @@
       font-size: 2.5em;
     }
 
+    &.unactive-month {
+      background: rgb(129, 129, 129) !important;
+    }
+
     &.highligted-day {
       b {
         color: #ff1a00 !important;
