@@ -30,6 +30,10 @@
     .day {
       border: 1px solid rgba(0, 0, 0, 0.05);
 
+      &.unactive-month {
+        background: rgba(245, 245, 245, 1) !important;
+      }
+
       &.highligted-day {
         b {
           color: #ff1a00 !important;
@@ -103,10 +107,6 @@
 
     b.date {
       font-size: 2.5em;
-    }
-
-    &.unactive-month {
-      background: rgb(129, 129, 129) !important;
     }
 
     &.highligted-day {

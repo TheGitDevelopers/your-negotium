@@ -35,7 +35,9 @@
     *ngFor="let day of convertedDaysOfWeek; let index = index"
     [appCheckMonthDay]="{
       week: week[index],
-      currentMonth: monthName
+      currentMonth: monthName,
+      actualMode: actualMode,
+      calendarHeader: true
     }"
   >
     <div
@@ -56,9 +58,6 @@
       'aspect-ratio-out-70': actualMode === 'month' ? true : false
     }"
     *ngFor="let day of convertedDays; let dayIndex = index"
-    [appCheckMonthDay]="{
-      week: week[dayIndex]
-    }"
     [routerLink]="
       actualMode === 'month'
         ? [
@@ -81,7 +80,9 @@
         class="day-header"
         [appCheckMonthDay]="{
           week: week[dayIndex],
-          currentMonth: monthName
+          currentMonth: monthName,
+          actualMode: actualMode,
+          calendarHeader: false
         }"
       >
         <b class="date">{{ week[dayIndex] | getDate }}</b>
