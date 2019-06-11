@@ -27,98 +27,24 @@
     'week-mode': actualMode === 'week' ? true : false
   }"
 >
-  <header
-    [ngClass]="{
-      'calendar-header': true,
-      'aspect-ratio-out-70': actualMode === 'week' ? true : false
-    }"
+  <app-calendar-header
     *ngFor="let day of convertedDaysOfWeek; let index = index"
-    [appCheckMonthDay]="{
-      week: week[index],
-      currentMonth: monthName,
-      actualMode: actualMode,
-      calendarHeader: true
-    }"
+    [actualMode]="actualMode"
+    [convertedDaysOfWeek]="convertedDaysOfWeek"
+    [week]="week"
+    [monthName]="monthName"
+    [day]="day"
+    [index]="index"
   >
-    <div
-      [ngClass]="{
-        'aspect-ratio-in': actualMode === 'week' ? true : false,
-        'flex-center': true
-      }"
-    >
-      <div class="cal-head-in">
-        <b class="day-of-week">{{ day }}</b>
-        <b class="date">{{ week[index] | getDate }}</b>
-      </div>
-    </div>
-  </header>
-  <div
-    [ngClass]="{
-      day: true,
-      'aspect-ratio-out-70': actualMode === 'month' ? true : false
-    }"
-    *ngFor="let day of convertedDays; let dayIndex = index"
-    [routerLink]="
-      actualMode === 'month'
-        ? [
-            '/calendar/day/',
-            week[dayIndex].getFullYear(),
-            week[dayIndex].getMonth() + 1,
-            week[dayIndex].getDate()
-          ]
-        : []
-    "
+  </app-calendar-header>
+  <app-day
+    *ngFor="let day of convertedDays; let index = index"
+    [actualMode]="actualMode"
+    [convertedDays]="convertedDays"
+    [week]="week"
+    [monthName]="monthName"
+    [day]="day"
+    [index]="index"
   >
-    <div
-      [ngClass]="{
-        'aspect-ratio-in': actualMode === 'month' ? true : false,
-        'day-inner': true
-      }"
-    >
-      <header
-        *ngIf="actualMode === 'month' ? true : false"
-        class="day-header"
-        [appCheckMonthDay]="{
-          week: week[dayIndex],
-          currentMonth: monthName,
-          actualMode: actualMode,
-          calendarHeader: false
-        }"
-      >
-        <b class="date">{{ week[dayIndex] | getDate }}</b>
-      </header>
-      <div
-        [ngClass]="{
-          event: true,
-          'aspect-ratio-out-90': actualMode === 'week' ? true : false
-        }"
-        *ngFor="let event of day.events; let eventIndex = index"
-        [routerLink]="
-          actualMode === 'week' ? ['/calendar/edit-event', event.eventId] : []
-        "
-        [appEventsLength]="{
-          eventIndex: eventIndex,
-          monthMode: actualMode === 'month' ? true : false
-        }"
-      >
-        <div
-          [ngClass]="{
-            'aspect-ratio-in': actualMode === 'week' ? true : false,
-            'event-inner': true
-          }"
-        >
-          <time>{{ event.time }}</time>
-          <b>{{ event.name }}</b>
-          <span class="event-location">
-            <img
-              width="13"
-              height="13"
-              src="data:image/png;base64,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"
-            />
-            <b>United States, 13px</b>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  </app-day>
 </div>

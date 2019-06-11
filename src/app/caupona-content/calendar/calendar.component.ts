@@ -1,14 +1,7 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { GoogleAuthService } from "src/app/services/googleauth.service";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
-import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import calendarProperties from "./calendarProperties";
 
@@ -221,12 +214,13 @@ export class CalendarComponent implements OnInit {
 
   setDayDays() {
     this.actualMode = "day";
-    this.convertedDays = [this.startDate];
+    this.convertedDays = this.days.slice(0, 1);
     this.convertedDaysOfWeek = [
       this.startDate.toLocaleDateString("en-us", {
         weekday: "short"
       })
     ];
+    this.week = [this.startDate];
   }
 
   setWeekDays() {

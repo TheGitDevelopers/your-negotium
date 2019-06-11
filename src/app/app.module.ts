@@ -84,6 +84,9 @@ import { EventFormComponent } from "./custom-components/event-form/event-form.co
 import { EventsLengthDirective } from "./directives/events-length.directive";
 import { CheckMonthDayDirective } from "./check-month-day.directive";
 import { GetDatePipe } from "./get-date.pipe";
+import { DayComponent } from "./caupona-content/calendar/day/day.component";
+import { EventComponent } from "./caupona-content/calendar/event/event.component";
+import { CalendarHeaderComponent } from "./caupona-content/calendar/calendar-header/calendar-header.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -144,7 +147,10 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EventFormComponent,
     EventsLengthDirective,
     CheckMonthDayDirective,
-    GetDatePipe
+    GetDatePipe,
+    DayComponent,
+    EventComponent,
+    CalendarHeaderComponent
   ],
   imports: [
     BrowserModule,

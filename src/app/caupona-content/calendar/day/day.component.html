@@ -1,0 +1,42 @@
+<section
+  [ngClass]="{
+    day: true,
+    'aspect-ratio-out-70': actualMode === 'month' ? true : false,
+    'month-mode': actualMode === 'month' ? true : false
+  }"
+  [routerLink]="
+    actualMode === 'month'
+      ? [
+          '/calendar/day/',
+          week[index].getFullYear(),
+          week[index].getMonth() + 1,
+          week[index].getDate()
+        ]
+      : []
+  "
+>
+  <div
+    [ngClass]="{
+      'aspect-ratio-in': actualMode === 'month' ? true : false,
+      'day-inner': true
+    }"
+  >
+    <header
+      *ngIf="actualMode === 'month' ? true : false"
+      class="day-header"
+      [appCheckMonthDay]="{
+        week: week[index],
+        currentMonth: monthName,
+        actualMode: actualMode,
+        calendarHeader: false
+      }"
+    >
+      <b class="date">{{ week[index] | getDate }}</b>
+    </header>
+    <app-event
+      [actualMode]="actualMode"
+      [events]="day.events"
+      [week]="week"
+    ></app-event>
+  </div>
+</section>
