@@ -40,6 +40,13 @@ section.day {
   .day-inner {
     width: 100%;
 
+    &.day-mode {
+      app-event {
+        display: flex;
+        flex-flow: column;
+      }
+    }
+
     header {
       padding: 1em 0.5em;
       width: 100%;

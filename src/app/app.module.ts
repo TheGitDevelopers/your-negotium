@@ -87,6 +87,7 @@ import { GetDatePipe } from "./get-date.pipe";
 import { DayComponent } from "./caupona-content/calendar/day/day.component";
 import { EventComponent } from "./caupona-content/calendar/event/event.component";
 import { CalendarHeaderComponent } from "./caupona-content/calendar/calendar-header/calendar-header.component";
+import { FilterEventsPipe } from "./pipes/filter-events.pipe";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -150,7 +151,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     GetDatePipe,
     DayComponent,
     EventComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    FilterEventsPipe
   ],
   imports: [
     BrowserModule,

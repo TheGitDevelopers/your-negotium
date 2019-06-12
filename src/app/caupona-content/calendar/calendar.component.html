@@ -12,8 +12,10 @@
   <button (click)="pastDays()">
     <
   </button>
-  <span *ngIf="actualMode === 'week'"> {{ startDate | getDate }} -</span>
-  <span *ngIf="actualMode !== 'month'"> {{ endDate | getDate }}</span>
+  <span *ngIf="actualMode === 'week'">
+    {{ startDate | getDate: "date" }} -</span
+  >
+  <span *ngIf="actualMode !== 'month'"> {{ endDate | getDate: "date" }}</span>
 
   <span> {{ monthName }} </span>
   <span *ngIf="actualMode === 'month'">{{ currentYear }} </span>
@@ -22,9 +24,7 @@
 <div
   [ngClass]="{
     calendar: true,
-    'month-mode': actualMode === 'month' ? true : false,
-    'day-mode': actualMode === 'day' ? true : false,
-    'week-mode': actualMode === 'week' ? true : false
+    'day-mode': actualMode === 'day' ? true : false
   }"
 >
   <app-calendar-header

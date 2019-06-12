@@ -1,3 +1,36 @@
+.cal-sidebar {
+  display: flex;
+
+  .cal-sidebar-hour {
+    flex-basis: 5%;
+  }
+
+  .cal-sidebar-spacing {
+    border-bottom: 1px solid black;
+    flex-basis: 95%;
+    align-self: center;
+    position: relative;
+
+    &::before,
+    &::after {
+      border-left: 1px solid black;
+      content: " ";
+      align-self: center;
+      position: absolute;
+      left: 15px;
+      height: 15px;
+    }
+
+    &::before {
+      top: -15px;
+    }
+
+    &::after {
+      top: 0;
+    }
+  }
+}
+
 .event {
   outline: none;
   cursor: pointer;
@@ -6,6 +39,56 @@
   border-bottom: unset;
   width: 100%;
   position: relative;
+
+  &.day-mode {
+    display: flex;
+    justify-content: flex-end;
+    border: unset;
+
+    .event-inner {
+      padding: 0 0 0.5em 15px;
+      border-left: 1px solid black;
+      flex-shrink: 1;
+      flex-basis: calc(95% - 15px);
+      flex-flow: row;
+      align-items: center;
+
+      .event-outdated,
+      .event-incoming {
+        order: 4;
+        flex-basis: 15%;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .event-outdated {
+        color: red;
+      }
+
+      .event-incoming {
+        color: rgb(0, 173, 0);
+      }
+
+      time {
+        order: 2;
+        padding: 1.5em 1em;
+        flex-basis: 10%;
+      }
+
+      > b {
+        order: 1;
+        flex-basis: 60%;
+        background: #f44336;
+        padding: 1em;
+        border-radius: 10px;
+      }
+
+      .event-location {
+        order: 3;
+        flex-basis: 15%;
+      }
+    }
+  }
 
   &.month-mode {
     margin: unset !important;

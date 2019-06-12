@@ -31,7 +31,7 @@
         calendarHeader: false
       }"
     >
-      <b class="date">{{ week[index] | getDate }}</b>
+      <b class="date">{{ week[index] | getDate: "date" }}</b>
     </header>
     <app-event
       [actualMode]="actualMode"

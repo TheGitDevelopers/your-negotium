@@ -1,22 +1,10 @@
-@mixin flex-adjust(
-  $flex-flow: row,
-  $align-items: unset,
-  $justify-content: unset
-) {
-  display: flex;
-  flex-flow: $flex-flow;
-  align-items: $align-items;
-  justify-content: $justify-content;
-}
-
-// app-day {
-//   display: grid !important;
-//   grid-template-columns: repeat(7, 1fr);
-// }
-
 .calendar {
-  display: grid !important;
+  display: grid;
   grid-template-columns: repeat(7, 1fr);
+
+  &.day-mode {
+    grid-template-columns: unset;
+  }
 }
 
 .aspect-ratio-out-70 {
