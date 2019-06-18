@@ -167,6 +167,12 @@ export class CalendarComponent implements OnInit {
     this.changeMonthName();
   }
 
+  changeStartDate(event) {
+    this.startDate = event.value;
+
+    this.setDayDays();
+  }
+
   handleDayMode() {
     this.startDate = this.paramsDate ? this.paramsDate : new Date();
     this.endDate = this.paramsDate ? this.paramsDate : new Date();
@@ -273,15 +279,15 @@ export class CalendarComponent implements OnInit {
     this.convertedDays = tempDays;
   }
 
-  handleChangeMode(event) {
-    switch (event.value) {
-      case 0:
+  handleChangeMode() {
+    switch (this.actualMode) {
+      case "day":
         this.routerNavigate.navigate(["/calendar/day"]);
         return "D";
-      case 1:
+      case "week":
         this.routerNavigate.navigate(["/calendar/week"]);
         return "W";
-      case 2:
+      case "month":
         this.routerNavigate.navigate(["/calendar/month"]);
         return "M";
       default:

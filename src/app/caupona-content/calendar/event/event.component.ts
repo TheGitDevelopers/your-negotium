@@ -13,10 +13,16 @@ export class EventComponent implements OnChanges {
   constructor() {}
 
   checkOutdated(time) {
-    return new Date(time).getTime() < new Date().getTime() ? true : false;
+    return new Date(time).getTime() < new Date().getTime() &&
+      this.actualMode === "day"
+      ? true
+      : false;
   }
   checkIncoming(time) {
-    return new Date(time).getTime() > new Date().getTime() ? true : false;
+    return new Date(time).getTime() > new Date().getTime() &&
+      this.actualMode === "day"
+      ? true
+      : false;
   }
 
   ngOnChanges() {

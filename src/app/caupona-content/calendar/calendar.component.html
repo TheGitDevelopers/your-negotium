@@ -1,42 +1,218 @@
-<mat-slider
-  min="0"
-  max="2"
-  step="1"
-  [(ngModel)]="sliderValue"
-  (change)="handleChangeMode($event)"
-  [displayWith]="formatLabel"
-  thumbLabel
->
-</mat-slider>
-<div>
-  <button (click)="pastDays()">
-    <
-  </button>
-  <span *ngIf="actualMode === 'week'">
-    {{ startDate | getDate: "date" }} -</span
-  >
-  <span *ngIf="actualMode !== 'month'"> {{ endDate | getDate: "date" }}</span>
+<nav *ngIf="actualMode !== 'day'" class="calendar-navbar standalone">
+  <div class="date-changer">
+    <!-- <button> -->
+    <i class="fas fa-chevron-left" (click)="pastDays()"></i>
+    <!-- </button>  -->
+    <span *ngIf="actualMode === 'week'"
+      >&nbsp;{{ startDate | getDate: "date" }} -</span
+    >
+    <span *ngIf="actualMode !== 'month'"
+      >&nbsp;{{ endDate | getDate: "date" }}&nbsp;</span
+    >
 
-  <span> {{ monthName }} </span>
-  <span *ngIf="actualMode === 'month'">{{ currentYear }} </span>
-  <button (click)="futureDays()">></button>
-</div>
+    <span> {{ monthName }}&nbsp;</span>
+    <span *ngIf="actualMode === 'month'">{{ currentYear }}&nbsp;</span>
+    <!-- <button> -->
+    <i class="fas fa-chevron-right" (click)="futureDays()"></i>
+    <!-- </button> -->
+  </div>
+  <div class="select-mode">
+    <div class="select-box">
+      <div class="select-box__current" tabindex="1">
+        <div class="select-box__value">
+          <input
+            class="select-box__input"
+            type="radio"
+            id="0"
+            value="day"
+            name="scope"
+            checked="checked"
+            (change)="handleChangeMode()"
+            [(ngModel)]="actualMode"
+          />
+          <p class="select-box__input-text">
+            Selected scope: Day
+          </p>
+        </div>
+        <div class="select-box__value">
+          <input
+            class="select-box__input"
+            type="radio"
+            id="1"
+            value="week"
+            name="scope"
+            checked="checked"
+            (change)="handleChangeMode()"
+            [(ngModel)]="actualMode"
+          />
+          <p class="select-box__input-text">
+            Selected scope: Week
+          </p>
+        </div>
+        <div class="select-box__value">
+          <input
+            class="select-box__input"
+            type="radio"
+            id="2"
+            value="month"
+            name="scope"
+            checked="checked"
+            (change)="handleChangeMode()"
+            [(ngModel)]="actualMode"
+          />
+          <p class="select-box__input-text">
+            Selected scope: Month
+          </p>
+        </div>
+        <img
+          class="select-box__icon"
+          src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
+          alt="Arrow Icon"
+          aria-hidden="true"
+        />
+      </div>
+      <ul class="select-box__list">
+        <li>
+          <label class="select-box__option" for="0" aria-hidden="aria-hidden"
+            >Day</label
+          >
+        </li>
+        <li>
+          <label class="select-box__option" for="1" aria-hidden="aria-hidden"
+            >Week</label
+          >
+        </li>
+        <li>
+          <label class="select-box__option" for="2" aria-hidden="aria-hidden"
+            >Month</label
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div
   [ngClass]="{
     calendar: true,
     'day-mode': actualMode === 'day' ? true : false
   }"
 >
-  <app-calendar-header
-    *ngFor="let day of convertedDaysOfWeek; let index = index"
-    [actualMode]="actualMode"
-    [convertedDaysOfWeek]="convertedDaysOfWeek"
-    [week]="week"
-    [monthName]="monthName"
-    [day]="day"
-    [index]="index"
-  >
-  </app-calendar-header>
+  <nav *ngIf="actualMode === 'day'" class="calendar-navbar">
+    <app-calendar-header
+      *ngFor="let day of convertedDaysOfWeek; let index = index"
+      [actualMode]="actualMode"
+      [convertedDaysOfWeek]="convertedDaysOfWeek"
+      [week]="week"
+      [monthName]="monthName"
+      [day]="day"
+      [index]="index"
+    >
+    </app-calendar-header>
+    <div class="select-date">
+      <input
+        [matDatepicker]="picker"
+        [ngStyle]="{
+          visibility: 'hidden',
+          border: 'none',
+          width: 0,
+          height: 0,
+          padding: 0,
+          margin: 0
+        }"
+        (dateInput)="changeStartDate($event)"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+      <button class="select-date-button" (click)="picker.open()">
+        Select date
+      </button>
+    </div>
+    <div class="select-mode">
+      <div class="select-box">
+        <div class="select-box__current" tabindex="1">
+          <div class="select-box__value">
+            <input
+              class="select-box__input"
+              type="radio"
+              id="0"
+              value="day"
+              name="scope"
+              checked="checked"
+              (change)="handleChangeMode()"
+              [(ngModel)]="actualMode"
+            />
+            <p class="select-box__input-text">
+              Selected scope: Day
+            </p>
+          </div>
+          <div class="select-box__value">
+            <input
+              class="select-box__input"
+              type="radio"
+              id="1"
+              value="week"
+              name="scope"
+              checked="checked"
+              (change)="handleChangeMode()"
+              [(ngModel)]="actualMode"
+            />
+            <p class="select-box__input-text">
+              Selected scope: Week
+            </p>
+          </div>
+          <div class="select-box__value">
+            <input
+              class="select-box__input"
+              type="radio"
+              id="2"
+              value="month"
+              name="scope"
+              checked="checked"
+              (change)="handleChangeMode()"
+              [(ngModel)]="actualMode"
+            />
+            <p class="select-box__input-text">
+              Selected scope: Month
+            </p>
+          </div>
+          <img
+            class="select-box__icon"
+            src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
+            alt="Arrow Icon"
+            aria-hidden="true"
+          />
+        </div>
+        <ul class="select-box__list">
+          <li>
+            <label class="select-box__option" for="0" aria-hidden="aria-hidden"
+              >Day</label
+            >
+          </li>
+          <li>
+            <label class="select-box__option" for="1" aria-hidden="aria-hidden"
+              >Week</label
+            >
+          </li>
+          <li>
+            <label class="select-box__option" for="2" aria-hidden="aria-hidden"
+              >Month</label
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div *ngIf="actualMode !== 'day'" class="week-days">
+    <app-calendar-header
+      *ngFor="let day of convertedDaysOfWeek; let index = index"
+      [actualMode]="actualMode"
+      [convertedDaysOfWeek]="convertedDaysOfWeek"
+      [week]="week"
+      [monthName]="monthName"
+      [day]="day"
+      [index]="index"
+    >
+    </app-calendar-header>
+  </div>
   <app-day
     *ngFor="let day of convertedDays; let index = index"
     [actualMode]="actualMode"
