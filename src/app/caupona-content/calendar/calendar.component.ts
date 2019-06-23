@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { GoogleAuthService } from "src/app/services/googleauth.service";
 import { FirebaseService } from "src/app/services/firebase.service";
+import { SettingsPopupService } from "src/app/services/settings-popup.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 import { ActivatedRoute, Router } from "@angular/router";
 import calendarProperties from "./calendarProperties";
@@ -16,7 +17,8 @@ export class CalendarComponent implements OnInit {
     private firebaseService: FirebaseService,
     private googleAuthService: GoogleAuthService,
     private route: ActivatedRoute,
-    private routerNavigate: Router
+    private routerNavigate: Router,
+    protected settings: SettingsPopupService
   ) {}
   sliderValue;
   actualMode;

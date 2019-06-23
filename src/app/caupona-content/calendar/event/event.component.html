@@ -1,6 +1,8 @@
 <div *ngFor="let hour of convertedHours">
   <div class="cal-sidebar" *ngIf="convertedHours.length === 24">
-    <div class="cal-sidebar-hour">{{ hour | getDate: "hour" }}</div>
+    <div class="cal-sidebar-hour" (click)="EventOperations.addEvent(hour)">
+      {{ hour | getDate: "hour" }}
+    </div>
     <div class="cal-sidebar-spacing"></div>
   </div>
   <section
@@ -14,13 +16,11 @@
       let event of (events | filterEvents: hour:actualMode);
       let eventIndex = index
     "
-    [routerLink]="
-      actualMode !== 'month' ? ['/calendar/edit-event', event.eventId] : []
-    "
     [appEventsLength]="{
       eventIndex: eventIndex,
       monthMode: actualMode === 'month' ? true : false
     }"
+    (click)="EventOperations.updateEvent(event)"
   >
     <div
       [ngClass]="{

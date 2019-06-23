@@ -1,8 +1,6 @@
 <nav *ngIf="actualMode !== 'day'" class="calendar-navbar standalone">
   <div class="date-changer">
-    <!-- <button> -->
     <i class="fas fa-chevron-left" (click)="pastDays()"></i>
-    <!-- </button>  -->
     <span *ngIf="actualMode === 'week'"
       >&nbsp;{{ startDate | getDate: "date" }} -</span
     >
@@ -12,9 +10,7 @@
 
     <span> {{ monthName }}&nbsp;</span>
     <span *ngIf="actualMode === 'month'">{{ currentYear }}&nbsp;</span>
-    <!-- <button> -->
     <i class="fas fa-chevron-right" (click)="futureDays()"></i>
-    <!-- </button> -->
   </div>
   <div class="select-mode">
     <div class="select-box">
@@ -223,4 +219,8 @@
     [index]="index"
   >
   </app-day>
+</div>
+
+<div class="settings-icon" (click)="settings.open()">
+  <i class="fas fa-cogs"></i>
 </div>

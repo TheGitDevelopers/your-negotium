@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { GoogleAuthService } from "src/app/services/googleauth.service";
 
 @Component({
-  selector: "app-calendar-settings",
-  templateUrl: "./calendar-settings.component.html",
-  styleUrls: ["./calendar-settings.component.scss"]
+  selector: "app-settings-popup",
+  templateUrl: "./settings-popup.component.html",
+  styleUrls: ["./settings-popup.component.scss"]
 })
-export class CalendarSettingsComponent implements OnInit {
+export class SettingsPopupComponent implements OnInit {
   googleintegration: boolean;
 
   constructor(public auth: GoogleAuthService) {

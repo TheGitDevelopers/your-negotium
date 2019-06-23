@@ -19,7 +19,8 @@ import {
   MatRadioModule,
   MatDatepickerModule,
   MatFormFieldModule,
-  MatSliderModule
+  MatSliderModule,
+  MatDialogModule
 } from "@angular/material";
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -63,9 +64,6 @@ import { AvailabilityComponent } from "./caupona-content/employees/availability/
 import { TrainingsComponent } from "./caupona-content/employees/trainings/trainings.component";
 import { GeneralReservationsComponent } from "./caupona-content/reservations/general-reservations/general-reservations.component";
 import { NewReservationComponent } from "./caupona-content/reservations/new-reservation/new-reservation.component";
-import { MeetingsComponent } from "./caupona-content/calendar/meetings/meetings.component";
-import { CompanyEventsComponent } from "./caupona-content/calendar/company-events/company-events.component";
-import { NewEventComponent } from "./caupona-content/calendar/new-event/new-event.component";
 import { GeneralTargetsComponent } from "./caupona-content/targets/general-targets/general-targets.component";
 import { NewTargetComponent } from "./caupona-content/targets/new-target/new-target.component";
 import { GeneralPartnersComponent } from "./caupona-content/partners/general-partners/general-partners.component";
@@ -78,8 +76,6 @@ import { DownloadReportComponent } from "./caupona-content/reports/download-repo
 import { LoadingInterceptorComponent } from "./global-components/loading-interceptor/loading-interceptor.component";
 import { HttpListenerService } from "./services/httplistener.service";
 import { HttpStatusService } from "./services/httpstatus.service";
-import { CalendarSettingsComponent } from "./caupona-content/calendar/calendar-settings/calendar-settings.component";
-import { EditEventComponent } from "./caupona-content/calendar/edit-event/edit-event.component";
 import { EventFormComponent } from "./custom-components/event-form/event-form.component";
 import { EventsLengthDirective } from "./directives/events-length.directive";
 import { CheckMonthDayDirective } from "./check-month-day.directive";
@@ -88,6 +84,8 @@ import { DayComponent } from "./caupona-content/calendar/day/day.component";
 import { EventComponent } from "./caupona-content/calendar/event/event.component";
 import { CalendarHeaderComponent } from "./caupona-content/calendar/calendar-header/calendar-header.component";
 import { FilterEventsPipe } from "./pipes/filter-events.pipe";
+import { EditEventPopUpComponent } from "./popups/edit-event-pop-up/edit-event-pop-up.component";
+import { SettingsPopupComponent } from "./popups/settings-popup/settings-popup.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -130,9 +128,6 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     TrainingsComponent,
     GeneralReservationsComponent,
     NewReservationComponent,
-    MeetingsComponent,
-    CompanyEventsComponent,
-    NewEventComponent,
     GeneralTargetsComponent,
     NewTargetComponent,
     GeneralPartnersComponent,
@@ -143,8 +138,6 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     AskForReportComponent,
     DownloadReportComponent,
     LoadingInterceptorComponent,
-    CalendarSettingsComponent,
-    EditEventComponent,
     EventFormComponent,
     EventsLengthDirective,
     CheckMonthDayDirective,
@@ -152,7 +145,9 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     DayComponent,
     EventComponent,
     CalendarHeaderComponent,
-    FilterEventsPipe
+    FilterEventsPipe,
+    EditEventPopUpComponent,
+    SettingsPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -176,6 +171,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatRadioModule,
     MatFormFieldModule,
     MatSliderModule,
+    MatDialogModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -189,6 +185,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditEventPopUpComponent, SettingsPopupComponent]
 })
 export class AppModule {}

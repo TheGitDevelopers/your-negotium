@@ -104,7 +104,6 @@
       &:focus {
         & + .select-box__list {
           opacity: 1;
-          animation-name: none;
 
           .select-box__option {
             cursor: pointer;
@@ -154,11 +153,6 @@
       padding: 0;
       list-style: none;
       opacity: 0;
-      animation-name: HideList;
-      animation-duration: 0.5s;
-      animation-delay: 0.5s;
-      animation-fill-mode: forwards;
-      animation-timing-function: step-start;
       box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
     }
 
@@ -173,6 +167,27 @@
         background-color: #fbfbfb;
       }
     }
+  }
+}
+
+.settings-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: rgba(60, 60, 60, 1);
+  color: rgb(245, 245, 245);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    color: white;
+    background: rgb(40, 40, 40);
   }
 }
 
@@ -198,14 +213,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@keyframes HideList {
-  from {
-    transform: scaleY(1);
-  }
-
-  to {
-    transform: scaleY(0);
-  }
 }

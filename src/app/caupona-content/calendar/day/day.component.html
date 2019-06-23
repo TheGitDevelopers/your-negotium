@@ -21,6 +21,13 @@
       'day-inner': true
     }"
   >
+    <button
+      *ngIf="actualMode === 'month' ? true : false"
+      class="btn-add-event"
+      (click)="addEvent($event, week[index])"
+    >
+      +
+    </button>
     <header
       *ngIf="actualMode === 'month' ? true : false"
       class="day-header"

@@ -138,14 +138,6 @@ export class CauponaNavComponent implements OnInit {
           {
             label: "calendar",
             path: "week"
-          },
-          {
-            label: "add new",
-            path: "add-new-event"
-          },
-          {
-            label: "calendar settings",
-            path: "calendar-settings"
           }
         ]
       },

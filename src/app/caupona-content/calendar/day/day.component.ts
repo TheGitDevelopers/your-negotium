@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { EventOperationsService } from "src/app/services/event-operations.service";
 
 @Component({
   selector: "app-day",
@@ -12,7 +13,10 @@ export class DayComponent implements OnInit {
   @Input() monthName;
   @Input() day;
   @Input() index;
-  constructor() {}
-
+  constructor(protected EventOperations: EventOperationsService) {}
   ngOnInit() {}
+  addEvent(event, date) {
+    event.stopPropagation();
+    this.EventOperations.addEvent(date);
+  }
 }

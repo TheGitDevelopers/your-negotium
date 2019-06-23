@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input } from "@angular/core";
+import { EventOperationsService } from "src/app/services/event-operations.service";
 
 @Component({
   selector: "app-event",
@@ -10,7 +11,7 @@ export class EventComponent implements OnChanges {
   @Input() events;
   @Input() week;
   convertedHours = [];
-  constructor() {}
+  constructor(protected EventOperations: EventOperationsService) {}
 
   checkOutdated(time) {
     return new Date(time).getTime() < new Date().getTime() &&

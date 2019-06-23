@@ -33,10 +33,6 @@ import { AvailabilityComponent } from "./caupona-content/employees/availability/
 import { TrainingsComponent } from "./caupona-content/employees/trainings/trainings.component";
 import { GeneralReservationsComponent } from "./caupona-content/reservations/general-reservations/general-reservations.component";
 import { NewReservationComponent } from "./caupona-content/reservations/new-reservation/new-reservation.component";
-import { MeetingsComponent } from "./caupona-content/calendar/meetings/meetings.component";
-import { CompanyEventsComponent } from "./caupona-content/calendar/company-events/company-events.component";
-import { NewEventComponent } from "./caupona-content/calendar/new-event/new-event.component";
-import { CalendarSettingsComponent } from "./caupona-content/calendar/calendar-settings/calendar-settings.component";
 import { GeneralTargetsComponent } from "./caupona-content/targets/general-targets/general-targets.component";
 import { GeneralPartnersComponent } from "./caupona-content/partners/general-partners/general-partners.component";
 import { NewTargetComponent } from "./caupona-content/targets/new-target/new-target.component";
@@ -46,7 +42,6 @@ import { ClientDataComponent } from "./caupona-content/customers/client-data/cli
 import { NewClientComponent } from "./caupona-content/customers/new-client/new-client.component";
 import { AskForReportComponent } from "./caupona-content/reports/ask-for-report/ask-for-report.component";
 import { DownloadReportComponent } from "./caupona-content/reports/download-report/download-report.component";
-import { EditEventComponent } from "./caupona-content/calendar/edit-event/edit-event.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -94,11 +89,6 @@ const appRoutes: Routes = [
     path: "reservations/add-new-reservation",
     component: NewReservationComponent
   },
-  { path: "calendar/meetings", component: MeetingsComponent },
-  { path: "calendar/company-events", component: CompanyEventsComponent },
-  { path: "calendar/add-new-event", component: NewEventComponent },
-  { path: "calendar/edit-event/:id", component: EditEventComponent },
-  { path: "calendar/calendar-settings", component: CalendarSettingsComponent },
   { path: "calendar/:mode", component: CalendarComponent },
   { path: "calendar/:mode/:y/:m/:d", component: CalendarComponent },
   { path: "targets/general", component: GeneralTargetsComponent },
