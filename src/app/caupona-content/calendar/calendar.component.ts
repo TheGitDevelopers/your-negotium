@@ -5,6 +5,7 @@ import { SettingsPopupService } from "src/app/services/settings-popup.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 import { ActivatedRoute, Router } from "@angular/router";
 import calendarProperties from "./calendarProperties";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-calendar",
@@ -18,7 +19,8 @@ export class CalendarComponent implements OnInit {
     private googleAuthService: GoogleAuthService,
     private route: ActivatedRoute,
     private routerNavigate: Router,
-    protected settings: SettingsPopupService
+    protected settings: SettingsPopupService,
+    private http: HttpClient
   ) {}
   sliderValue;
   actualMode;
@@ -50,7 +52,7 @@ export class CalendarComponent implements OnInit {
           this.week = [];
           this.convertedDays = [];
           this.days = [];
-          this.loadViewOlddated();
+          this.modeSwitch();
         } else if (Object.keys(params).length === 0) {
           this.routerNavigate.navigate(["/calendar/week"]);
         } else {
@@ -61,36 +63,127 @@ export class CalendarComponent implements OnInit {
         this.routerNavigate.navigate(["/not-found"]);
       }
     );
-
-    // This will load all events to view in future
-    this.loadView().then(events => console.log(events));
   }
 
-  loadViewOlddated() {
-    // Load view at present
-    this.dataSource.connect().subscribe(
-      data => {
-        this.days = data;
+  makeView(days) {
+    console.log(this.days);
+    days.data
+      .sort(
+        (firstEvent, secondEvent) =>
+          new Date(firstEvent.start.dateTime).getTime() -
+          new Date(secondEvent.start.dateTime).getTime()
+      )
+      .forEach(event => {
         switch (this.actualMode) {
-          case "day":
-            this.sliderValue = 0;
-            this.handleDayMode();
+          case "month":
+            this.days[new Date(event.start.dateTime).getDate() - 1].events.push(
+              event
+            );
             break;
           case "week":
-            this.sliderValue = 1;
-            this.handleWeekMode();
+            if (new Date(event.start.dateTime).getDay() === 0) {
+              this.days[6].events.push(event);
+            } else {
+              this.days[
+                new Date(event.start.dateTime).getDay() - 1
+              ].events.push(event);
+            }
             break;
-          case "month":
-            this.sliderValue = 2;
-            this.handleMonthMode();
-            break;
-          default:
-            this.routerNavigate.navigate(["/not-found"]);
+          case "day":
+            this.days[0].events.push(event);
             break;
         }
-      },
-      () => this.routerNavigate.navigate(["/not-found"])
-    );
+      });
+    console.log(days);
+  }
+
+  modeSwitch() {
+    this.createDates();
+    this.changeMonthName();
+    switch (this.actualMode) {
+      case "day":
+        this.sliderValue = 0;
+        this.setDayDays();
+        break;
+      case "week":
+        this.sliderValue = 1;
+        this.setWeekDays();
+        break;
+      case "month":
+        this.sliderValue = 2;
+        this.setMonthDays();
+        break;
+      default:
+        this.routerNavigate.navigate(["/not-found"]);
+        break;
+    }
+    this.loadView().then(item => this.makeView(item));
+  }
+
+  createDates() {
+    const now = new Date();
+    switch (this.actualMode) {
+      case "month":
+        this.startDate = this.paramsDate
+          ? new Date(
+              this.paramsDate.getFullYear(),
+              this.paramsDate.getMonth(),
+              1,
+              0,
+              0,
+              0
+            )
+          : new Date(now.getFullYear(), now.getMonth(), 1);
+        this.endDate = new Date(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth() + 1,
+          0,
+          23,
+          59,
+          59,
+          999
+        );
+        break;
+      case "week":
+        this.startDate = this.paramsDate
+          ? new Date(
+              this.paramsDate.getFullYear(),
+              this.paramsDate.getMonth(),
+              this.paramsDate.getDate() -
+                this.paramsDate.getDay() +
+                (this.paramsDate.getDay() === 0 ? -6 : 1),
+              0,
+              0,
+              0
+            )
+          : new Date(
+              now.getFullYear(),
+              now.getMonth(),
+              now.getDate() - now.getDay() + (now.getDay() === 0 ? -6 : 1),
+              0,
+              0,
+              0
+            );
+        this.endDate = new Date(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate() + 6,
+          23,
+          59,
+          59,
+          999
+        );
+        break;
+      case "day":
+        this.startDate = this.paramsDate
+          ? new Date(this.paramsDate.setHours(0, 0, 0, 0))
+          : new Date(new Date().setHours(0, 0, 0, 0));
+        this.endDate = this.paramsDate
+          ? new Date(this.paramsDate.setHours(23, 59, 59, 999))
+          : new Date(new Date().setHours(23, 59, 59, 999));
+        break;
+    }
+    console.log(this.startDate, this.endDate);
   }
 
   changeDate(month = 0, day = 0) {
@@ -138,6 +231,7 @@ export class CalendarComponent implements OnInit {
         break;
     }
     this.changeMonthName();
+    this.loadView().then(item => this.makeView(item));
   }
 
   futureDays() {
@@ -167,89 +261,35 @@ export class CalendarComponent implements OnInit {
         break;
     }
     this.changeMonthName();
+    this.loadView().then(item => this.makeView(item));
   }
 
   changeStartDate(event) {
     this.startDate = event.value;
-
     this.setDayDays();
-  }
-
-  handleDayMode() {
-    this.startDate = this.paramsDate ? this.paramsDate : new Date();
-    this.endDate = this.paramsDate ? this.paramsDate : new Date();
-    this.changeMonthName();
-    this.setDayDays();
-  }
-
-  handleWeekMode() {
-    const now = new Date();
-    this.startDate = this.paramsDate
-      ? new Date(
-          this.paramsDate.getFullYear(),
-          this.paramsDate.getMonth(),
-          this.paramsDate.getDate() -
-            this.paramsDate.getDay() +
-            (this.paramsDate.getDay() === 0 ? -6 : 1)
-        )
-      : new Date(
-          now.getFullYear(),
-          now.getMonth(),
-          now.getDate() - now.getDay() + (now.getDay() === 0 ? -6 : 1)
-        );
-    this.endDate = new Date(
-      this.startDate.getFullYear(),
-      this.startDate.getMonth(),
-      this.startDate.getDate() + 6
-    );
-    this.changeMonthName();
-    this.setWeekDays();
-  }
-
-  handleMonthMode() {
-    const now = new Date();
-    this.startDate = this.paramsDate
-      ? new Date(this.paramsDate.getFullYear(), this.paramsDate.getMonth(), 1)
-      : new Date(now.getFullYear(), now.getMonth(), 1);
-    this.endDate = new Date(
-      this.startDate.getFullYear(),
-      this.startDate.getMonth() + 1,
-      0
-    );
-    this.changeMonthName();
-    this.setMonthDays();
   }
 
   setDayDays() {
-    this.actualMode = "day";
-    this.convertedDays = this.days.slice(0, 1);
     this.convertedDaysOfWeek = [
-      this.startDate.toLocaleDateString("en-us", {
+      new Date(this.startDate).toLocaleDateString("en-us", {
         weekday: "short"
       })
     ];
+    console.log(this.startDate);
     this.week = [this.startDate];
   }
 
   setWeekDays() {
-    this.actualMode = "week";
-    const tempDays = [];
     for (
       let i = this.startDate;
       this.endDate >= i;
       i = new Date(i.getTime() + 24 * 60 * 60 * 1000)
     ) {
-      tempDays.push({});
       this.week.push(i);
     }
-    tempDays.push(...this.days.slice(0, 8 - new Date().getDay()));
-    this.convertedDays = tempDays;
   }
 
   setMonthDays() {
-    this.actualMode = "month";
-    const tempDays = [];
-
     if (this.startDate.getDay() !== 1) {
       for (
         let i = new Date(
@@ -260,12 +300,10 @@ export class CalendarComponent implements OnInit {
         this.startDate > i;
         i = new Date(i.getTime() + 24 * 60 * 60 * 1000)
       ) {
-        tempDays.push({});
         this.week.push(i);
       }
     }
     for (let i = 1; i <= this.endDate.getDate(); i++) {
-      tempDays.push({ events: [{ name: "Lorem ipsum" }] });
       this.week.push(
         new Date(this.endDate.getFullYear(), this.endDate.getMonth(), i)
       );
@@ -275,13 +313,12 @@ export class CalendarComponent implements OnInit {
         this.week.push(
           new Date(this.endDate.getFullYear(), this.endDate.getMonth() + 1, i)
         );
-        tempDays.push({});
       }
     }
-    this.convertedDays = tempDays;
   }
 
   handleChangeMode() {
+    this.modeSwitch();
     switch (this.actualMode) {
       case "day":
         this.routerNavigate.navigate(["/calendar/day"]);
@@ -313,8 +350,27 @@ export class CalendarComponent implements OnInit {
 
   loadView() {
     return new Promise(async (resolve, reject) => {
+      this.days = [];
+      switch (this.actualMode) {
+        case "month":
+          for (let i = new Date(this.endDate).getDate(); i > 0; i--) {
+            this.days.push({ events: [] });
+          }
+          break;
+        case "week":
+          for (let i = 7; i > 0; i--) {
+            this.days.push({ events: [] });
+          }
+          break;
+        case "day":
+          this.days.push({ events: [] });
+          break;
+      }
       await this.googleAuthService.initClient();
-      const events = await this.googleAuthService.modifyEvents();
+      const events = await this.googleAuthService.modifyEvents(
+        this.startDate,
+        this.endDate
+      );
       events.subscribe(event => {
         resolve(event);
       });

@@ -19,7 +19,7 @@ export class EventOperationsService {
       if (result.mode) {
         if (result.mode === "edit")
           this.http
-            .put("http://localhost:9000/api/event", result.data.value)
+            .put("http://localhost:9000/api/events", result.data.value)
             .subscribe(console.log);
         if (result.mode === "delete")
           this.http
@@ -36,9 +36,12 @@ export class EventOperationsService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if (result)
         this.http
-          .post("http://localhost:9000/api/event", result.value)
+          .post("http://localhost:9000/api/events/create", {
+            result: { items: [result.data.value] }
+          })
           .subscribe(console.log);
     });
   }

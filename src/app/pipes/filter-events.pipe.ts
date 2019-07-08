@@ -4,15 +4,19 @@ import { Pipe, PipeTransform } from "@angular/core";
   name: "filterEvents"
 })
 export class FilterEventsPipe implements PipeTransform {
-  transform(value: any, ...args: any): any {
+  transform(value, ...args: any): any {
     if (args[1] === "day") {
-      return value.filter(event => {
-        return (
-          new Date(
-            new Date(event.time).setHours(new Date(event.time).getHours())
-          ).getHours() === args[0].getHours()
-        );
-      });
+      // console.log(value);
+      // return value.filter(event => {
+      //   console.log(
+      //     new Date(event.start.dateTime).getHours() === args[0].getHours()
+      //   );
+      //   console.log(new Date(event.start.dateTime).getHours());
+      //   console.log(args[0].getHours());
+      //   return new Date(event.start.dateTime).getHours() === args[0].getHours()
+      //     ? value
+      //     : null;
+      // });
     } else {
       return value;
     }

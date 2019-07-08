@@ -3,9 +3,9 @@
   <mat-form-field>
     <input formControlName="name" matInput placeholder="Name" required />
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field formGroupName="start">
     <input
-      formControlName="startDate"
+      formControlName="dateTime"
       matInput
       [matDatepicker]="startDate"
       placeholder="Choose start date"
@@ -18,9 +18,9 @@
       [startAt]="startAt"
     ></mat-datepicker>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field formGroupName="end">
     <input
-      formControlName="endDate"
+      formControlName="dateTime"
       matInput
       [matDatepicker]="endDate"
       placeholder="Choose end date"
@@ -34,7 +34,11 @@
     ></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <textarea formControlName="notes" matInput placeholder="Notes"></textarea>
+    <textarea
+      formControlName="description"
+      matInput
+      placeholder="Notes"
+    ></textarea>
   </mat-form-field>
   <mat-form-field>
     <input formControlName="location" matInput placeholder="Location" />

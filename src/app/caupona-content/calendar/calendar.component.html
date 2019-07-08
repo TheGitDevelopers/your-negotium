@@ -210,9 +210,9 @@
     </app-calendar-header>
   </div>
   <app-day
-    *ngFor="let day of convertedDays; let index = index"
+    *ngFor="let day of days; let index = index"
     [actualMode]="actualMode"
-    [convertedDays]="convertedDays"
+    [convertedDays]="days"
     [week]="week"
     [monthName]="monthName"
     [day]="day"

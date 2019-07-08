@@ -28,12 +28,12 @@
         'event-inner': true
       }"
     >
-      <time>{{ event.time | getDate: "hour" }}</time>
+      <time>{{ event.start.dateTime | getDate: "hour" }}</time>
       <b
         class="event-name"
-        [class.outdated]="checkOutdated(event.time)"
-        [class.incoming]="checkIncoming(event.time)"
-        >{{ event.name }}</b
+        [class.outdated]="checkOutdated(event.start.dateTime)"
+        [class.incoming]="checkIncoming(event.start.dateTime)"
+        >{{ event.description }}</b
       >
       <span class="event-location">
         <b>United States, 13px</b>
@@ -44,10 +44,10 @@
           src="assets/icons/location-pin.svg"
         />
       </span>
-      <span class="event-outdated" *ngIf="checkOutdated(event.time)">
+      <span class="event-outdated" *ngIf="checkOutdated(event.start.dateTime)">
         Outdated
       </span>
-      <span class="event-incoming" *ngIf="checkIncoming(event.time)">
+      <span class="event-incoming" *ngIf="checkIncoming(event.start.dateTime)">
         Incoming
       </span>
     </div>

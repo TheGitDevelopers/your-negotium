@@ -63,6 +63,18 @@ export class GoogleAuthService {
     }
   }
 
+  userEmail() {
+    const gapiUser = gapi.auth2.getAuthInstance();
+    if (gapiUser.isSignedIn.get()) {
+      return gapiUser.currentUser
+        .get()
+        .getBasicProfile()
+        .getEmail();
+    } else {
+      return false;
+    }
+  }
+
   checkLogin() {
     return gapi.auth2
       .getAuthInstance()
@@ -82,13 +94,22 @@ export class GoogleAuthService {
   }
 
   postEvents(events) {
-    return this.http.post(`${environment.calendarAPIUrl}/events`, events);
+    return this.http.post(
+      `${environment.calendarAPIUrl}/events/create`,
+      events
+    );
   }
 
-  async modifyEvents() {
-    const events = await this.fetchEvents();
-    const data = await this.postEvents(events);
-
-    return this.http.get(`${environment.calendarAPIUrl}/events`);
+  async modifyEvents(dateFrom, dateTo) {
+    // const events = await this.fetchEvents();
+    // const data = await this.postEvents(events);
+    // data.subscribe(console.log);
+    console.log(dateFrom, dateTo);
+    return this.http.post(`${environment.calendarAPIUrl}/events`, {
+      event: {
+        dateFrom,
+        dateTo
+      }
+    });
   }
 }

@@ -21,7 +21,7 @@ export class CheckMonthDayDirective implements OnChanges {
       actualMode,
       week
     } = this.appCheckMonthDay;
-    const weekDate = week ? week.getDate() : null;
+    const weekDate = week ? new Date(week).getDate() : null;
     const weekMonth = week
       ? week.toLocaleString("en-us", { month: "short" })
       : null;

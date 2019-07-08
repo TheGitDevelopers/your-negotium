@@ -58,7 +58,8 @@ export class EventComponent implements OnChanges {
     if (this.events) {
       this.events.sort((event1, event2) => {
         return (
-          new Date(event1.time).getTime() - new Date(event2.time).getTime()
+          new Date(event1.start.dateTime).getTime() -
+          new Date(event2.start.dateTime).getTime()
         );
       });
     }
