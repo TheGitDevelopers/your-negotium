@@ -30,7 +30,9 @@ header {
 
       .date {
         color: #545454;
-        font-size: 3.5em;
+        font-weight: 900;
+        font-size: 3.5em !important;
+        font-family: "Montserrat", sans-serif;
       }
     }
   }
@@ -43,6 +45,7 @@ header {
 
   &.day-mode {
     border-right: unset;
+    padding: 0 0.5em;
 
     .cal-head-in {
       display: flex;
@@ -55,7 +58,9 @@ header {
   }
 
   b.date {
-    font-size: 2.5em;
+    font-weight: 900;
+    font-size: 2.5em !important;
+    font-family: "Montserrat", sans-serif;
   }
 
   &.highligted-day {

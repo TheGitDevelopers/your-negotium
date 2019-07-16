@@ -76,10 +76,7 @@ export class GoogleAuthService {
   }
 
   checkLogin() {
-    return gapi.auth2
-      .getAuthInstance()
-      .isSignedIn()
-      .get();
+    return gapi.auth2.getAuthInstance().isSignedIn.get();
   }
 
   fetchEvents() {
@@ -101,10 +98,14 @@ export class GoogleAuthService {
   }
 
   async modifyEvents(dateFrom, dateTo) {
-    // const events = await this.fetchEvents();
-    // const data = await this.postEvents(events);
-    // data.subscribe(console.log);
-    console.log(dateFrom, dateTo);
+    if (sessionStorage.getItem("turnGoogleIntegration")) {
+      const initClient = await this.initClient();
+      if (this.checkLogin()) {
+        const events = await this.fetchEvents();
+        const data = await this.postEvents(events);
+        data.subscribe(console.log);
+      }
+    }
     return this.http.post(`${environment.calendarAPIUrl}/events`, {
       event: {
         dateFrom,

@@ -5,7 +5,7 @@ import { SettingsPopupService } from "src/app/services/settings-popup.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 import { ActivatedRoute, Router } from "@angular/router";
 import calendarProperties from "./calendarProperties";
-import { HttpClient } from "@angular/common/http";
+import { Observable, from } from "rxjs";
 
 @Component({
   selector: "app-calendar",
@@ -19,8 +19,7 @@ export class CalendarComponent implements OnInit {
     private googleAuthService: GoogleAuthService,
     private route: ActivatedRoute,
     private routerNavigate: Router,
-    protected settings: SettingsPopupService,
-    private http: HttpClient
+    protected settings: SettingsPopupService
   ) {}
   sliderValue;
   actualMode;
@@ -47,7 +46,7 @@ export class CalendarComponent implements OnInit {
               ? new Date(params.y, params.m - 1, params.d)
               : undefined;
           this.actualMode = params.mode;
-          // Reset view
+          // Init view
           this.convertedDaysOfWeek = this.daysOfWeek;
           this.week = [];
           this.convertedDays = [];
@@ -65,41 +64,65 @@ export class CalendarComponent implements OnInit {
     );
   }
 
+  setUpLoad() {
+    this.restartView();
+    this.loadView().subscribe(item =>
+      item.subscribe(item => this.makeView(item))
+    );
+  }
+
   makeView(days) {
-    console.log(this.days);
-    days.data
-      .sort(
-        (firstEvent, secondEvent) =>
-          new Date(firstEvent.start.dateTime).getTime() -
-          new Date(secondEvent.start.dateTime).getTime()
-      )
-      .forEach(event => {
-        switch (this.actualMode) {
-          case "month":
-            this.days[new Date(event.start.dateTime).getDate() - 1].events.push(
-              event
-            );
-            break;
-          case "week":
-            if (new Date(event.start.dateTime).getDay() === 0) {
-              this.days[6].events.push(event);
-            } else {
+    if (days)
+      switch (this.actualMode) {
+        case "month":
+          days.data
+            .sort(
+              (
+                { start: { dateTime: compared } },
+                { start: { dateTime: comparing } }
+              ) => new Date(compared).getTime() - new Date(comparing).getTime()
+            )
+            .forEach(event => {
               this.days[
-                new Date(event.start.dateTime).getDay() - 1
+                new Date(event.start.dateTime).getDate() - 1
               ].events.push(event);
-            }
-            break;
-          case "day":
-            this.days[0].events.push(event);
-            break;
-        }
-      });
-    console.log(days);
+            });
+          break;
+        case "week":
+          days.data
+            .sort(
+              (
+                { start: { dateTime: compared } },
+                { start: { dateTime: comparing } }
+              ) => new Date(compared).getTime() - new Date(comparing).getTime()
+            )
+            .forEach(event => {
+              if (new Date(event.start.dateTime).getDay() === 0) {
+                this.days[6].events.push(event);
+              } else {
+                this.days[
+                  new Date(event.start.dateTime).getDay() - 1
+                ].events.push(event);
+              }
+            });
+          break;
+        case "day":
+          days.data
+            .sort(
+              (
+                { start: { dateTime: compared } },
+                { start: { dateTime: comparing } }
+              ) => new Date(compared).getTime() - new Date(comparing).getTime()
+            )
+            .forEach(event => {
+              this.days[0].events.push(event);
+            });
+          break;
+      }
   }
 
   modeSwitch() {
     this.createDates();
-    this.changeMonthName();
     switch (this.actualMode) {
       case "day":
         this.sliderValue = 0;
@@ -117,7 +140,7 @@ export class CalendarComponent implements OnInit {
         this.routerNavigate.navigate(["/not-found"]);
         break;
     }
-    this.loadView().then(item => this.makeView(item));
+    this.setUpLoad();
   }
 
   createDates() {
@@ -183,7 +206,6 @@ export class CalendarComponent implements OnInit {
           : new Date(new Date().setHours(23, 59, 59, 999));
         break;
     }
-    console.log(this.startDate, this.endDate);
   }
 
   changeDate(month = 0, day = 0) {
@@ -195,7 +217,11 @@ export class CalendarComponent implements OnInit {
     this.endDate = new Date(
       this.endDate.getFullYear(),
       this.endDate.getMonth() + month,
-      this.endDate.getDate() + day
+      this.endDate.getDate() + day,
+      23,
+      59,
+      59,
+      999
     );
   }
 
@@ -230,8 +256,7 @@ export class CalendarComponent implements OnInit {
         this.setDayDays();
         break;
     }
-    this.changeMonthName();
-    this.loadView().then(item => this.makeView(item));
+    this.setUpLoad();
   }
 
   futureDays() {
@@ -260,13 +285,19 @@ export class CalendarComponent implements OnInit {
         this.setDayDays();
         break;
     }
-    this.changeMonthName();
-    this.loadView().then(item => this.makeView(item));
+    this.setUpLoad();
   }
 
   changeStartDate(event) {
-    this.startDate = event.value;
-    this.setDayDays();
+    const eventDate = new Date(event.target.value);
+    this.routerNavigate.navigate([
+      "calendar/day",
+      eventDate.getFullYear(),
+      eventDate.getMonth() + 1,
+      eventDate.getDate()
+    ]);
+    this.startDate = eventDate;
+    this.setUpLoad();
   }
 
   setDayDays() {
@@ -275,7 +306,6 @@ export class CalendarComponent implements OnInit {
         weekday: "short"
       })
     ];
-    console.log(this.startDate);
     this.week = [this.startDate];
   }
 
@@ -317,7 +347,8 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  handleChangeMode() {
+  handleChangeMode(event) {
+    this.actualMode = event;
     this.modeSwitch();
     switch (this.actualMode) {
       case "day":
@@ -348,32 +379,29 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  loadView() {
-    return new Promise(async (resolve, reject) => {
-      this.days = [];
-      switch (this.actualMode) {
-        case "month":
-          for (let i = new Date(this.endDate).getDate(); i > 0; i--) {
-            this.days.push({ events: [] });
-          }
-          break;
-        case "week":
-          for (let i = 7; i > 0; i--) {
-            this.days.push({ events: [] });
-          }
-          break;
-        case "day":
+  restartView() {
+    this.changeMonthName();
+    this.days = [];
+    switch (this.actualMode) {
+      case "month":
+        for (let i = new Date(this.endDate).getDate(); i > 0; i--) {
           this.days.push({ events: [] });
-          break;
-      }
-      await this.googleAuthService.initClient();
-      const events = await this.googleAuthService.modifyEvents(
-        this.startDate,
-        this.endDate
-      );
-      events.subscribe(event => {
-        resolve(event);
-      });
-    });
+        }
+        break;
+      case "week":
+        for (let i = 7; i > 0; i--) {
+          this.days.push({ events: [] });
+        }
+        break;
+      case "day":
+        this.days.push({ events: [] });
+        break;
+    }
+  }
+
+  loadView() {
+    return from(
+      this.googleAuthService.modifyEvents(this.startDate, this.endDate)
+    );
   }
 }

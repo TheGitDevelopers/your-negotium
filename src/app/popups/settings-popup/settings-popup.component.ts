@@ -17,6 +17,10 @@ export class SettingsPopupComponent implements OnInit {
     this.googleintegration = JSON.parse(
       sessionStorage.getItem("turnGoogleIntegration")
     );
+    if (this.googleintegration === null) {
+      this.googleintegration = false;
+      sessionStorage.setItem("turnGoogleIntegration", "false");
+    }
   }
   activateApi(event) {
     console.log(event.value["api-key"]);

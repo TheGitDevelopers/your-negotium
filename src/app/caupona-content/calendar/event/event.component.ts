@@ -1,5 +1,6 @@
 import { Component, OnChanges, Input } from "@angular/core";
 import { EventOperationsService } from "src/app/services/event-operations.service";
+import { FilterEventsPipe } from "src/app/pipes/filter-events.pipe";
 
 @Component({
   selector: "app-event",
@@ -11,7 +12,14 @@ export class EventComponent implements OnChanges {
   @Input() events;
   @Input() week;
   convertedHours = [];
-  constructor(protected EventOperations: EventOperationsService) {}
+  constructor(
+    protected EventOperations: EventOperationsService,
+    public filterEvents: FilterEventsPipe
+  ) {}
+
+  filterEventsCheck(hour, actualMode) {
+    return this.filterEvents.transform(this.events, hour, actualMode);
+  }
 
   checkOutdated(time) {
     return new Date(time).getTime() < new Date().getTime() &&

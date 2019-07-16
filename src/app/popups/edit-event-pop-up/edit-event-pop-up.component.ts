@@ -45,6 +45,7 @@ export class EditEventPopUpComponent implements OnInit {
   ) {
     this.description = data.description;
     this.options = fb.group({
+      _id: "",
       name: "",
       location: "",
       calendarType: "",
@@ -58,7 +59,7 @@ export class EditEventPopUpComponent implements OnInit {
       }),
       description: "",
       end: this.fb.group({
-        dateTime: ""
+        dateTime: 0
       }),
       extendedProperties: this.fb.group({
         private: {
@@ -82,18 +83,25 @@ export class EditEventPopUpComponent implements OnInit {
       }),
       sequence: "",
       start: this.fb.group({
-        dateTime: ""
+        dateTime: 0
       }),
       status: "",
       summary: "",
       updated: ""
     });
-    if (data.event)
-      if (Object.values(data.event).length)
-        this.options = this.fb.group({
-          ...this.options.controls,
-          ...this.data.event
-        });
+    if (data.event && Object.values(data.event).length) {
+      let tempEvents = data.event;
+      tempEvents.start = this.fb.group({
+        dateTime: new Date(tempEvents.start.dateTime)
+      });
+      tempEvents.end = this.fb.group({
+        dateTime: new Date(tempEvents.end.dateTime)
+      });
+      this.options = fb.group({
+        ...this.options.controls,
+        ...tempEvents
+      });
+    }
     if (data.date) {
       this.options
         .get("start")
@@ -108,42 +116,13 @@ export class EditEventPopUpComponent implements OnInit {
 
   changeDateFormat(name) {
     if (this.options.get(name)) {
-      console.log(
-        this.options
-          .get(name)
-          .get("dateTime")
-          .value.toString()
-      );
       this.options
         .get(name)
         .get("dateTime")
         .setValue(
           new Date(this.options.get(name).get("dateTime").value).getTime()
-          // `${new Date(this.options.get(name).value).getFullYear()}/${new Date(
-          //   this.options.get(name).value
-          // ).getMonth()}/${new Date(this.options.get(name).value).getDate()}`
         );
     }
-    // if (this.options.get(name)) {
-    //   console.log(
-    //     this.options
-    //       .get(name)
-    //       .get("dateTime")
-    //       .value.toString()
-    //   );
-    //   this.options
-    //     .get(name)
-    //     .get("dateTime")
-    //     .setValue(
-    //       this.options
-    //         .get(name)
-    //         .get("dateTime")
-    //         .value.toString()
-    //       // `${new Date(this.options.get(name).value).getFullYear()}/${new Date(
-    //       //   this.options.get(name).value
-    //       // ).getMonth()}/${new Date(this.options.get(name).value).getDate()}`
-    //     );
-    // }
   }
 
   close() {
@@ -156,7 +135,7 @@ export class EditEventPopUpComponent implements OnInit {
     this.changeDateFormat("remind");
     this.dialogRef.close({
       mode: "edit",
-      data: this.options
+      data: this.options.value
     });
   }
 
@@ -166,7 +145,7 @@ export class EditEventPopUpComponent implements OnInit {
     this.changeDateFormat("remind");
     this.dialogRef.close({
       mode: "delete",
-      data: this.options.value.eventId
+      data: this.options.get("_id").value
     });
   }
 }

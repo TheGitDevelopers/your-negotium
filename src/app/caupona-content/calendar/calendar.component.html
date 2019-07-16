@@ -7,85 +7,14 @@
     <span *ngIf="actualMode !== 'month'"
       >&nbsp;{{ endDate | getDate: "date" }}&nbsp;</span
     >
-
     <span> {{ monthName }}&nbsp;</span>
     <span *ngIf="actualMode === 'month'">{{ currentYear }}&nbsp;</span>
     <i class="fas fa-chevron-right" (click)="futureDays()"></i>
   </div>
-  <div class="select-mode">
-    <div class="select-box">
-      <div class="select-box__current" tabindex="1">
-        <div class="select-box__value">
-          <input
-            class="select-box__input"
-            type="radio"
-            id="0"
-            value="day"
-            name="scope"
-            checked="checked"
-            (change)="handleChangeMode()"
-            [(ngModel)]="actualMode"
-          />
-          <p class="select-box__input-text">
-            Selected scope: Day
-          </p>
-        </div>
-        <div class="select-box__value">
-          <input
-            class="select-box__input"
-            type="radio"
-            id="1"
-            value="week"
-            name="scope"
-            checked="checked"
-            (change)="handleChangeMode()"
-            [(ngModel)]="actualMode"
-          />
-          <p class="select-box__input-text">
-            Selected scope: Week
-          </p>
-        </div>
-        <div class="select-box__value">
-          <input
-            class="select-box__input"
-            type="radio"
-            id="2"
-            value="month"
-            name="scope"
-            checked="checked"
-            (change)="handleChangeMode()"
-            [(ngModel)]="actualMode"
-          />
-          <p class="select-box__input-text">
-            Selected scope: Month
-          </p>
-        </div>
-        <img
-          class="select-box__icon"
-          src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
-          alt="Arrow Icon"
-          aria-hidden="true"
-        />
-      </div>
-      <ul class="select-box__list">
-        <li>
-          <label class="select-box__option" for="0" aria-hidden="aria-hidden"
-            >Day</label
-          >
-        </li>
-        <li>
-          <label class="select-box__option" for="1" aria-hidden="aria-hidden"
-            >Week</label
-          >
-        </li>
-        <li>
-          <label class="select-box__option" for="2" aria-hidden="aria-hidden"
-            >Month</label
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
+  <app-dropdown-menu
+    (changeMode)="handleChangeMode($event)"
+    [actualModeParams]="actualMode"
+  ></app-dropdown-menu>
 </nav>
 <div
   [ngClass]="{
@@ -122,80 +51,10 @@
         Select date
       </button>
     </div>
-    <div class="select-mode">
-      <div class="select-box">
-        <div class="select-box__current" tabindex="1">
-          <div class="select-box__value">
-            <input
-              class="select-box__input"
-              type="radio"
-              id="0"
-              value="day"
-              name="scope"
-              checked="checked"
-              (change)="handleChangeMode()"
-              [(ngModel)]="actualMode"
-            />
-            <p class="select-box__input-text">
-              Selected scope: Day
-            </p>
-          </div>
-          <div class="select-box__value">
-            <input
-              class="select-box__input"
-              type="radio"
-              id="1"
-              value="week"
-              name="scope"
-              checked="checked"
-              (change)="handleChangeMode()"
-              [(ngModel)]="actualMode"
-            />
-            <p class="select-box__input-text">
-              Selected scope: Week
-            </p>
-          </div>
-          <div class="select-box__value">
-            <input
-              class="select-box__input"
-              type="radio"
-              id="2"
-              value="month"
-              name="scope"
-              checked="checked"
-              (change)="handleChangeMode()"
-              [(ngModel)]="actualMode"
-            />
-            <p class="select-box__input-text">
-              Selected scope: Month
-            </p>
-          </div>
-          <img
-            class="select-box__icon"
-            src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
-            alt="Arrow Icon"
-            aria-hidden="true"
-          />
-        </div>
-        <ul class="select-box__list">
-          <li>
-            <label class="select-box__option" for="0" aria-hidden="aria-hidden"
-              >Day</label
-            >
-          </li>
-          <li>
-            <label class="select-box__option" for="1" aria-hidden="aria-hidden"
-              >Week</label
-            >
-          </li>
-          <li>
-            <label class="select-box__option" for="2" aria-hidden="aria-hidden"
-              >Month</label
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
+    <app-dropdown-menu
+      (changeMode)="handleChangeMode($event)"
+      [actualModeParams]="actualMode"
+    ></app-dropdown-menu>
   </nav>
   <div *ngIf="actualMode !== 'day'" class="week-days">
     <app-calendar-header

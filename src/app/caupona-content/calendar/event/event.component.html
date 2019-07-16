@@ -1,10 +1,15 @@
-<div *ngFor="let hour of convertedHours">
+<div *ngFor="let hour of convertedHours" class="hour-block">
   <div class="cal-sidebar" *ngIf="convertedHours.length === 24">
-    <div class="cal-sidebar-hour" (click)="EventOperations.addEvent(hour)">
+    <div class="cal-sidebar-hour">
       {{ hour | getDate: "hour" }}
     </div>
     <div class="cal-sidebar-spacing"></div>
   </div>
+  <div
+    *ngIf="!filterEventsCheck(hour, actualMode).length && actualMode === 'day'"
+    class="white-box"
+    (click)="EventOperations.addEvent(hour)"
+  ></div>
   <section
     [ngClass]="{
       event: true,
@@ -13,7 +18,7 @@
       'day-mode': actualMode === 'day' ? true : false
     }"
     *ngFor="
-      let event of (events | filterEvents: hour:actualMode);
+      let event of filterEventsCheck(hour, actualMode);
       let eventIndex = index
     "
     [appEventsLength]="{
@@ -33,7 +38,7 @@
         class="event-name"
         [class.outdated]="checkOutdated(event.start.dateTime)"
         [class.incoming]="checkIncoming(event.start.dateTime)"
-        >{{ event.description }}</b
+        >{{ event.summary }}</b
       >
       <span class="event-location">
         <b>United States, 13px</b>

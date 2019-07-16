@@ -15,7 +15,6 @@ export class DayComponent {
   @Input() index;
   constructor(protected EventOperations: EventOperationsService) {}
   addEvent(event, date) {
-    console.log(date);
     event.stopPropagation();
     this.EventOperations.addEvent(date);
   }

@@ -22,6 +22,7 @@ import {
   MatSliderModule,
   MatDialogModule
 } from "@angular/material";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
@@ -86,6 +87,7 @@ import { CalendarHeaderComponent } from "./caupona-content/calendar/calendar-hea
 import { FilterEventsPipe } from "./pipes/filter-events.pipe";
 import { EditEventPopUpComponent } from "./popups/edit-event-pop-up/edit-event-pop-up.component";
 import { SettingsPopupComponent } from "./popups/settings-popup/settings-popup.component";
+import { DropdownMenuComponent } from "./caupona-content/calendar/dropdown-menu/dropdown-menu.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -147,7 +149,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     CalendarHeaderComponent,
     FilterEventsPipe,
     EditEventPopUpComponent,
-    SettingsPopupComponent
+    SettingsPopupComponent,
+    DropdownMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -183,7 +186,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
       provide: HTTP_INTERCEPTORS,
       useClass: HttpListenerService,
       multi: true
-    }
+    },
+    FilterEventsPipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditEventPopUpComponent, SettingsPopupComponent]

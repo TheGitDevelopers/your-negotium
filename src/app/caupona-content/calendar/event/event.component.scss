@@ -1,162 +1,175 @@
-.cal-sidebar {
+.hour-block {
   display: flex;
-  height: 50px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 
-  .cal-sidebar-hour {
-    flex-basis: 5%;
-    margin: 10px 0;
-    padding: 5px 0;
+  .cal-sidebar {
+    display: flex;
+    flex-basis: 100%;
+
+    .cal-sidebar-hour {
+      flex-basis: 5%;
+      font-family: "Montserrat";
+    }
+
+    .cal-sidebar-spacing {
+      border-bottom: 1px solid rgba(175, 175, 175, 1);
+      flex-basis: 95%;
+      align-self: center;
+      position: relative;
+
+      &::before,
+      &::after {
+        border-left: 1px solid rgba(175, 175, 175, 1);
+        content: " ";
+        align-self: center;
+        position: absolute;
+        left: 15px;
+        height: 40px;
+      }
+
+      &::before {
+        top: -40px;
+      }
+
+      &::after {
+        top: 0;
+      }
+    }
+  }
+
+  .white-box {
+    border-left: 1px solid #afafaf;
+    position: relative;
+    flex-basis: 95%;
+    height: 40px;
+    left: 15px;
     cursor: pointer;
   }
 
-  .cal-sidebar-spacing {
-    border-bottom: 1px solid rgba(175, 175, 175, 1);
-    flex-basis: 95%;
-    align-self: center;
+  .event {
+    outline: none;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: unset;
+    border-bottom: unset;
+    width: 100%;
     position: relative;
 
-    &::before,
-    &::after {
-      border-left: 1px solid rgba(175, 175, 175, 1);
-      content: " ";
-      align-self: center;
-      position: absolute;
-      left: 15px;
-      height: 40px;
+    &.day-mode {
+      display: flex;
+      justify-content: flex-end;
+      border: unset;
+
+      &:hover {
+        background-color: rgba(247, 247, 247, 1);
+      }
+
+      .event-inner {
+        padding: 0 0 0.5em 15px;
+        border-left: 1px solid rgba(175, 175, 175, 1);
+        flex-shrink: 1;
+        flex-basis: calc(95% - 15px);
+        flex-flow: row;
+        align-items: center;
+
+        .event-outdated,
+        .event-incoming {
+          order: 4;
+          flex-basis: 15%;
+          text-align: center;
+          font-weight: bold;
+        }
+
+        .event-outdated {
+          color: red;
+        }
+
+        .event-incoming {
+          color: rgb(0, 173, 0);
+        }
+
+        time {
+          order: 2;
+          padding: 1.5em 1em;
+          flex-basis: 10%;
+        }
+
+        .event-name {
+          order: 1;
+          flex-basis: 60%;
+          background: #f44336;
+          padding: 1em;
+          border-radius: 10px;
+
+          &.outdated {
+            background-color: rgba(190, 190, 190, 1);
+            color: rgba(120, 120, 120, 1);
+          }
+
+          &.incoming {
+            background-color: rgba(243, 243, 243, 1);
+            color: rgba(85, 85, 85, 1);
+          }
+        }
+
+        .event-location {
+          order: 3;
+          flex-basis: 15%;
+        }
+      }
     }
 
-    &::before {
-      top: -40px;
+    &.month-mode {
+      margin: unset !important;
+      padding: 0 0.5em !important;
+      justify-content: left !important;
+      border: unset !important;
+
+      .event-inner {
+        padding: 0 !important;
+
+        time {
+          display: none;
+        }
+
+        .event-location {
+          display: none;
+        }
+      }
     }
 
-    &::after {
-      top: 0;
-    }
-  }
-}
-
-.event {
-  outline: none;
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: unset;
-  border-bottom: unset;
-  width: 100%;
-  position: relative;
-
-  &.day-mode {
-    display: flex;
-    justify-content: flex-end;
-    border: unset;
-
-    &:hover {
-      background-color: rgba(247, 247, 247, 1);
+    &.hidden-event {
+      display: none;
     }
 
     .event-inner {
-      padding: 0 0 0.5em 15px;
-      border-left: 1px solid rgba(175, 175, 175, 1);
-      flex-shrink: 1;
-      flex-basis: calc(95% - 15px);
-      flex-flow: row;
-      align-items: center;
+      padding: 3em 2em;
+      display: flex;
+      flex-flow: column;
 
-      .event-outdated,
-      .event-incoming {
-        order: 4;
-        flex-basis: 15%;
-        text-align: center;
+      b {
+        margin-top: 0.5em;
+        flex-grow: 1;
+      }
+
+      &:focus {
+        background: hsla(0, 0%, 93%, 1);
+      }
+
+      time {
+        color: #ff1a00;
         font-weight: bold;
-      }
-
-      .event-outdated {
-        color: red;
-      }
-
-      .event-incoming {
-        color: rgb(0, 173, 0);
-      }
-
-      time {
-        order: 2;
-        padding: 1.5em 1em;
-        flex-basis: 10%;
-      }
-
-      .event-name {
-        order: 1;
-        flex-basis: 60%;
-        background: #f44336;
-        padding: 1em;
-        border-radius: 10px;
-
-        &.outdated {
-          background-color: rgba(190, 190, 190, 1);
-          color: rgba(120, 120, 120, 1);
-        }
-
-        &.incoming {
-          background-color: rgba(243, 243, 243, 1);
-          color: rgba(85, 85, 85, 1);
-        }
+        font-size: 1em;
+        margin-left: -0.2em;
       }
 
       .event-location {
-        order: 3;
-        flex-basis: 15%;
-      }
-    }
-  }
+        font-size: 13px;
 
-  &.month-mode {
-    margin: unset !important;
-    padding: 0 0.5em !important;
-    justify-content: left !important;
-    border: unset !important;
-
-    .event-inner {
-      padding: 0 !important;
-
-      time {
-        display: none;
-      }
-
-      .event-location {
-        display: none;
-      }
-    }
-  }
-
-  &.hidden-event {
-    display: none;
-  }
-
-  .event-inner {
-    padding: 3em 2em;
-    display: flex;
-    flex-flow: column;
-
-    b {
-      margin-top: 0.5em;
-      flex-grow: 1;
-    }
-
-    &:focus {
-      background: hsla(0, 0%, 93%, 1);
-    }
-
-    time {
-      color: #ff1a00;
-      font-weight: bold;
-      font-size: 1em;
-      margin-left: -0.2em;
-    }
-
-    .event-location {
-      font-size: 13px;
-
-      img.location-icon {
-        margin-left: 0.5em;
+        img.location-icon {
+          margin-left: 0.5em;
+        }
       }
     }
   }

@@ -16,16 +16,20 @@ export class EventOperationsService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.mode) {
-        if (result.mode === "edit")
-          this.http
-            .put("http://localhost:9000/api/events", result.data.value)
-            .subscribe(console.log);
-        if (result.mode === "delete")
-          this.http
-            .delete(`http://localhost:9000/api/events/${result.data.id}`)
-            .subscribe(console.log);
-      }
+      if (result)
+        if (result.mode) {
+          if (result.mode === "edit")
+            this.http
+              .put("http://localhost:9000/api/events", {
+                id: result.data._id,
+                item: result.data
+              })
+              .subscribe(console.log);
+          if (result.mode === "delete")
+            this.http
+              .delete(`http://localhost:9000/api/events/delete/${result.data}`)
+              .subscribe(console.log);
+        }
     });
   }
 
@@ -36,11 +40,10 @@ export class EventOperationsService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result)
         this.http
           .post("http://localhost:9000/api/events/create", {
-            result: { items: [result.data.value] }
+            result: { items: [result.data] }
           })
           .subscribe(console.log);
     });
