@@ -39,16 +39,16 @@ export class EventComponent implements OnChanges {
     if (this.actualMode === "day") {
       for (
         let i = new Date(
-          new Date().getFullYear(),
-          new Date().getUTCMonth(),
-          new Date().getDate(),
+          new Date(this.week).getFullYear(),
+          new Date(this.week).getUTCMonth(),
+          new Date(this.week).getDate(),
           0
         );
         i <=
         new Date(
-          new Date().getFullYear(),
-          new Date().getUTCMonth(),
-          new Date().getDate() + 1,
+          new Date(this.week).getFullYear(),
+          new Date(this.week).getUTCMonth(),
+          new Date(this.week).getDate() + 1,
           -1
         );
         i = new Date(

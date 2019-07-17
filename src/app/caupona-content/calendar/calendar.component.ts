@@ -5,7 +5,8 @@ import { SettingsPopupService } from "src/app/services/settings-popup.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 import { ActivatedRoute, Router } from "@angular/router";
 import calendarProperties from "./calendarProperties";
-import { Observable, from } from "rxjs";
+// !error!
+// import { from } from "rxjs";
 
 @Component({
   selector: "app-calendar",
@@ -66,8 +67,8 @@ export class CalendarComponent implements OnInit {
 
   setUpLoad() {
     this.restartView();
-    this.loadView().subscribe(item =>
-      item.subscribe(item => this.makeView(item))
+    this.loadView().subscribe(response =>
+      response.subscribe(responses => this.makeView(responses))
     );
   }
 

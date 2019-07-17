@@ -90,7 +90,7 @@ export class EditEventPopUpComponent implements OnInit {
       updated: ""
     });
     if (data.event && Object.values(data.event).length) {
-      let tempEvents = data.event;
+      const tempEvents = data.event;
       tempEvents.start = this.fb.group({
         dateTime: new Date(tempEvents.start.dateTime)
       });

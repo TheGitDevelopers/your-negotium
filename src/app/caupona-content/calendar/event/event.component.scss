@@ -1,3 +1,33 @@
+$border-columns-color-month: rgba(0, 0, 0, 0.05);
+
+$red-darker: rgb(255, 25, 0);
+$red-lighter: rgb(244, 67, 54);
+
+$date-color: rgb(84, 84, 84);
+
+$dark-grey-darker: rgb(80, 80, 80);
+$dark-grey-lighter: rgb(70, 70, 70);
+
+$medium-grey-darker: rgb(175, 175, 175);
+$medium-grey-lighter: rgb(237, 237, 237);
+
+$grey-darker: rgb(240, 240, 240);
+$grey-lighter: rgb(245, 245, 245);
+
+$light-grey-darker: rgb(247, 247, 247);
+$light-grey-lighter: rgb(251, 251, 251);
+
+$incoming-color-bg: rgb(243, 243, 243);
+$outdated-color-bg: rgb(190, 190, 190);
+
+$incoming-color-txt: rgb(120, 120, 120);
+$outdated-color-txt: rgb(85, 85, 85);
+
+$black-transparent: rgba(0, 0, 0, 0.1);
+
+$red-outdated: rgb(255, 0, 0);
+$green-incoming: rgb(0, 173, 0);
+
 .hour-block {
   display: flex;
   flex-wrap: wrap;
@@ -13,14 +43,14 @@
     }
 
     .cal-sidebar-spacing {
-      border-bottom: 1px solid rgba(175, 175, 175, 1);
+      border-bottom: 1px solid $medium-grey-darker;
       flex-basis: 95%;
       align-self: center;
       position: relative;
 
       &::before,
       &::after {
-        border-left: 1px solid rgba(175, 175, 175, 1);
+        border-left: 1px solid $medium-grey-darker;
         content: " ";
         align-self: center;
         position: absolute;
@@ -39,7 +69,7 @@
   }
 
   .white-box {
-    border-left: 1px solid #afafaf;
+    border-left: 1px solid $medium-grey-darker;
     position: relative;
     flex-basis: 95%;
     height: 40px;
@@ -50,7 +80,7 @@
   .event {
     outline: none;
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid $black-transparent;
     border-top: unset;
     border-bottom: unset;
     width: 100%;
@@ -62,12 +92,12 @@
       border: unset;
 
       &:hover {
-        background-color: rgba(247, 247, 247, 1);
+        background-color: $light-grey-darker;
       }
 
       .event-inner {
         padding: 0 0 0.5em 15px;
-        border-left: 1px solid rgba(175, 175, 175, 1);
+        border-left: 1px solid $medium-grey-darker;
         flex-shrink: 1;
         flex-basis: calc(95% - 15px);
         flex-flow: row;
@@ -82,11 +112,11 @@
         }
 
         .event-outdated {
-          color: red;
+          color: $red-outdated;
         }
 
         .event-incoming {
-          color: rgb(0, 173, 0);
+          color: $green-incoming;
         }
 
         time {
@@ -98,18 +128,18 @@
         .event-name {
           order: 1;
           flex-basis: 60%;
-          background: #f44336;
+          background: $red-lighter;
           padding: 1em;
           border-radius: 10px;
 
           &.outdated {
-            background-color: rgba(190, 190, 190, 1);
-            color: rgba(120, 120, 120, 1);
+            background-color: $outdated-color-bg;
+            color: $outdated-color-txt;
           }
 
           &.incoming {
-            background-color: rgba(243, 243, 243, 1);
-            color: rgba(85, 85, 85, 1);
+            background-color: $incoming-color-bg;
+            color: $incoming-color-txt;
           }
         }
 
@@ -121,13 +151,13 @@
     }
 
     &.month-mode {
-      margin: unset !important;
-      padding: 0 0.5em !important;
-      justify-content: left !important;
-      border: unset !important;
+      margin: unset;
+      padding: 0 0.5em;
+      justify-content: left;
+      border: unset;
 
       .event-inner {
-        padding: 0 !important;
+        padding: 0;
 
         time {
           display: none;
@@ -154,11 +184,11 @@
       }
 
       &:focus {
-        background: hsla(0, 0%, 93%, 1);
+        background: $medium-grey-lighter;
       }
 
       time {
-        color: #ff1a00;
+        color: $red-darker;
         font-weight: bold;
         font-size: 1em;
         margin-left: -0.2em;
@@ -176,14 +206,14 @@
 }
 
 .aspect-ratio-out-90 {
-  padding-top: 90% !important;
-  position: relative !important;
+  padding-top: 90%;
+  position: relative;
 }
 
 .aspect-ratio-in {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

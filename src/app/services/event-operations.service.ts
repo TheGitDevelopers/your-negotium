@@ -21,13 +21,12 @@ export class EventOperationsService {
           if (result.mode === "edit")
             this.http
               .put("http://localhost:9000/api/events", {
-                id: result.data._id,
-                item: result.data
+                event: result.data
               })
               .subscribe(console.log);
           if (result.mode === "delete")
             this.http
-              .delete(`http://localhost:9000/api/events/delete/${result.data}`)
+              .delete(`http://localhost:9000/api/events/${result.data}`)
               .subscribe(console.log);
         }
     });

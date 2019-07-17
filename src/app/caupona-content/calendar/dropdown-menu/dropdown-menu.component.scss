@@ -1,7 +1,16 @@
+$border-columns-color-month: rgba(0, 0, 0, 0.05);
+$highligted-day-color: rgb(255, 25, 0);
+$date-color: rgb(84, 84, 84);
+$dark-grey-darker: rgba(80, 80, 80, 1);
+$dark-grey-lighter: rgba(70, 70, 70, 1);
+$grey-darker: rgba(240, 240, 240, 1);
+$grey-lighter: rgba(245, 245, 245, 1);
+$light-grey-lighter: rgb(251, 251, 251);
+
 .select-box {
   position: relative;
   display: block;
-  color: #546c84;
+  color: $date-color;
 
   &.day-mode {
     width: 60%;
@@ -57,7 +66,7 @@
     margin: 0;
     padding: 15px;
     padding-right: 45px;
-    background-color: rgb(245, 245, 245);
+    background-color: $grey-lighter;
   }
 
   &__list {
@@ -74,12 +83,12 @@
   &__option {
     display: block;
     padding: 15px;
-    background-color: rgb(245, 245, 245);
+    background-color: $grey-lighter;
 
     &:hover,
     &:focus {
-      color: #546c84;
-      background-color: #fbfbfb;
+      color: rgb(83, 107, 130);
+      background-color: $light-grey-lighter;
     }
   }
 }

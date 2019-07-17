@@ -1,3 +1,33 @@
+$border-columns-color-month: rgba(0, 0, 0, 0.05);
+
+$red-darker: rgb(255, 25, 0);
+$red-lighter: rgb(244, 67, 54);
+
+$date-color: rgb(84, 84, 84);
+
+$dark-grey-darker: rgb(80, 80, 80);
+$dark-grey-lighter: rgb(70, 70, 70);
+
+$medium-grey-darker: rgb(175, 175, 175);
+$medium-grey-lighter: rgb(237, 237, 237);
+
+$grey-darker: rgb(240, 240, 240);
+$grey-lighter: rgb(245, 245, 245);
+
+$light-grey-darker: rgb(247, 247, 247);
+$light-grey-lighter: rgb(251, 251, 251);
+
+$incoming-color-bg: rgb(243, 243, 243);
+$outdated-color-bg: rgb(190, 190, 190);
+
+$incoming-color-txt: rgb(120, 120, 120);
+$outdated-color-txt: rgb(85, 85, 85);
+
+$black-transparent: rgba(0, 0, 0, 0.1);
+
+$red-outdated: rgb(255, 0, 0);
+$green-incoming: rgb(0, 173, 0);
+
 .calendar-navbar.standalone {
   display: flex;
   justify-content: space-between;
@@ -72,7 +102,7 @@
           &:hover {
             border: 1px solid rgb(222, 222, 222);
             color: rgb(77, 100, 124);
-            background: rgb(247, 247, 247);
+            background: $light-grey-darker;
           }
         }
       }
@@ -118,21 +148,21 @@ app-dropdown-menu {
 }
 
 .aspect-ratio-out-70 {
-  padding-top: 70% !important;
-  position: relative !important;
+  padding-top: 70%;
+  position: relative;
 }
 
 .aspect-ratio-out-90 {
-  padding-top: 90% !important;
-  position: relative !important;
+  padding-top: 90%;
+  position: relative;
 }
 
 .aspect-ratio-in {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .flex-center {
