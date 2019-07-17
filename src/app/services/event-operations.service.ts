@@ -26,7 +26,7 @@ export class EventOperationsService {
               .subscribe(console.log);
           if (result.mode === "delete")
             this.http
-              .delete(`http://localhost:9000/api/events/${result.data}`)
+              .delete(`http://localhost:9000/api/events/events/${result.data}`)
               .subscribe(console.log);
         }
     });
