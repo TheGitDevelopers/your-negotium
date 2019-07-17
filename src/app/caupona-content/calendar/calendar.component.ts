@@ -66,9 +66,11 @@ export class CalendarComponent implements OnInit {
   }
 
   setUpLoad() {
-    this.restartView();
     this.loadView().subscribe(response =>
-      response.subscribe(responses => this.makeView(responses))
+      response.subscribe(responses => {
+        this.restartView();
+        this.makeView(responses);
+      })
     );
   }
 
@@ -78,42 +80,36 @@ export class CalendarComponent implements OnInit {
         case "month":
           days.data
             .sort(
-              (
-                { start: { dateTime: compared } },
-                { start: { dateTime: comparing } }
-              ) => new Date(compared).getTime() - new Date(comparing).getTime()
+              ({ start: { date: compared } }, { start: { date: comparing } }) =>
+                new Date(compared).getTime() - new Date(comparing).getTime()
             )
             .forEach(event => {
-              this.days[
-                new Date(event.start.dateTime).getDate() - 1
-              ].events.push(event);
+              this.days[new Date(event.start.date).getDate() - 1].events.push(
+                event
+              );
             });
           break;
         case "week":
           days.data
             .sort(
-              (
-                { start: { dateTime: compared } },
-                { start: { dateTime: comparing } }
-              ) => new Date(compared).getTime() - new Date(comparing).getTime()
+              ({ start: { date: compared } }, { start: { date: comparing } }) =>
+                new Date(compared).getTime() - new Date(comparing).getTime()
             )
             .forEach(event => {
-              if (new Date(event.start.dateTime).getDay() === 0) {
+              if (new Date(event.start.date).getDay() === 0) {
                 this.days[6].events.push(event);
               } else {
-                this.days[
-                  new Date(event.start.dateTime).getDay() - 1
-                ].events.push(event);
+                this.days[new Date(event.start.date).getDay() - 1].events.push(
+                  event
+                );
               }
             });
           break;
         case "day":
           days.data
             .sort(
-              (
-                { start: { dateTime: compared } },
-                { start: { dateTime: comparing } }
-              ) => new Date(compared).getTime() - new Date(comparing).getTime()
+              ({ start: { date: compared } }, { start: { date: comparing } }) =>
+                new Date(compared).getTime() - new Date(comparing).getTime()
             )
             .forEach(event => {
               this.days[0].events.push(event);
