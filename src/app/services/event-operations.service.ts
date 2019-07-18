@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { EditEventPopUpComponent } from "../popups/edit-event-pop-up/edit-event-pop-up.component";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -20,13 +21,15 @@ export class EventOperationsService {
         if (result.mode) {
           if (result.mode === "edit")
             this.http
-              .put("http://localhost:9000/api/events", {
+              .put(`${environment.calendarAPIUrl}/events`, {
                 event: result.data
               })
               .subscribe(console.log);
           if (result.mode === "delete")
             this.http
-              .delete(`http://localhost:9000/api/events/events/${result.data}`)
+              .delete(
+                `${environment.calendarAPIUrl}/events/events/${result.data}`
+              )
               .subscribe(console.log);
         }
     });
@@ -41,7 +44,7 @@ export class EventOperationsService {
     dialogRef.afterClosed().subscribe(result => {
       if (result)
         this.http
-          .post("http://localhost:9000/api/events/create", {
+          .post(`${environment.calendarAPIUrl}/events/create`, {
             result: { items: [result.data] }
           })
           .subscribe(console.log);

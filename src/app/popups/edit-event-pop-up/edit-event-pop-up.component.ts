@@ -59,7 +59,7 @@ export class EditEventPopUpComponent implements OnInit {
       }),
       description: "",
       end: this.fb.group({
-        dateTime: 0
+        date: 0
       }),
       extendedProperties: this.fb.group({
         private: {
@@ -83,7 +83,7 @@ export class EditEventPopUpComponent implements OnInit {
       }),
       sequence: "",
       start: this.fb.group({
-        dateTime: 0
+        date: 0
       }),
       status: "",
       summary: "",
@@ -92,10 +92,10 @@ export class EditEventPopUpComponent implements OnInit {
     if (data.event && Object.values(data.event).length) {
       const tempEvents = data.event;
       tempEvents.start = this.fb.group({
-        dateTime: new Date(tempEvents.start.dateTime)
+        date: new Date(tempEvents.start.date)
       });
       tempEvents.end = this.fb.group({
-        dateTime: new Date(tempEvents.end.dateTime)
+        date: new Date(tempEvents.end.date)
       });
       this.options = fb.group({
         ...this.options.controls,
@@ -105,7 +105,7 @@ export class EditEventPopUpComponent implements OnInit {
     if (data.date) {
       this.options
         .get("start")
-        .get("dateTime")
+        .get("date")
         .setValue(new Date(data.date));
     }
   }
@@ -118,10 +118,8 @@ export class EditEventPopUpComponent implements OnInit {
     if (this.options.get(name)) {
       this.options
         .get(name)
-        .get("dateTime")
-        .setValue(
-          new Date(this.options.get(name).get("dateTime").value).getTime()
-        );
+        .get("date")
+        .setValue(new Date(this.options.get(name).get("date").value).getTime());
     }
   }
 

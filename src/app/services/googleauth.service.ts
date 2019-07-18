@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/internal/Observable";
-import { switchMap } from "rxjs/operators";
 import { environment } from "../../environments/environment";
 
 declare let gapi: any;
@@ -87,30 +85,6 @@ export class GoogleAuthService {
       singleEvents: true,
       maxResults: 100,
       orderBy: "startTime"
-    });
-  }
-
-  postEvents(events) {
-    return this.http.post(
-      `${environment.calendarAPIUrl}/events/create`,
-      events
-    );
-  }
-
-  async modifyEvents(dateFrom, dateTo) {
-    if (sessionStorage.getItem("turnGoogleIntegration")) {
-      const initClient = await this.initClient();
-      if (this.checkLogin()) {
-        const events = await this.fetchEvents();
-        const data = await this.postEvents(events);
-        data.subscribe(console.log);
-      }
-    }
-    return this.http.post(`${environment.calendarAPIUrl}/events`, {
-      event: {
-        dateFrom,
-        dateTo
-      }
     });
   }
 }

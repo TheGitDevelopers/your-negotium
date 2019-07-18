@@ -5,8 +5,8 @@ import { SettingsPopupService } from "src/app/services/settings-popup.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";
 import { ActivatedRoute, Router } from "@angular/router";
 import calendarProperties from "./calendarProperties";
-// !error!
-// import { from } from "rxjs";
+import { environment } from "src/environments/environment";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-calendar",
@@ -20,18 +20,21 @@ export class CalendarComponent implements OnInit {
     private googleAuthService: GoogleAuthService,
     private route: ActivatedRoute,
     private routerNavigate: Router,
-    protected settings: SettingsPopupService
+    protected settings: SettingsPopupService,
+    private http: HttpClient
   ) {}
   sliderValue;
   actualMode;
   paramsDate;
-  days;
+  days = [];
   convertedDays;
   daysOfWeek = calendarProperties.daysOfWeek;
   convertedDaysOfWeek;
   week = [];
   startDate: Date;
   endDate: Date;
+  googleEvents = [];
+  tempEvents = [];
   monthName;
   currentYear = new Date().getFullYear();
   ngOnInit() {
@@ -65,54 +68,84 @@ export class CalendarComponent implements OnInit {
     );
   }
 
-  setUpLoad() {
-    this.loadView().subscribe(response =>
-      response.subscribe(responses => {
-        this.restartView();
-        this.makeView(responses);
-      })
-    );
+  async setUpLoad() {
+    if (JSON.parse(sessionStorage.getItem("turnGoogleIntegration"))) {
+      const initClient = await this.googleAuthService.initClient();
+      if (this.googleAuthService.checkLogin()) {
+        const events = await this.googleAuthService.fetchEvents();
+        this.googleEvents = events.result.items;
+        this.googleEvents.map(item => {
+          if (item.start.date && item.end.date) return item;
+          if (item.start.dateTime) item.start = { date: item.start.dateTime };
+          if (item.end.dateTime) item.end = { date: item.end.dateTime };
+          return item;
+        });
+      }
+    }
+    this.loadView().subscribe(response => {
+      this.restartView();
+      this.makeView(response);
+    });
   }
 
   makeView(days) {
-    if (days)
+    this.tempEvents.push(...days.data, ...this.googleEvents);
+    if (this.tempEvents.length)
       switch (this.actualMode) {
         case "month":
-          days.data
+          this.tempEvents
             .sort(
               ({ start: { date: compared } }, { start: { date: comparing } }) =>
                 new Date(compared).getTime() - new Date(comparing).getTime()
             )
             .forEach(event => {
-              this.days[new Date(event.start.date).getDate() - 1].events.push(
-                event
-              );
+              if (
+                new Date(this.startDate).getTime() <=
+                  new Date(event.start.date).getTime() &&
+                new Date(this.endDate).getTime() >=
+                  new Date(event.start.date).getTime()
+              )
+                this.days[new Date(event.start.date).getDate() - 1].events.push(
+                  event
+                );
             });
           break;
         case "week":
-          days.data
+          this.tempEvents
             .sort(
               ({ start: { date: compared } }, { start: { date: comparing } }) =>
                 new Date(compared).getTime() - new Date(comparing).getTime()
             )
             .forEach(event => {
-              if (new Date(event.start.date).getDay() === 0) {
-                this.days[6].events.push(event);
-              } else {
-                this.days[new Date(event.start.date).getDay() - 1].events.push(
-                  event
-                );
-              }
+              if (
+                new Date(this.startDate).getTime() <=
+                  new Date(event.start.date).getTime() &&
+                new Date(this.endDate).getTime() >=
+                  new Date(event.start.date).getTime()
+              )
+                if (new Date(event.start.date).getDay() === 0) {
+                  this.days[6].events.push(event);
+                } else {
+                  this.days[
+                    new Date(event.start.date).getDay() - 1
+                  ].events.push(event);
+                }
             });
           break;
         case "day":
-          days.data
+          this.tempEvents
             .sort(
               ({ start: { date: compared } }, { start: { date: comparing } }) =>
                 new Date(compared).getTime() - new Date(comparing).getTime()
             )
             .forEach(event => {
-              this.days[0].events.push(event);
+              if (
+                new Date(this.startDate).getTime() <=
+                  new Date(event.start.date).getTime() &&
+                new Date(this.endDate).getTime() >=
+                  new Date(event.start.date).getTime()
+              )
+                this.days[0].events.push(event);
             });
           break;
       }
@@ -379,6 +412,7 @@ export class CalendarComponent implements OnInit {
   restartView() {
     this.changeMonthName();
     this.days = [];
+    this.tempEvents = [];
     switch (this.actualMode) {
       case "month":
         for (let i = new Date(this.endDate).getDate(); i > 0; i--) {
@@ -397,8 +431,11 @@ export class CalendarComponent implements OnInit {
   }
 
   loadView() {
-    return from(
-      this.googleAuthService.modifyEvents(this.startDate, this.endDate)
-    );
+    return this.http.post(`${environment.calendarAPIUrl}/events`, {
+      event: {
+        dateFrom: this.startDate,
+        dateTo: this.endDate
+      }
+    });
   }
 }
