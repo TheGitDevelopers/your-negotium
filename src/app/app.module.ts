@@ -20,7 +20,8 @@ import {
   MatDatepickerModule,
   MatFormFieldModule,
   MatSliderModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSelectModule
 } from "@angular/material";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { AppRoutingModule } from "./app-routing.module";
@@ -175,6 +176,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatFormFieldModule,
     MatSliderModule,
     MatDialogModule,
+    MatSelectModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
