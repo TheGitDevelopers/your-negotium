@@ -3,6 +3,7 @@ $main-color: rgb(75, 177, 190);
 $main-color-darker: rgb(95, 197, 210);
 
 .employees {
+  margin: 3em 0;
   > header {
     display: flex;
     flex-flow: row;
@@ -14,6 +15,15 @@ $main-color-darker: rgb(95, 197, 210);
       flex-flow: column;
       justify-content: center;
       padding-bottom: 1em;
+      .main-text {
+        margin: 0.25em 0;
+        color: rgb(70, 70, 70);
+      }
+      .secondary-text {
+        margin: 0.25em 0;
+        margin-left: 1em;
+        color: rgb(100, 100, 100);
+      }
     }
 
     .search-box {
@@ -45,6 +55,7 @@ $main-color-darker: rgb(95, 197, 210);
     }
   }
   > main {
+    margin: 3em 0;
     .employees-header.list-outer {
       background: $main-color;
       color: #fff;
