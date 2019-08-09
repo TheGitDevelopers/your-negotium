@@ -1,14 +1,7 @@
 <div *ngIf="!mobileView">
   <nav class="side-nav" [ngClass]="menuStatus ? 'hidden' : 'opened'">
-    <div class="nav-logo">
-      <i class="nav-logo-icon fas fa-utensils"></i>
-      <h1>{{ logoText }}</h1>
-    </div>
-    <div class="nav-toggler">
-      <span class="toggler-icon fa-stack fa-2x" (click)="wrapMenu()">
-        <i class="fas fa-circle fa-stack-2x"></i>
-        <i class="fas fa-caret-left fa-stack-2x"></i>
-      </span>
+    <div class="nav-logo" (click)="wrapMenu()">
+      <h1><span>N</span>{{ logoText }}</h1>
     </div>
     <ul class="nav-menu">
       <ng-container *ngFor="let menuItem of menuItems">

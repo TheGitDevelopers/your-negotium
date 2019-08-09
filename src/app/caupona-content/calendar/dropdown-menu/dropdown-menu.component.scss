@@ -11,11 +11,8 @@ $light-grey-lighter: rgb(251, 251, 251);
   position: relative;
   display: block;
   color: $date-color;
-
-  &.day-mode {
-    width: 60%;
-  }
-
+  min-width: 260px;
+  border-radius: 12px;
   &__current {
     position: relative;
     box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
@@ -25,6 +22,7 @@ $light-grey-lighter: rgb(251, 251, 251);
     &:focus {
       & + .select-box__list {
         opacity: 1;
+        margin: 0;
         animation-name: none;
 
         .select-box__option {
@@ -62,11 +60,12 @@ $light-grey-lighter: rgb(251, 251, 251);
 
   &__input-text {
     display: none;
+    text-align: left;
     width: 100%;
+    padding: 12px 32px;
     margin: 0;
-    padding: 15px;
-    padding-right: 45px;
-    background-color: $grey-lighter;
+    background-color: white;
+    border-radius: 6px;
   }
 
   &__list {
@@ -82,7 +81,7 @@ $light-grey-lighter: rgb(251, 251, 251);
 
   &__option {
     display: block;
-    padding: 15px;
+    padding: 12px 32px;
     background-color: $grey-lighter;
 
     &:hover,

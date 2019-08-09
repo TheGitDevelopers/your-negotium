@@ -11,12 +11,12 @@ export class CauponaNavComponent implements OnInit {
   private menuStatus = false;
   private counter = 0;
   mobileView = false;
-  private logoText = "caupona";
+  private logoText = "egotium";
 
   constructor() {
     if (window.screen.width === 768) {
       this.mobileView = true;
-      this.logoText = "ca";
+      this.logoText = "";
       this.menuStatus = true;
     }
   }
@@ -211,7 +211,7 @@ export class CauponaNavComponent implements OnInit {
   }
 
   changeText() {
-    this.menuStatus ? (this.logoText = "ca") : (this.logoText = "Caupona");
+    this.menuStatus ? (this.logoText = "") : (this.logoText = "egotium");
   }
 
   wrapMenu() {

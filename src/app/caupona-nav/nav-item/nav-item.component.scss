@@ -1,6 +1,5 @@
 li {
   display: block;
-  text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.075);
   transition: 0.15s;
   &:hover {
@@ -12,9 +11,10 @@ li {
     }
     border: none;
     div {
-      background: #ff5656;
+      color: #4bb1be;
+      background: #fafafa;
       &:hover {
-        background: #ff5656;
+        color: #4bb1be;
         border: none;
         cursor: pointer;
       }
@@ -24,10 +24,16 @@ li {
     z-index: 2;
     position: relative;
     display: flex;
-    justify-content: center;
+    &.normal {
+      padding-left: 30px;
+    }
+    &.thin {
+      padding: 0;
+      justify-content: center;
+    }
     &:hover {
       border: none;
-      background: #00a5a5;
+      color: #00a5a5;
       cursor: pointer;
     }
     a {
@@ -49,21 +55,6 @@ li {
       &.hide {
         display: none;
       }
-      i.sub-arrow {
-        width: 32px;
-        height: 32px;
-        margin: 0;
-        display: flex;
-        align-self: center;
-        &.left:before {
-          margin-top: 5px;
-          transform: rotate(90deg);
-        }
-        &:before {
-          display: flex;
-          align-self: center;
-        }
-      }
     }
   }
   &.small-ics i {
@@ -71,7 +62,7 @@ li {
     margin-top: 0;
   }
   &.normal-ics i {
-    margin-top: 18px;
+    margin: 18px 20px 0 0;
     padding: 0;
   }
   p {
@@ -86,32 +77,31 @@ li {
   }
   ul.submenu {
     width: 100%;
-    padding: 0;
+    padding: 0 30px;
     display: flex;
     flex-direction: column;
-    &.show {
+    &.normal {
       display: flex;
     }
-    &.hide {
+    &.thin {
       display: none;
     }
     li {
       width: 100%;
+      display: flex;
       outline: none;
-      background: #495c6b;
       color: #768d9e;
+      text-align: left;
       cursor: pointer;
-      padding: 8px 0;
-      text-align: center;
+      padding: 8px 0 8px 58px;
       border: none;
       &.sub-item-active {
-        background: #394f5c;
-        color: #ffffff;
+        color: #00babe;
       }
       &:hover {
         -webkit-box-shadow: none;
         box-shadow: none;
-        color: #ffffff;
+        color: #00babe;
       }
     }
   }

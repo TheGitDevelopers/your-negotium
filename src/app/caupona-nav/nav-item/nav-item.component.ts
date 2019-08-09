@@ -20,10 +20,10 @@ export class NavItemComponent implements OnInit {
   ngOnInit() {}
 
   toggleSubMenu() {
-    this.isSubMenuOpened = !this.isSubMenuOpened;
+    if (!this.menuStatus) this.isSubMenuOpened = !this.isSubMenuOpened;
   }
 
   get stateStatus() {
-    return this.isSubMenuOpened ? "show" : "hide";
+    if (!this.menuStatus) return this.isSubMenuOpened ? "show" : "hide";
   }
 }
