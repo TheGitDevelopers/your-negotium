@@ -21,7 +21,8 @@ import {
   MatFormFieldModule,
   MatSliderModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTooltipModule
 } from "@angular/material";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { AppRoutingModule } from "./app-routing.module";
@@ -89,6 +90,7 @@ import { FilterEventsPipe } from "./pipes/filter-events.pipe";
 import { EditEventPopUpComponent } from "./popups/edit-event-pop-up/edit-event-pop-up.component";
 import { SettingsPopupComponent } from "./popups/settings-popup/settings-popup.component";
 import { DropdownMenuComponent } from "./caupona-content/calendar/dropdown-menu/dropdown-menu.component";
+import { EmployeeComponent } from "./caupona-content/employees/employee/employee.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -151,7 +153,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     FilterEventsPipe,
     EditEventPopUpComponent,
     SettingsPopupComponent,
-    DropdownMenuComponent
+    DropdownMenuComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -177,6 +180,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatSliderModule,
     MatDialogModule,
     MatSelectModule,
+    MatTooltipModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

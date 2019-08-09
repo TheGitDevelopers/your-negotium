@@ -1,0 +1,84 @@
+<div class="employee">
+  <nav class="nav-buttons">
+    <button class="nav-button-back">
+      Back to the list
+    </button>
+    <div class="nav-buttons-group">
+      <button class="nav-buttons-group-button block-button">
+        Block employee
+      </button>
+      <button class="nav-buttons-group-button blue-button">
+        Save changes
+      </button>
+    </div>
+  </nav>
+
+  <header class="employee-info">
+    <span class="employee-info-name">Frank Smith</span>
+    <span class="employee-info-assignment">Waiter of Umiau</span>
+    <div class="employee-info-daily">
+      <h2 class="employee-info-daily-heading">Daily information</h2>
+      <span
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. In, ipsam
+        accusamus alias odio neque unde?!</span
+      >
+      <button class="button-details">Details</button>
+    </div>
+  </header>
+  <main>
+    <span class="main-heading">Basics</span>
+    <div class="basic-info">
+      <div *ngFor="let info of employeeInfo" class="basic-info-box">
+        <header>
+          {{ info.name }}
+
+          <i
+            *ngIf="info.tooltip"
+            [matTooltip]="info.tooltip"
+            class="fas fa-info-circle basic-info-box-tooltip"
+          ></i>
+        </header>
+        <main>
+          <span [innerHtml]="info.value"></span>
+          <i class="fas fa-pen basic-info-box-pen"></i>
+        </main>
+      </div>
+    </div>
+    <div class="additional-info">
+      <h2>Send employee for the trainig course</h2>
+      <div class="additional-info-forms">
+        <div class="forms-input">
+          <label class="forms-input-label">Where?</label>
+          <input type="text" class="forms-input-inner" />
+        </div>
+        <div class="forms-input">
+          <label class="forms-input-label">When?</label>
+          <input
+            type="text"
+            [matDatepicker]="picker"
+            class="forms-input-inner"
+          />
+          <mat-datepicker #picker></mat-datepicker>
+          <i
+            class="far fa-calendar-alt forms-input-calendar-icon"
+            (click)="picker.open()"
+          ></i>
+        </div>
+        <div class="forms-checkbox">
+          <label class="forms-checkbox-label">Add it to the calendar?</label>
+          <input type="checkbox" class="forms-checkbox-input" />
+          <i class="fas fa-check forms-checkbox-icon"></i>
+        </div>
+      </div>
+
+      <h2>Increase/decrease the salary.</h2>
+      <div class="additional-info-salary">
+        <div class="forms-input">
+          <label class="forms-input-label">Salary</label>
+          <input class="forms-input-inner number-input" type="text" />
+        </div>
+        <span class="additional-info-salary-text">per hour</span>
+      </div>
+    </div>
+  </main>
+</div>

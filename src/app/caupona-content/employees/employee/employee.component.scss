@@ -1,0 +1,295 @@
+$main-color: rgb(75, 177, 190);
+$main-color-darker: rgb(95, 197, 210);
+$dark-grey: rgb(100, 100, 100);
+$light-grey: rgb(235, 235, 235);
+
+.employee {
+  > .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    .nav {
+      &-button-back {
+        background: #fff;
+        @extend %grey-border;
+        @extend %button-in-common;
+        margin-bottom: 2em;
+        transition: transform 0.1s;
+        &::before {
+          content: "\f078";
+          font-family: "Font Awesome 5 Free";
+          transform: rotate(90deg);
+          display: inline-block;
+        }
+        &:hover {
+          border: 1px solid darken($light-grey, 5%);
+          transform: scale(0.95);
+        }
+      }
+      &-buttons-group {
+        margin-top: 2em;
+        &-button {
+          @extend %button-in-common;
+          &.block-button {
+            background: #fff;
+            border: 1px solid #e53935;
+            color: #000;
+            margin-right: 1em;
+            &:hover {
+              border-color: lighten(#e53935, 20%);
+            }
+          }
+          &.blue-button {
+            background: $main-color;
+            border: unset;
+            color: #fff;
+            &:hover {
+              background: lighten($main-color, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .employee-info {
+    display: flex;
+    flex-flow: column;
+    &-name {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: $dark-grey;
+    }
+    &-assignment {
+      color: rgb(125, 125, 125);
+    }
+    &-daily {
+      padding: 1.5em;
+      @extend %grey-border;
+      border-radius: 10px;
+      position: relative;
+      width: 60%;
+      height: 40vh;
+      margin-top: 1em;
+      &-heading {
+        color: $dark-grey;
+      }
+      .button-details {
+        @extend %button-in-common;
+        background: #fff;
+        border: 1px solid $main-color;
+        padding: 0.5em 2.5em;
+        color: #000;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 1.5em 1.5em 0;
+        transition: transform 0.1s;
+        &:hover {
+          border-color: lighten($main-color, 10%);
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+
+  > main {
+    .main-heading {
+      color: $dark-grey;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    .basic-info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 2em;
+      margin-top: 1em;
+      &-box {
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        header {
+          position: relative;
+          padding: 1em;
+          background: $main-color;
+          border-radius: 5px 5px 0 0;
+          color: white;
+          font-weight: bold;
+          .basic-info-box-tooltip {
+            position: absolute;
+            right: 0;
+            margin-right: 0.75em;
+            @extend %center-vertically;
+            cursor: pointer;
+            &:hover {
+              color: rgb(243, 243, 243);
+            }
+          }
+        }
+        main {
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding: 1em;
+          padding-right: 2.25em;
+          height: 100%;
+          @extend %grey-border;
+          border-top: none;
+          border-radius: 0 0 5px 5px;
+          font-weight: bold;
+          .basic-info-box-pen {
+            position: absolute;
+            right: 0;
+            margin-right: 0.75em;
+            @extend %center-vertically;
+            cursor: pointer;
+            &:hover {
+              color: lighten(#000, 35%);
+            }
+          }
+        }
+        &:last-child {
+          grid-column: 3/5;
+        }
+      }
+    }
+
+    .additional-info {
+      > h2 {
+        color: $dark-grey;
+      }
+      &-forms {
+        display: flex;
+        flex-flow: row;
+        margin-top: 2em;
+        width: 250px;
+        > * {
+          margin-right: 1em;
+          &:last-child {
+            margin-right: unset;
+          }
+        }
+      }
+      &-salary {
+        display: flex;
+        flex-flow: row;
+        margin-top: 2em;
+        &-text {
+          display: flex;
+          align-items: center;
+          word-spacing: 1em;
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+
+  > header,
+  > main {
+    width: 95%;
+    margin: 2em auto;
+  }
+}
+
+%input-inner-declaration {
+  @extend %grey-border;
+  border-radius: 10px;
+  font-size: 1.3em;
+  outline: none;
+  text-align: center;
+}
+
+.forms {
+  &-input {
+    position: relative;
+    &-label {
+      position: absolute;
+      color: rgb(155, 155, 155);
+      width: max-content;
+      top: -1.5em;
+    }
+    &-inner {
+      @extend %grey-border;
+      border-radius: 10px;
+      font-size: 1.3em;
+      outline: none;
+      text-align: center;
+      padding: 0 1.4em;
+      width: 13em;
+      &.number-input {
+        width: 3em;
+        padding: 0;
+      }
+    }
+
+    &-calendar-icon {
+      position: absolute;
+      @extend %center-vertically;
+      right: 0.5em;
+      cursor: pointer;
+    }
+  }
+  &-checkbox {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    &-label {
+      position: absolute;
+      top: -1.5em;
+      width: max-content;
+      color: rgb(155, 155, 155);
+    }
+    &-input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+      font-family: "Font Awesome 5 Free";
+      color: black;
+      cursor: pointer;
+      &:checked + .forms-checkbox-icon {
+        color: $main-color;
+        &:after {
+          font-family: "Montserrat";
+          content: "Yes, please.";
+          position: absolute;
+          color: rgb(117, 117, 117);
+          width: max-content;
+          left: calc(30px + 5px);
+        }
+      }
+    }
+    &-icon {
+      display: block;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      @extend %grey-border;
+      border-radius: 50%;
+      color: $main-color;
+      color: transparent;
+    }
+  }
+}
+
+%center-vertically {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%grey-border {
+  border: 1px solid $light-grey;
+}
+
+%button-in-common {
+  border-radius: 10px;
+  padding: 0.75em;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
