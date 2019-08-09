@@ -22,7 +22,8 @@ import {
   MatSliderModule,
   MatDialogModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatProgressBarModule
 } from "@angular/material";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { AppRoutingModule } from "./app-routing.module";
@@ -181,6 +182,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatDialogModule,
     MatSelectModule,
     MatTooltipModule,
+    MatProgressBarModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

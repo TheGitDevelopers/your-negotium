@@ -11,7 +11,7 @@ import {
 
 export const slideUpAnimation = animation(
   animate(
-    ".5s ease-in",
+    ".2s ease-in",
     keyframes([
       style({
         offset: 0,
@@ -34,7 +34,7 @@ export const slideUpAnimation = animation(
 
 export const slideDownAnimation = animation(
   animate(
-    ".6s ease-out",
+    ".4s ease-out",
     keyframes([
       style({
         offset: 0,

@@ -3,19 +3,18 @@
   routerLinkActive="nav-item-active"
   (click)="toggleSubMenu()"
 >
-  <div>
+  <div [ngClass]="menuStatus ? 'thin' : 'normal'">
     <span>
       <i [class]="menuItem.icon"></i>
       <p *ngIf="!menuStatus">{{ menuItem.name }}</p>
     </span>
-    <div [ngClass]="menuStatus ? 'hide' : 'show'">
-      <i
-        [ngClass]="isSubMenuOpened ? 'down' : 'left'"
-        class="fas fa-chevron-down sub-arrow"
-      ></i>
-    </div>
   </div>
-  <ul [@slide]="stateStatus" #submenu class="submenu">
+  <ul
+    [ngClass]="menuStatus ? 'thin' : 'normal'"
+    [@slide]="stateStatus"
+    #submenu
+    class="submenu"
+  >
     <ng-container *ngFor="let subItem of menuItem.submenuItems">
       <li
         (click)="$event.stopPropagation()"

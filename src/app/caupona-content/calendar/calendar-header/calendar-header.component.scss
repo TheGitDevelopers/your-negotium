@@ -1,5 +1,5 @@
 $border-header-color: rgba(240, 240, 240, 1);
-$border-columns-color-week: rgba(0, 0, 0, 0.1);
+$border-columns-color-week: rgba(0, 0, 0, 0.05);
 $highligted-day-color: rgb(255, 26, 0);
 $date-color: rgb(84, 84, 84);
 
@@ -22,7 +22,7 @@ header {
   border-right: 1px solid $border-header-color;
 
   &.week-mode {
-    background: #f6f6f6;
+    background: #fff;
     border: 1px solid $border-columns-color-week;
 
     .cal-head-in {
@@ -37,7 +37,6 @@ header {
         color: $date-color;
         font-weight: 900;
         font-size: 3.5em;
-        font-family: "Montserrat", sans-serif;
       }
     }
   }
@@ -65,7 +64,6 @@ header {
   b.date {
     font-weight: 900;
     font-size: 2.5em;
-    font-family: "Montserrat", sans-serif;
   }
 
   &.highligted-day {
