@@ -4,6 +4,8 @@ $dark-grey: rgb(100, 100, 100);
 $light-grey: rgb(235, 235, 235);
 
 .employee {
+  font-family: "Reem Kufi", sans-serif;
+  font-weight: 300;
   > .nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -160,6 +162,7 @@ $light-grey: rgb(235, 235, 235);
       &-forms {
         display: flex;
         flex-flow: row;
+        align-items: center;
         margin-top: 2em;
         width: 250px;
         > * {
@@ -198,85 +201,6 @@ $light-grey: rgb(235, 235, 235);
   text-align: center;
 }
 
-.forms {
-  &-input {
-    position: relative;
-    &-label {
-      position: absolute;
-      color: rgb(155, 155, 155);
-      width: max-content;
-      top: -1.5em;
-    }
-    &-inner {
-      @extend %grey-border;
-      border-radius: 10px;
-      font-size: 1.3em;
-      outline: none;
-      text-align: center;
-      padding: 0 1.4em;
-      width: 13em;
-      &.number-input {
-        width: 3em;
-        padding: 0;
-      }
-    }
-
-    &-calendar-icon {
-      position: absolute;
-      @extend %center-vertically;
-      right: 0.5em;
-      cursor: pointer;
-    }
-  }
-  &-checkbox {
-    position: relative;
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    &-label {
-      position: absolute;
-      top: -1.5em;
-      width: max-content;
-      color: rgb(155, 155, 155);
-    }
-    &-input {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      margin: 0;
-      padding: 0;
-      opacity: 0;
-      font-family: "Font Awesome 5 Free";
-      color: black;
-      cursor: pointer;
-      &:checked + .forms-checkbox-icon {
-        color: $main-color;
-        &:after {
-          font-family: "Montserrat";
-          content: "Yes, please.";
-          position: absolute;
-          color: rgb(117, 117, 117);
-          width: max-content;
-          left: calc(30px + 5px);
-        }
-      }
-    }
-    &-icon {
-      display: block;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      line-height: 30px;
-      @extend %grey-border;
-      border-radius: 50%;
-      color: $main-color;
-      color: transparent;
-    }
-  }
-}
-
 %center-vertically {
   top: 50%;
   transform: translateY(-50%);
@@ -292,4 +216,19 @@ $light-grey: rgb(235, 235, 235);
   font-weight: bold;
   outline: none;
   cursor: pointer;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: $main-color !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: $main-color-darker !important;
+}
+
+::ng-deep.mat-checkbox-checked .mat-checkbox-background {
+  background-color: $main-color !important;
+}
+::ng-deep.mat-checkbox .mat-ripple-element {
+  background-color: $main-color !important;
 }

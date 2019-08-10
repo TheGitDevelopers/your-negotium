@@ -47,36 +47,31 @@
     <div class="additional-info">
       <h2>Send employee for the trainig course</h2>
       <div class="additional-info-forms">
-        <div class="forms-input">
-          <label class="forms-input-label">Where?</label>
-          <input type="text" class="forms-input-inner" />
-        </div>
-        <div class="forms-input">
-          <label class="forms-input-label">When?</label>
-          <input
-            type="text"
-            [matDatepicker]="picker"
-            class="forms-input-inner"
-          />
+        <mat-form-field>
+          <input matInput placeholder="Where?" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="When?" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <i
-            class="far fa-calendar-alt forms-input-calendar-icon"
-            (click)="picker.open()"
-          ></i>
-        </div>
-        <div class="forms-checkbox">
-          <label class="forms-checkbox-label">Add it to the calendar?</label>
-          <input type="checkbox" class="forms-checkbox-input" />
-          <i class="fas fa-check forms-checkbox-icon"></i>
-        </div>
+        </mat-form-field>
+        <mat-checkbox>Add it to the calendar?</mat-checkbox>
       </div>
 
       <h2>Increase/decrease the salary.</h2>
       <div class="additional-info-salary">
-        <div class="forms-input">
-          <label class="forms-input-label">Salary</label>
-          <input class="forms-input-inner number-input" type="text" />
-        </div>
+        <mat-form-field>
+          <input
+            matInput
+            #postalCode
+            maxlength="5"
+            placeholder="Salary"
+            value=""
+          />
+        </mat-form-field>
         <span class="additional-info-salary-text">per hour</span>
       </div>
     </div>

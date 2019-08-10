@@ -23,6 +23,7 @@ import {
   MatDialogModule,
   MatSelectModule,
   MatTooltipModule,
+  MatCheckboxModule,
   MatProgressBarModule
 } from "@angular/material";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
@@ -182,6 +183,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatDialogModule,
     MatSelectModule,
     MatTooltipModule,
+    MatCheckboxModule,
     MatProgressBarModule,
     HttpClientModule,
     HttpClientModule,
