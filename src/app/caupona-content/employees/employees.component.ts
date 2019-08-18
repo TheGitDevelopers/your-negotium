@@ -51,6 +51,8 @@ export class EmployeesComponent {
     }
   ];
 
+  selectedSearchMode = "index";
+
   employeesLabel: Object;
 
   constructor() {

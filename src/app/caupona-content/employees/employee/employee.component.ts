@@ -23,5 +23,9 @@ export class EmployeeComponent {
     }
   ];
 
+  periodUnits = ["hour", "day", "week", "month"];
+
+  selectedUnit = "hour";
+
   constructor() {}
 }

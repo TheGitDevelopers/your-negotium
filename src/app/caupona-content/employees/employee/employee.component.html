@@ -72,7 +72,14 @@
             value=""
           />
         </mat-form-field>
-        <span class="additional-info-salary-text">per hour</span>
+        <span class="additional-info-salary-text">per</span>
+        <mat-form-field class="additional-info-salary-units">
+          <mat-select [(value)]="selectedUnit">
+            <mat-option *ngFor="let unit of periodUnits" [value]="unit">
+              {{ unit }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
   </main>
