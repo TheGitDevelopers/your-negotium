@@ -1,0 +1,29 @@
+<main
+  [ngClass]="{
+    employees: mode === 'employees',
+    holidays: mode === 'holidays'
+  }"
+>
+  <h2 *ngIf="mainText" class="table-main-text">{{ mainText }}</h2>
+  <p *ngIf="secondaryText" class="table-secondary-text">{{ secondaryText }}</p>
+  <header>
+    <ul class="employees-header list-outer">
+      <li *ngFor="let labelName of employeesLabel" class="header list-inner">
+        {{ labelName }}
+      </li>
+    </ul>
+  </header>
+  <section>
+    <ul class="employees-main list-outer">
+      <li *ngFor="let employeer of employeesList" class="list-inner">
+        <ul class="list-outer">
+          <li
+            *ngFor="let labelName of employeesLabel"
+            class="list-inner label-name"
+            [innerHtml]="employeer[labelName] | checkStatus: labelName"
+          ></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</main>

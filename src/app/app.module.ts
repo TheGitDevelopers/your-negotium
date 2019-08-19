@@ -93,6 +93,9 @@ import { EditEventPopUpComponent } from "./popups/edit-event-pop-up/edit-event-p
 import { SettingsPopupComponent } from "./popups/settings-popup/settings-popup.component";
 import { DropdownMenuComponent } from "./caupona-content/calendar/dropdown-menu/dropdown-menu.component";
 import { EmployeeComponent } from "./caupona-content/employees/employee/employee.component";
+import { EmployeeHeaderComponent } from "./caupona-content/employees/employee-header/employee-header.component";
+import { EmployeeTableComponent } from "./caupona-content/employees/employee-table/employee-table.component";
+import { CheckStatusPipe } from "./pipes/check-status.pipe";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -156,7 +159,10 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EditEventPopUpComponent,
     SettingsPopupComponent,
     DropdownMenuComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    EmployeeHeaderComponent,
+    EmployeeTableComponent,
+    CheckStatusPipe
   ],
   imports: [
     BrowserModule,

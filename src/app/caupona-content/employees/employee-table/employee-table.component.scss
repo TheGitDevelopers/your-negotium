@@ -1,0 +1,106 @@
+$border-properties: 1px solid rgba(235, 235, 235, 0.5);
+$main-color: rgb(75, 177, 190);
+$main-color-darker: rgb(95, 197, 210);
+$dark-grey: rgb(100, 100, 100);
+
+main {
+  margin: 3em 0;
+  .table {
+    &-main-text {
+      color: rgb(70, 70, 70);
+    }
+    &-secondary-text {
+      color: $dark-grey;
+    }
+  }
+  .employees-header.list-outer {
+    background: $main-color;
+    color: #fff;
+
+    > .list-inner {
+      @extend %deepest-li-child;
+    }
+  }
+
+  .employees-main.list-outer {
+    flex-flow: column;
+
+    > .list-inner {
+      &:nth-child(even) {
+        background: rgba(247, 247, 247, 1);
+      }
+
+      .list-outer {
+        flex-flow: row;
+
+        .list-inner.label-name {
+          @extend %deepest-li-child;
+        }
+      }
+    }
+  }
+
+  /* Table in-common */
+  .list-outer {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .list-inner {
+      text-transform: capitalize;
+      text-align: center;
+    }
+  }
+}
+
+.employees {
+  .employees-header.list-outer > .list-inner,
+  .employees-main.list-outer .list-inner.label-name {
+    flex-basis: 20%;
+    flex-grow: 2;
+    &:nth-child(1) {
+      flex-basis: 10%;
+    }
+    &:last-of-type {
+      flex-grow: 0;
+      flex-shrink: 1;
+    }
+  }
+}
+
+.holidays {
+  .employees-header.list-outer > .list-inner,
+  .employees-main.list-outer .list-outer > .list-inner.label-name {
+    &:nth-child(2n-1) {
+      flex-basis: 20%;
+    }
+    &:nth-child(2n) {
+      flex-basis: 22.5%;
+    }
+    &:nth-child(4) {
+      flex-shrink: 1000;
+    }
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7) {
+      flex-basis: 7.5%;
+    }
+  }
+}
+
+%deepest-li-child {
+  padding: 1em;
+  border-left: $border-properties;
+  &:last-of-type {
+    border-right: $border-properties;
+  }
+}
+
+:host ::ng-deep .fa-check,
+:host ::ng-deep .blue-color {
+  color: #79c4ce;
+}
+:host ::ng-deep .fa-times {
+  color: #ed6464;
+}

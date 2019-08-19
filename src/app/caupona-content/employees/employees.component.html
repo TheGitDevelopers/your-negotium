@@ -1,48 +1,10 @@
-<div class="employees">
-  <header>
-    <div class="jumbotron">
-      <h2 class="main-text">Employees list</h2>
-      <p class="secondary-text">You can find employee by search or in table</p>
-    </div>
-    <div class="search-box">
-      <mat-form-field>
-        <mat-label>Search by</mat-label>
-        <mat-select [(value)]="selectedSearchMode">
-          <mat-option
-            *ngFor="let labelName of employeesLabel"
-            [value]="labelName"
-          >
-            {{ labelName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Value" value="Stephan Hawks" />
-      </mat-form-field>
-      <button class="submit-button">Submit</button>
-    </div>
-  </header>
-  <main>
-    <header>
-      <ul class="employees-header list-outer">
-        <li *ngFor="let labelName of employeesLabel" class="header list-inner">
-          {{ labelName }}
-        </li>
-      </ul>
-    </header>
-    <section>
-      <ul class="employees-main list-outer">
-        <li *ngFor="let employeer of employeesList" class="list-inner">
-          <ul class="list-outer">
-            <li
-              *ngFor="let labelName of employeesLabel"
-              class="list-inner label-name"
-            >
-              {{ employeer[labelName] }}
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </main>
-</div>
+<app-employee-header
+  [employeesLabel]="employeesLabel"
+  mainText="Employees list"
+  secondaryText="You can find employee by search or in table"
+></app-employee-header>
+<app-employee-table
+  [employeesLabel]="employeesLabel"
+  [employeesList]="employeesList"
+  mode="employees"
+></app-employee-table>
