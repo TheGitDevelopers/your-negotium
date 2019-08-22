@@ -100,6 +100,10 @@ export class CauponaNavComponent implements OnInit {
         icon: "fas fa-user-tie",
         submenuItems: [
           {
+            label: "employees",
+            path: ""
+          },
+          {
             label: "holiday",
             path: "holiday"
           },

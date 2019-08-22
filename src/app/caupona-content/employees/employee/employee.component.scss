@@ -58,11 +58,13 @@ $light-grey: rgb(235, 235, 235);
     display: flex;
     flex-flow: column;
     margin-top: 1em;
+    margin-bottom: 3em;
     font-weight: 300;
     &-name {
       font-size: 2.5em;
       font-weight: normal;
       color: $dark-grey;
+      margin-bottom: -0.3em;
     }
     &-assignment {
       color: rgb(125, 125, 125);
@@ -101,16 +103,20 @@ $light-grey: rgb(235, 235, 235);
   }
 
   > main {
+    margin-top: 3em;
     .main-heading {
       color: $dark-grey;
       font-weight: 300;
       font-size: 1.5em;
+      margin-top: 2em;
     }
     .basic-info {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-gap: 2em;
+      grid-column-gap: 2em;
+      grid-row-gap: 4em;
       margin-top: 1em;
+      margin-bottom: 5em;
       &-box {
         height: 100%;
         display: flex;
@@ -144,6 +150,10 @@ $light-grey: rgb(235, 235, 235);
           border-top: none;
           border-radius: 0 0 5px 5px;
           font-weight: 300;
+          background: #fff;
+          span {
+            color: rgb(85, 85, 85);
+          }
           .basic-info-box-pen {
             position: absolute;
             right: 0;
@@ -162,15 +172,16 @@ $light-grey: rgb(235, 235, 235);
     }
 
     .additional-info {
+      margin-top: 5em;
       > h2 {
         color: $dark-grey;
         font-weight: 300;
+        margin: 0;
       }
       &-forms {
         display: flex;
         flex-flow: row;
         align-items: center;
-        margin-top: 2em;
         width: 250px;
         > * {
           margin-right: 1em;
@@ -182,7 +193,6 @@ $light-grey: rgb(235, 235, 235);
       &-salary {
         display: flex;
         flex-flow: row;
-        margin-top: 2em;
         &-text {
           display: flex;
           align-items: center;
