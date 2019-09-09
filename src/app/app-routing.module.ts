@@ -43,6 +43,7 @@ import { NewClientComponent } from "./caupona-content/customers/new-client/new-c
 import { AskForReportComponent } from "./caupona-content/reports/ask-for-report/ask-for-report.component";
 import { DownloadReportComponent } from "./caupona-content/reports/download-report/download-report.component";
 import { EmployeeComponent } from "./caupona-content/employees/employee/employee.component";
+import { EmployeeSettingsComponent } from "./caupona-content/employees/employee-settings/employee-settings.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -85,7 +86,8 @@ const appRoutes: Routes = [
   { path: "employees/holiday", component: HolidayComponent },
   { path: "employees/availability", component: AvailabilityComponent },
   { path: "employees/trainings", component: TrainingsComponent },
-  { path: "employees/employee", component: EmployeeComponent },
+  { path: "employees/employee-settings", component: EmployeeSettingsComponent },
+  { path: "employees/:employee", component: EmployeeComponent },
   { path: "reservations/general", component: GeneralReservationsComponent },
   {
     path: "reservations/add-new-reservation",

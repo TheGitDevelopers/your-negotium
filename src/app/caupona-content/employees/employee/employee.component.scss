@@ -244,6 +244,10 @@ $light-grey: rgb(235, 235, 235);
   background-color: $main-color !important;
 }
 
+main.employee-info-values.isDisabled ::ng-deep.mat-form-field-underline {
+  opacity: 0 !important;
+}
+
 ::ng-deep.mat-form-field-ripple {
   background-color: $main-color-darker !important;
 }

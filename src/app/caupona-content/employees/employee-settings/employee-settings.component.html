@@ -1,0 +1,66 @@
+<div class="main">
+  <header>
+    <h2 class="heading">Settings</h2>
+    <h5 class="sub-heading">Employees module settings</h5>
+  </header>
+  <section class="employee-settings">
+    <div>
+      <h2>Negotium Calendar Integration</h2>
+      <div class="input-block">
+        <span>Add holidays to calendar</span
+        ><mat-slide-toggle></mat-slide-toggle>
+      </div>
+    </div>
+    <div>
+      <h2>Email notification</h2>
+      <div class="input-block">
+        <div>
+          <span>Upcoming holidays</span><mat-slide-toggle></mat-slide-toggle>
+        </div>
+        <div>
+          <span>Upcoming events</span><mat-slide-toggle></mat-slide-toggle>
+        </div>
+        <div>
+          <span>Holiday requests</span><mat-slide-toggle></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+    <div class="email-panel">
+      <h2>Send email</h2>
+      <div class="email-panel-inner">
+        <span>On</span>
+        <mat-form-field *ngFor="let email of emails">
+          <input matInput [(ngModel)]="email" />
+        </mat-form-field>
+        <span class="add-email" (click)="addEmail()"
+          >+ another email adress</span
+        >
+        <span [ngStyle]="{ marginTop: '1em' }">When?</span>
+        <mat-checkbox>Immadetialy</mat-checkbox>
+        <div class="every">
+          <mat-checkbox></mat-checkbox><span>every</span>
+          <mat-form-field>
+            <mat-select [(value)]="selectedMode">
+              <mat-option *ngFor="let mode of modes" [value]="mode">
+                {{ mode }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="every">
+          <mat-checkbox></mat-checkbox><span>every</span>
+          <mat-form-field>
+            <mat-select [(value)]="hour">
+              <mat-option *ngFor="let oneHour of hours" [value]="oneHour">
+                {{ oneHour }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          from now
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button class="save-settings" mat-stroked-button>Save</button>
+</div>

@@ -24,7 +24,8 @@ import {
   MatSelectModule,
   MatTooltipModule,
   MatCheckboxModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSlideToggleModule
 } from "@angular/material";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { AppRoutingModule } from "./app-routing.module";
@@ -96,6 +97,7 @@ import { EmployeeComponent } from "./caupona-content/employees/employee/employee
 import { EmployeeHeaderComponent } from "./caupona-content/employees/employee-header/employee-header.component";
 import { EmployeeTableComponent } from "./caupona-content/employees/employee-table/employee-table.component";
 import { CheckStatusPipe } from "./pipes/check-status.pipe";
+import { EmployeeSettingsComponent } from "./caupona-content/employees/employee-settings/employee-settings.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -162,7 +164,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EmployeeComponent,
     EmployeeHeaderComponent,
     EmployeeTableComponent,
-    CheckStatusPipe
+    CheckStatusPipe,
+    EmployeeSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -191,6 +194,7 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     MatTooltipModule,
     MatCheckboxModule,
     MatProgressBarModule,
+    MatSlideToggleModule,
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
