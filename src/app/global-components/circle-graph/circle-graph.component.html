@@ -1,0 +1,19 @@
+<div class="pieContainer">
+  <div class="pieBackground"></div>
+  <div
+    *ngFor="let data of dataset; let i = index"
+    [id]="'pieSlice' + i"
+    class="hold"
+    [ngStyle]="{ transform: 'rotate(' + data.pieSliceRotate + 'deg)' }"
+  >
+    <div
+      class="pie"
+      [ngStyle]="{
+        transform: 'rotate(' + data.pieRotate + 'deg)',
+        backgroundColor:
+          'hsl(190, ' + (100 - data.color) + '%, ' + (20 + data.color) + '%)'
+      }"
+    ></div>
+  </div>
+  <div class="inside-circle" [innerHtml]="graphText"></div>
+</div>

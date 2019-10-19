@@ -1,0 +1,28 @@
+<h2><ng-content></ng-content></h2>
+<app-circle-graph
+  [dataset]="dataset"
+  [graphText]="graphText"
+></app-circle-graph>
+<div>
+  <div class="graph-labels">
+    <div class="graph-labels-col">
+      <span *ngFor="let singleData of dataset" class="graph-labels-name">{{
+        singleData.name
+      }}</span>
+    </div>
+    <div class="graph-labels-col">
+      <span
+        *ngFor="let singleData of dataset"
+        class="graph-labels-bar"
+        [ngStyle]="{
+          backgroundColor:
+            'hsl(190, ' +
+            (100 - singleData.color) +
+            '%, ' +
+            (20 + singleData.color) +
+            '%)'
+        }"
+      ></span>
+    </div>
+  </div>
+</div>
