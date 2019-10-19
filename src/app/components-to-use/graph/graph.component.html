@@ -1,0 +1,45 @@
+<div class="bar-graph">
+  <div class="bar-label-group">
+    <div
+      class="bar-label"
+      *ngFor="let label of barGraphLabel; let i = index"
+      [style.bottom]="i * 10 + '%'"
+    >
+      <span>{{ label }}</span>
+    </div>
+  </div>
+  <div class="bar-group">
+    <svg viewBox="0 0 1000 600" preserveAspectRatio="none">
+      <path *ngFor="let graph of svgGraph" [attr.d]="graph" />
+      <circle
+        *ngFor="let circle of circles"
+        [attr.cx]="circle.x"
+        [attr.cy]="circle.y"
+        r="3"
+      />
+    </svg>
+  </div>
+  <div class="bar-bottom-group">
+    <div
+      class="month"
+      *ngFor="
+        let month of [
+          'I',
+          'II',
+          'III',
+          'IV',
+          'V',
+          'VI',
+          'VII',
+          'VIII',
+          'IX',
+          'X',
+          'XI',
+          'XII'
+        ]
+      "
+    >
+      {{ month }}
+    </div>
+  </div>
+</div>

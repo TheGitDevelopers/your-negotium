@@ -1,0 +1,36 @@
+h2 {
+  height: 3em;
+  display: flex;
+  align-items: center;
+}
+
+app-circle-graph {
+  width: calc(18vw + 2em);
+  height: calc(18vw + 2em);
+  display: block;
+  margin: 0 auto;
+  padding: 1em;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid rgb(240, 240, 240);
+  overflow: hidden;
+}
+
+.graph-labels {
+  display: grid;
+  grid-template-areas: "name bar";
+  align-items: center;
+  grid-gap: 1em;
+  &-col {
+    display: grid;
+    flex-flow: column;
+    grid-template-rows: repeat(4, 25px);
+    align-items: center;
+    > .graph-labels-bar {
+      display: inline-block;
+      width: 3em;
+      height: 5px;
+      border-radius: 50px;
+    }
+  }
+}

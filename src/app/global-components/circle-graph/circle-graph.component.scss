@@ -1,0 +1,48 @@
+.pieContainer {
+  height: 18vw;
+  position: relative;
+}
+
+.pieBackground {
+  position: absolute;
+  width: 18vw;
+  height: 18vw;
+  border-radius: 100%;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.pie {
+  transition: all 1s;
+  position: absolute;
+  width: 18vw;
+  height: 18vw;
+  border-radius: 100%;
+  clip: rect(0px, 9vw, 18vw, 0px);
+}
+
+.hold {
+  position: absolute;
+  width: 18vw;
+  height: 18vw;
+  border-radius: 100%;
+  clip: rect(0px, 18vw, 18vw, 9vw);
+}
+
+.inside-circle {
+  position: absolute;
+  background: #fff;
+  top: 10px;
+  left: 10px;
+  height: calc(18vw - 20px);
+  width: calc(18vw - 20px);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 100;
+  font-size: 7vh;
+  font-family: "Montserrat", sans-serif;
+}
+.inside-circle:empty {
+  display: none;
+}

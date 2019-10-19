@@ -98,6 +98,9 @@ import { EmployeeHeaderComponent } from "./caupona-content/employees/employee-he
 import { EmployeeTableComponent } from "./caupona-content/employees/employee-table/employee-table.component";
 import { CheckStatusPipe } from "./pipes/check-status.pipe";
 import { EmployeeSettingsComponent } from "./caupona-content/employees/employee-settings/employee-settings.component";
+import { CircleGraphComponent } from "./global-components/circle-graph/circle-graph.component";
+import { CircleGraphFullComponent } from "./global-components/circle-graph-full/circle-graph-full.component";
+import { GraphComponent } from "./components-to-use/graph/graph.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -165,7 +168,10 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EmployeeHeaderComponent,
     EmployeeTableComponent,
     CheckStatusPipe,
-    EmployeeSettingsComponent
+    EmployeeSettingsComponent,
+    CircleGraphComponent,
+    CircleGraphFullComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
