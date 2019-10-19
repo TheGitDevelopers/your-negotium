@@ -1,3 +1,19 @@
-<p>
-  holiday works!
-</p>
+<app-employee-header
+  [employeesLabel]="holidayLabel"
+  mainText="Holiday"
+  secondaryText="Search for holiday requests, or choose the specific employee."
+></app-employee-header>
+<app-employee-table
+  [employeesLabel]="holidayLabel"
+  [employeesList]="holidayList"
+  mainText="Holiday requests"
+  secondaryText="Search for holiday requests, or choose the specific employee."
+  mode="holidays"
+></app-employee-table>
+<app-employee-table
+  [employeesLabel]="viewedRequestLabel"
+  [employeesList]="viewedRequestList"
+  mainText="Accepted/Rejected requests"
+  secondaryText="If you want to accept or reject the old request you can still do it here."
+  mode="holidays"
+></app-employee-table>

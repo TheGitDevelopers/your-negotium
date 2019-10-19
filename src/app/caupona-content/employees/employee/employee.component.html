@@ -4,19 +4,34 @@
       Back to the list
     </button>
     <div class="nav-buttons-group">
-      <button class="nav-buttons-group-button block-button">
+      <button
+        *ngIf="mode === 'employee'"
+        class="nav-buttons-group-button block-button"
+      >
         Block employee
       </button>
-      <button class="nav-buttons-group-button blue-button">
+      <button
+        *ngIf="mode === 'employee'"
+        class="nav-buttons-group-button blue-button"
+      >
         Save changes
+      </button>
+      <button
+        (click)="submitFormProgrammatically()"
+        *ngIf="mode === 'add-employee'"
+        class="nav-buttons-group-button blue-button"
+      >
+        Add employee
       </button>
     </div>
   </nav>
 
   <header class="employee-info">
-    <span class="employee-info-name">Frank Smith</span>
-    <span class="employee-info-assignment">Waiter of Umiau</span>
-    <div class="employee-info-daily">
+    <span class="employee-info-name">{{ findValueByName("Name") }}</span>
+    <span class="employee-info-assignment">{{
+      findValueByName("Position")
+    }}</span>
+    <div class="employee-info-daily" *ngIf="mode === 'employee'">
       <h2 class="employee-info-daily-heading">Daily information</h2>
       <span
         >Lorem ipsum dolor sit amet consectetur adipisicing elit. In, ipsam
@@ -27,23 +42,41 @@
   </header>
   <main>
     <span class="main-heading">Basics</span>
-    <div class="basic-info">
-      <div *ngFor="let info of employeeInfo" class="basic-info-box">
+    <form
+      [formGroup]="form"
+      #formRef="ngForm"
+      class="basic-info"
+      (ngSubmit)="onSubmit()"
+    >
+      <div *ngFor="let label of employeeInfo" class="basic-info-box">
         <header>
-          {{ info.name }}
-
+          {{ label.name }}
           <i
-            *ngIf="info.tooltip"
-            [matTooltip]="info.tooltip"
+            *ngIf="label.tooltip"
+            [matTooltip]="label.tooltip"
             class="fas fa-info-circle basic-info-box-tooltip"
           ></i>
         </header>
-        <main>
-          <span [innerHtml]="info.value"></span>
-          <i class="fas fa-pen basic-info-box-pen"></i>
+        <main
+          class="employee-info-values"
+          [class.isDisabled]="findIfIsDisabledByName(label.name)"
+        >
+          <mat-form-field>
+            <input
+              [formControlName]="label.name"
+              matInput
+              [placeholder]="mode === 'add-employee' && label.name"
+            />
+          </mat-form-field>
+          <i
+            *ngIf="mode === 'employee'"
+            class="fas fa-pen basic-info-box-pen"
+            (click)="toggleKey(label.name)"
+          >
+          </i>
         </main>
       </div>
-    </div>
+    </form>
     <div class="additional-info">
       <h2>Send employee for the trainig course</h2>
       <div class="additional-info-forms">
@@ -72,7 +105,14 @@
             value=""
           />
         </mat-form-field>
-        <span class="additional-info-salary-text">per hour</span>
+        <span class="additional-info-salary-text">per</span>
+        <mat-form-field class="additional-info-salary-units">
+          <mat-select [(value)]="selectedUnit">
+            <mat-option *ngFor="let unit of periodUnits" [value]="unit">
+              {{ unit }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
   </main>

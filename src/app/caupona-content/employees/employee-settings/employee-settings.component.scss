@@ -1,0 +1,119 @@
+$main-color: rgb(75, 177, 190);
+$main-color-darker: rgb(95, 197, 210);
+
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+* {
+  font-family: "Reem Kufi", sans-serif;
+  color: rgb(100, 100, 100);
+}
+
+.main {
+  margin: 4em;
+  div.input-block {
+    padding: 0.5em 1.5em;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgb(235, 235, 235);
+    > div {
+      display: grid;
+      grid-template-areas: "label toggle";
+      grid-template-columns: 160px auto;
+    }
+    > mat-slide-toggle.mat-slide-toggle {
+      margin-left: 1em;
+    }
+  }
+  > header {
+    margin-bottom: 4em;
+    .heading {
+      color: rgb(100, 100, 100);
+      font-weight: 100;
+      font-size: 2em;
+      line-height: 1em;
+    }
+    .sub-heading {
+      color: lighten(rgb(100, 100, 100), 30%);
+      font-weight: 100;
+    }
+  }
+  section.employee-settings {
+    display: grid;
+    grid-template: "integration email" "notification email";
+    grid-gap: 0 9em;
+    grid-template-columns: calc(50% - 4.5em) calc(50% - 4.5em);
+    margin-top: 4em;
+    grid-template-rows: 120px auto;
+    div h2 {
+      margin: 0;
+      color: rgb(100, 100, 100);
+      font-size: 1.4em;
+      font-weight: 100;
+    }
+    div.email-panel {
+      grid-area: email;
+      &-inner {
+        display: flex;
+        flex-flow: column;
+        padding: 2em 1.5em 4em 1.5em;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid rgb(235, 235, 235);
+        .every {
+          display: flex;
+          flex-flow: row;
+          align-items: center;
+          > * {
+            margin-right: 1em;
+          }
+        }
+        .add-email {
+          color: lighten(#646464, 40%);
+          cursor: pointer;
+          &:hover {
+            color: lighten(#646464, 20%);
+          }
+        }
+      }
+    }
+  }
+  button.save-settings {
+    border: 2px solid $main-color;
+    padding: 0 3.5em;
+    line-height: 2em;
+    margin-left: auto;
+    display: block;
+    margin-top: 3em;
+  }
+}
+
+::ng-deep.mat-slide-toggle.mat-checked .mat-ripple-element {
+  background-color: $main-color;
+}
+
+::ng-deep.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: $main-color;
+}
+::ng-deep.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(75, 177, 190, 0.54);
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: $main-color !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: $main-color-darker !important;
+}
+
+::ng-deep.mat-checkbox-checked .mat-checkbox-background {
+  background-color: $main-color !important;
+}
+::ng-deep.mat-checkbox .mat-ripple-element {
+  background-color: $main-color !important;
+}

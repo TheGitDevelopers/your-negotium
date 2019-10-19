@@ -1,0 +1,23 @@
+<header>
+  <div class="jumbotron">
+    <h2 class="main-text">{{ mainText }}</h2>
+    <p class="secondary-text">{{ secondaryText }}</p>
+  </div>
+  <div class="search-box">
+    <mat-form-field>
+      <mat-label>Search by</mat-label>
+      <mat-select [(value)]="selectedSearchMode">
+        <mat-option
+          *ngFor="let labelName of employeesLabel"
+          [value]="labelName"
+        >
+          {{ labelName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Value" value="Stephan Hawks" />
+    </mat-form-field>
+    <button class="submit-button">Find</button>
+  </div>
+</header>
