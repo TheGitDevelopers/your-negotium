@@ -15,8 +15,6 @@ import { SalesComponent } from "./caupona-content/sales/sales.component";
 import { CustomersComponent } from "./caupona-content/customers/customers.component";
 import { ReportsComponent } from "./caupona-content/reports/reports.component";
 import { NotFoundComponent } from "./caupona-content/not-found/not-found.component";
-import { ChartsComponent } from "./caupona-content/dashboard/charts/charts.component";
-import { TablesComponent } from "./caupona-content/dashboard/tables/tables.component";
 import { MenuComponent } from "./caupona-content/orders/menu/menu.component";
 import { OnlineOrdersComponent } from "./caupona-content/orders/online-orders/online-orders.component";
 import { LocalOrdersComponent } from "./caupona-content/orders/local-orders/local-orders.component";
@@ -69,8 +67,6 @@ const appRoutes: Routes = [
   { path: "customers", component: CustomersComponent },
   { path: "reports", component: ReportsComponent },
   { path: "reports", component: ReportsComponent },
-  { path: "dashboard/charts", component: ChartsComponent },
-  { path: "dashboard/tables", component: TablesComponent },
 
   { path: "warehouse/fixed-products", component: FixedProductsComponent },
   {

@@ -52,8 +52,6 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { NavItemComponent } from "./caupona-nav/nav-item/nav-item.component";
-import { ChartsComponent } from "./caupona-content/dashboard/charts/charts.component";
-import { TablesComponent } from "./caupona-content/dashboard/tables/tables.component";
 import { MenuComponent } from "./caupona-content/orders/menu/menu.component";
 import { OnlineOrdersComponent } from "./caupona-content/orders/online-orders/online-orders.component";
 import { LocalOrdersComponent } from "./caupona-content/orders/local-orders/local-orders.component";
@@ -125,8 +123,6 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     NotFoundComponent,
     TabNavbarComponent,
     NavItemComponent,
-    ChartsComponent,
-    TablesComponent,
     MenuComponent,
     OnlineOrdersComponent,
     LocalOrdersComponent,

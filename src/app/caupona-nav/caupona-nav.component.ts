@@ -28,12 +28,8 @@ export class CauponaNavComponent implements OnInit {
         icon: "fas fa-chart-line",
         submenuItems: [
           {
-            label: "charts",
-            path: "charts"
-          },
-          {
-            label: "tables",
-            path: "tables"
+            label: "dashboard",
+            path: ""
           }
         ]
       },

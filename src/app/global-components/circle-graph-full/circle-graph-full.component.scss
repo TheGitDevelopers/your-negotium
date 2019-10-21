@@ -26,6 +26,10 @@ app-circle-graph {
     flex-flow: column;
     grid-template-rows: repeat(4, 25px);
     align-items: center;
+    > .graph-labels-name {
+      font-weight: bold;
+      color: #acacac;
+    }
     > .graph-labels-bar {
       display: inline-block;
       width: 3em;

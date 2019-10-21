@@ -27,28 +27,23 @@ export class DashboardComponent implements AfterViewInit {
 
   productsSum = 0;
 
-  maxValue = 0;
-
   barGraphLabel = [];
 
   barGraphTransformed;
 
-  maxBar = 0;
+  highestBarValue = 0;
 
   transformedBar = [];
 
   @ViewChild("saleGraph", { read: ElementRef }) saleGraph: ElementRef;
 
   constructor() {
+    // Calculation for circle graph
     this.products.forEach(({ value }) => (this.productsSum += value));
     this.transformedProducts = this.products.map((product, index) => {
-      this.maxValue =
-        product.value > this.maxValue
-          ? Math.round(product.value * 10) / 10
-          : this.maxValue;
-      const divide = product.value / this.productsSum;
-      const color = index ? divide * 75 * 2 : 0;
-      const pieRotate = divide * 360;
+      const productPercent = product.value / this.productsSum;
+      const color = index ? productPercent * 75 * 2 : 0;
+      const pieRotate = productPercent * 360;
       const pieSliceRotate = this.previousPieSliceRotate;
       this.previousPieSliceRotate += pieRotate;
       return {
@@ -58,20 +53,22 @@ export class DashboardComponent implements AfterViewInit {
         color
       };
     });
+    // End
+
+    // Calculation for vertical grpah
     this.barGraph.forEach(period =>
       period.forEach(bar => {
-        if (this.maxBar < bar) this.maxBar = bar;
+        if (this.highestBarValue < bar) this.highestBarValue = bar;
       })
     );
-    const checkRound = this.maxBar.toString().length;
-    const rounds = Math.pow(10, checkRound - 2);
+    const quantity = this.highestBarValue.toString().length;
+    const rounds = Math.pow(10, quantity - 2);
     this.barGraphLabel.push(0);
     for (let i = 1; i <= 10; i++) {
       this.barGraphLabel.push(
-        ((Math.ceil(this.maxBar / rounds) * rounds) / 10) * i
+        ((Math.ceil(this.highestBarValue / rounds) * rounds) / 10) * i
       );
     }
-
     this.barGraph.map((period, periodIndex) =>
       period.map((value, valueIndex) => {
         if (!this.transformedBar[valueIndex]) this.transformedBar.push([]);
@@ -80,6 +77,7 @@ export class DashboardComponent implements AfterViewInit {
         this.transformedBar[valueIndex][periodIndex].push(value);
       })
     );
+    // End
   }
 
   ngAfterViewInit(): void {
@@ -130,9 +128,5 @@ export class DashboardComponent implements AfterViewInit {
         datasets: dataset
       }
     });
-  }
-
-  createHeight(height) {
-    return `${(height / this.maxBar) * 100}%`;
   }
 }

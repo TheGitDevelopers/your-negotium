@@ -1,47 +1,22 @@
-$main-color: rgb(75, 177, 190);
-$main-color-darker: rgb(95, 197, 210);
-$dark-grey: rgb(100, 100, 100);
+$main-color: #4bb1be;
+$main-color-dark: rgba(75, 177, 190, 0.81);
+$main-color-light: #a3c0dd;
+$main-color-dark-2: #00899b;
+$light-grey-2: #e1e1e1;
+$white: #fff;
+$dark-grey: #6d6d6d;
+$light-grey: #acacac;
 
 * {
   color: $dark-grey;
 }
 
 .dashboard {
-  margin: 0 2em;
+  width: 80%;
+  margin: 0 auto;
 
-  .images-info {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    margin-top: 5vh;
-    &__image {
-      flex-basis: 14vw;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-flow: column;
-      padding: 1.5em;
-      border: 1px solid rgb(240, 240, 240);
-      border-radius: 10px;
-      background: #fff;
-      -webkit-box-shadow: 0px 10px 17px -15px rgba(0, 0, 0, 1);
-      -moz-box-shadow: 0px 10px 17px -15px rgba(0, 0, 0, 1);
-      box-shadow: 0px 10px 17px -15px rgba(0, 0, 0, 1);
-      height: 14vw;
-      margin: 1em;
-      > img {
-        width: 3vw;
-        height: auto;
-      }
-      > b {
-        font-size: 1.7em;
-      }
-      > span {
-        color: rgb(170, 170, 170);
-        font-family: "Reem kufi";
-      }
-    }
+  .svg-graph {
+    flex-flow: column;
   }
 
   .under-graph {
@@ -54,6 +29,10 @@ $dark-grey: rgb(100, 100, 100);
       flex-flow: column;
       grid-template-rows: repeat(4, 25px);
       align-items: center;
+      > .under-graph-name {
+        font-weight: 600;
+        color: $light-grey;
+      }
       > .under-graph-bar {
         display: inline-block;
         width: 3em;
@@ -67,11 +46,124 @@ $dark-grey: rgb(100, 100, 100);
     display: flex;
     margin: 10vh 0;
 
+    &.images-info {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      margin-top: 5vh;
+      > article.images-info__image {
+        flex-basis: 14vw;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        padding: 1.5em;
+        border: 1px solid $light-grey-2;
+        border-radius: 10px;
+        background: #fff;
+        -webkit-box-shadow: 0px 10px 17px -15px $dark-grey;
+        -moz-box-shadow: 0px 10px 17px -15px $dark-grey;
+        box-shadow: 0px 10px 17px -15px $dark-grey;
+        height: 14vw;
+        margin: 1em;
+        > img {
+          width: 3vw;
+          height: auto;
+        }
+        > b {
+          font-size: 1.7em;
+        }
+        > span {
+          color: $light-grey;
+          font-family: "Reem kufi";
+        }
+      }
+    }
+
     &.bar-graph-section {
       display: flex;
       flex-flow: column;
       .saleGraph {
         width: 100% !important;
+      }
+
+      .bar-label-name-group {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-end;
+      }
+
+      .bar-graph {
+        display: flex;
+        width: 100%;
+        height: 80vh;
+        position: relative;
+        margin-bottom: 3em;
+
+        .bar-label {
+          position: absolute;
+          width: 100%;
+          span {
+            width: 5%;
+            position: relative;
+            height: 2em;
+            top: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          &:after {
+            content: " ";
+            background: $light-grey-2;
+            height: 1px;
+            display: block;
+            position: absolute;
+            left: 5%;
+            width: 95%;
+          }
+        }
+
+        .bar {
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+
+          > div {
+            width: 5px;
+            margin: 0 2px;
+          }
+
+          &-label-group {
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+          }
+
+          &-group {
+            left: 5%;
+            width: 95%;
+            height: 100%;
+            position: absolute;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+          }
+
+          &-bottom-group {
+            bottom: -2em;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            left: 5%;
+            width: 95%;
+            position: absolute;
+
+            .month {
+              text-align: center;
+            }
+          }
+        }
       }
     }
 
@@ -85,12 +177,6 @@ $dark-grey: rgb(100, 100, 100);
         align-items: flex-start;
         width: calc(18vw + 2em);
 
-        > h2 {
-          height: 3em;
-          display: flex;
-          align-items: center;
-        }
-
         app-circle-graph {
           width: calc(18vw + 2em);
           height: calc(18vw + 2em);
@@ -99,94 +185,10 @@ $dark-grey: rgb(100, 100, 100);
           padding: 1em;
           background: #fff;
           border-radius: 10px;
-          border: 1px solid rgb(240, 240, 240);
+          border: 1px solid $light-grey-2;
           overflow: hidden;
         }
       }
     }
   }
-
-  .bar-graph {
-    display: flex;
-    width: 100%;
-    height: 80vh;
-    position: relative;
-    margin-bottom: 3em;
-  }
-
-  .bar-label {
-    position: absolute;
-    width: 100%;
-
-    span {
-      width: 5%;
-      position: relative;
-      height: 2em;
-      top: 1em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &:after {
-      content: " ";
-      background: rgb(230, 230, 230);
-      height: 1px;
-      display: block;
-      position: absolute;
-      left: 5%;
-      width: 95%;
-    }
-  }
-
-  .bar {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-
-    > div {
-      width: 5px;
-      background: red;
-      margin: 0 2px;
-    }
-
-    &-label-name-group {
-      display: flex;
-      flex-flow: column;
-      align-items: flex-end;
-    }
-
-    &-label-group {
-      position: absolute;
-      left: 0;
-      height: 100%;
-      width: 100%;
-    }
-
-    &-group {
-      left: 5%;
-      width: 95%;
-      height: 100%;
-      position: absolute;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-    }
-
-    &-bottom-group {
-      bottom: -2em;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      left: 5%;
-      width: 95%;
-      position: absolute;
-
-      .month {
-        text-align: center;
-      }
-    }
-  }
-}
-
-.svg-graph {
-  flex-flow: column;
 }
