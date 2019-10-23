@@ -1,0 +1,188 @@
+$main-color: #4bb1be;
+$main-color-dark: rgba(75, 177, 190, 0.81);
+$main-color-light: #a3c0dd;
+$main-color-dark-2: #00899b;
+$light-grey-2: #e1e1e1;
+$white: #fff;
+$dark-grey: #6d6d6d;
+$light-grey: #acacac;
+
+* {
+  font-family: "Reem kufi";
+}
+
+.customers {
+  display: grid;
+  grid-template-columns: 65% 1fr;
+  width: 97%;
+  grid-gap: 6em;
+  margin-left: auto;
+  position: relative;
+  height: calc(100vh - 70px - 2em);
+  grid-template-rows: calc(100vh - 70px - 2em);
+  > main {
+    padding: 2em;
+    margin-top: 5em;
+    background: #fff;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 7px;
+    height: calc(100% - 5em);
+    > header.customers-header {
+      display: flex;
+      flex-flow: column;
+      height: 15%;
+      > span.customers-header__name {
+        font-size: 1.1em;
+        line-height: 1.65em;
+      }
+      > span.customers-header__activity {
+        font-size: 0.9em;
+        line-height: 1.35em;
+        color: $light-grey;
+      }
+    }
+    > section {
+      height: 85%;
+      display: flex;
+      flex-flow: column;
+
+      ul {
+        display: grid;
+        width: 100%;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0em;
+        grid-template-columns: 1.5fr repeat(2, 1fr);
+        li {
+          text-align: center;
+          padding: 1em;
+        }
+      }
+
+      > header {
+        ul.visits-head {
+          background: #4bb1be;
+          border-radius: 5px 5px 0px 0;
+          padding-right: 6px;
+          color: #fff;
+          margin-top: 0.5em;
+          margin-left: 3em;
+          width: calc(100% - 3em);
+          li {
+            text-align: center;
+            border-right: 1px solid $light-grey-2;
+            &:last-of-type {
+              border-right: unset;
+            }
+          }
+        }
+      }
+      > article {
+        height: calc(100% - 15%);
+        overflow-y: scroll;
+        border: 1px solid $light-grey-2;
+        border-right: unset;
+        border-radius: 0 0 0 5px;
+        margin-left: 3em;
+        width: calc(100% - 3em);
+        ul.visits-body {
+          li {
+            border-right: 1px solid $light-grey-2;
+            border-bottom: 1px solid $light-grey-2;
+            &:last-of-type {
+              border-right: unset;
+            }
+            .visits-body__tip {
+              color: $main-color;
+            }
+            .visits-body__notip {
+              color: red;
+            }
+          }
+          &:last-of-type {
+            li {
+              border-bottom: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+  > aside {
+    background: #fff;
+    padding: 1em 0 1em 2em;
+    > header.aside-header {
+      display: flex;
+      justify-content: space-between;
+      height: 10%;
+      > button {
+        background: #fff;
+        outline: none;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 2.5em;
+        &.aside-button__remove {
+          color: red;
+          &:hover {
+            border-color: red;
+          }
+        }
+        &.aside-button__details {
+          &:hover {
+            border-color: $main-color;
+          }
+        }
+      }
+    }
+    > section {
+      height: 90%;
+      padding-top: 3em;
+      ul.aside-list {
+        margin: 0;
+        padding: 0;
+        overflow-y: scroll;
+        height: 100%;
+        li.aside-list__item {
+          display: grid;
+          grid-template-columns: 40px 40% 1fr;
+          margin-bottom: 0.5em;
+          cursor: pointer;
+          mat-checkbox {
+            text-align: center;
+          }
+          > .list-item__activity {
+            color: $light-grey;
+          }
+        }
+      }
+    }
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+::ng-deep.mat-checkbox-checked .mat-checkbox-background {
+  background-color: $main-color-dark-2 !important;
+}
+::ng-deep.mat-checkbox .mat-ripple-element {
+  background-color: $main-color-dark-2 !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+  opacity: 0.2;
+  box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.195);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  opacity: 0.2;
+  background-color: rgba(0, 0, 0, 0.265);
+}
