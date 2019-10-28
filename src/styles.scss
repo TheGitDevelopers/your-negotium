@@ -1,16 +1,5 @@
 @import "./variables.scss";
 
-.heading-1 {
-  margin: 0.25em 0;
-  color: #464646;
-  font-size: 1.5em;
-}
-.sub-heading-1 {
-  margin: 0.25em 0;
-  color: #646464;
-  font-size: 1em;
-}
-
 @mixin button(
   $background: #fff,
   $color: $dark-grey-2,
