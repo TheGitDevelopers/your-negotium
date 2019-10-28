@@ -1,9 +1,5 @@
 import { Component } from "@angular/core";
-
-interface Customer {
-  name: string;
-  activity: any;
-}
+import { Customer } from "./ICustomers";
 
 @Component({
   selector: "app-customers",
@@ -13,98 +9,98 @@ interface Customer {
 export class CustomersComponent {
   customer: Customer = {
     name: "James Bond",
-    activity: new Date(new Date().setDate(new Date().getDate() - 5)) // example
+    activity: new Date(new Date().setDate(new Date().getDate() - 5)) // todo
   };
 
   customers: Array<any> = [
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // example
+      activity: new Date(new Date().setDate(new Date().getDate() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     },
     {
       name: "James Bond",
-      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // example
+      activity: new Date(new Date().setMonth(new Date().getMonth() - 5)), // todo
       checked: false
     }
   ];
