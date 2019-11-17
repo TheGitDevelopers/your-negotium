@@ -43,7 +43,11 @@
           *ngFor="let customer of customers"
           (click)="customer.checked = !customer.checked"
         >
-          <mat-checkbox [(ngModel)]="customer.checked"></mat-checkbox>
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            [(ngModel)]="customer.checked"
+          >
+          </mat-checkbox>
           <span class="list-item__name">{{ customer.name }}</span>
           <span class="list-item__activity">{{ customer.activity }}</span>
         </li>

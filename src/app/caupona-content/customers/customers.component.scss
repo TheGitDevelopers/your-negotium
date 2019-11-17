@@ -1,5 +1,6 @@
 @import "../../../variables.scss";
-@import "../../../styles.scss";
+@import "../../../templates.scss";
+
 %list-style {
   li {
     padding: 1em;
@@ -114,12 +115,16 @@
         > button {
           &.aside-button__remove {
             @include button(#fff, #ff0000);
+            height: 2em;
+            line-height: 1em;
             &:hover {
               border-color: #ff0000;
             }
           }
           &.aside-button__details {
             @include button;
+            height: 2em;
+            line-height: 1em;
             &:hover {
               border-color: $main-color;
             }

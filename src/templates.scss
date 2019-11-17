@@ -1,21 +1,29 @@
 @import "./variables.scss";
 
+/* UTILS */
+
 @mixin button(
   $background: #fff,
   $color: $dark-grey-2,
   $border-color: transparent,
+  $border-width: 1px,
+  $padding: 0 0.5em,
+  $border-radius: 10px,
+  $font-weight: 300,
   $font-size: $button-text-size,
-  $height: 2em
+  $border: $border-width solid $border-color
 ) {
   background: $background;
   outline: none;
-  border: 1px solid $border-color;
-  border-radius: 10px;
+  border: $border;
+  border-radius: $border-radius;
   cursor: pointer;
-  height: $height;
   font-size: $font-size;
-  line-height: $height / 2;
+  padding: $padding;
+  font-weight: $font-weight;
 }
+
+/* NAME TODO */
 
 @mixin list-style-grid($grid-template-columns) {
   display: grid;
