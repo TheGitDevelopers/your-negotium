@@ -2,6 +2,7 @@ import { Component, ViewChild } from "@angular/core";
 import { LoadingInterceptorComponent } from "./global-components/loading-interceptor/loading-interceptor.component";
 import { HttpStatusService } from "./services/httpstatus.service";
 import { HttpClient } from "@angular/common/http";
+import { LoginAuthService } from "./services/login-auth.service";
 
 @Component({
   selector: "app-root",
@@ -14,8 +15,13 @@ export class AppComponent {
   loadingInterceptor: LoadingInterceptorComponent;
 
   HTTPActivity: boolean;
+  token: boolean;
 
-  constructor(private httpStatus: HttpStatusService, private http: HttpClient) {
+  constructor(
+    private httpStatus: HttpStatusService,
+    private http: HttpClient,
+    private loginAuth: LoginAuthService
+  ) {
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => {
       this.HTTPActivity = status;
       if (!status) {
@@ -23,6 +29,9 @@ export class AppComponent {
           this.stop();
         }, 2000);
       }
+    });
+    this.loginAuth.getToken().subscribe(token => {
+      this.token = token;
     });
   }
 

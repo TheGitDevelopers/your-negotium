@@ -1,0 +1,20 @@
+<app-login-panel
+  welcomeText="Haven't account?"
+  welcomeTextSmall="Create one below"
+  asideButton="SIGN UP"
+  heading="LOGIN"
+  (modeOutput)="changeMode()"
+  mode="login"
+  *ngIf="mode === 'login'"
+>
+</app-login-panel>
+<app-login-panel
+  welcomeText="Welcome back"
+  welcomeTextSmall="Stay connected with us"
+  asideButton="SIGN IN"
+  heading="CREATE ACCOUNT"
+  (modeOutput)="changeMode()"
+  mode="register"
+  *ngIf="mode === 'register'"
+>
+</app-login-panel>

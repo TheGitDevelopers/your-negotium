@@ -1,0 +1,25 @@
+<main>
+  <div class="login-modal">
+    <aside>
+      <span class="logo">NEGOTIUM</span>
+      <h2 class="welcome-text">{{ welcomeText }}</h2>
+      <span class="welcome-text-small">{{ welcomeTextSmall }}</span>
+      <button (click)="changeMode()" class="aside-button">
+        {{ asideButton }}
+      </button>
+    </aside>
+    <section>
+      <h2 class="heading">{{ heading }}</h2>
+      <div class="login-platforms">
+        <div class="login-platform-outer">
+          <img src="assets/icons/facebook-f-brands.svg" />
+        </div>
+        <div class="login-platform-outer">
+          <img src="assets/icons/google-brands.svg" />
+        </div>
+      </div>
+      <app-register-form *ngIf="mode === 'register'"></app-register-form>
+      <app-login-form *ngIf="mode === 'login'"></app-login-form>
+    </section>
+  </div>
+</main>

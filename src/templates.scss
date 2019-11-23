@@ -11,7 +11,10 @@
   $border-radius: 10px,
   $font-weight: 300,
   $font-size: $button-text-size,
-  $border: $border-width solid $border-color
+  $border: $border-width solid $border-color,
+  $font-family: Reem Kufi,
+  $line-height: $font-size,
+  $transition: 0.5s transform
 ) {
   background: $background;
   outline: none;
@@ -21,9 +24,14 @@
   font-size: $font-size;
   padding: $padding;
   font-weight: $font-weight;
+  font-family: $font-family;
+  line-height: $line-height; // TODO, CHECK CHANGES
+  color: $color;
+  transition: $transition;
+  box-sizing: border-box;
 }
 
-/* NAME TODO */
+/* STRUCTURE */
 
 @mixin list-style-grid($grid-template-columns) {
   display: grid;
@@ -35,4 +43,45 @@
   li {
     text-align: center;
   }
+}
+
+/* POSITIONING */
+
+@mixin position-absolute($top: null, $left: null) {
+  position: absolute;
+  @if ($left != null and $top != null) {
+    top: $top;
+    left: $left;
+  } @else {
+    top: $top;
+    left: $top;
+  }
+  @if $left == null and $top == null {
+    top: 0;
+    left: 0;
+  }
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* STYLING */
+
+@mixin top-border-rounded($border: 8px) {
+  border-radius: $border $border 0 0;
+}
+
+@mixin bottom-border-rounded($border: 8px) {
+  border-radius: 0 0 $border $border;
+}
+
+@mixin right-border-rounded($border: 8px) {
+  border-radius: 0 $border $border 0;
+}
+
+@mixin left-border-rounded($border: 8px) {
+  border-radius: $border 0 0 $border;
 }

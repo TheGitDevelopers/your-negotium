@@ -44,9 +44,11 @@ import { AskForReportComponent } from "./caupona-content/reports/ask-for-report/
 import { DownloadReportComponent } from "./caupona-content/reports/download-report/download-report.component";
 import { EmployeeComponent } from "./caupona-content/employees/employee/employee.component";
 import { EmployeeSettingsComponent } from "./caupona-content/employees/employee-settings/employee-settings.component";
+import { LandingPageComponent } from "./caupona-content/landing-page/landing-page.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
+  { path: "login", component: LandingPageComponent },
   { path: "dashboard", component: DashboardComponent },
   {
     path: "orders",
@@ -58,7 +60,10 @@ const appRoutes: Routes = [
       { path: "local-orders", component: LocalOrdersComponent }
     ]
   },
-  { path: "warehouse", component: WarehouseComponent },
+  {
+    path: "warehouse",
+    component: WarehouseComponent
+  },
   { path: "finance", component: FinanceComponent },
   { path: "employees", component: EmployeesComponent },
   { path: "reservations", component: ReservationsComponent },

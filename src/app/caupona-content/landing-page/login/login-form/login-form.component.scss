@@ -1,0 +1,22 @@
+@import "../../../../../variables.scss";
+@import "../../../../../templates.scss";
+
+form.login-form {
+  display: flex;
+  flex-flow: column;
+  width: 250px;
+  button.login-form-button {
+    @include button(
+      $background: $main-color,
+      $color: $white,
+      $padding: 0 1.75em,
+      $font-size: $button-text-size-2,
+      $line-height: 1.8em
+    );
+    margin-top: 1.25em;
+    align-self: center;
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
+}

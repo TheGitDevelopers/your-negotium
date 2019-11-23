@@ -1,0 +1,29 @@
+<form
+  class="login-form"
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit($event)"
+>
+  <mat-form-field>
+    <input formControlName="login" matInput placeholder="Login" />
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="email" matInput placeholder="Email" />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="password"
+      matInput
+      placeholder="Password"
+      type="password"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="cpassword"
+      matInput
+      placeholder="Confirm password"
+      type="password"
+    />
+  </mat-form-field>
+  <button class="login-form-button">SIGN UP</button>
+</form>
