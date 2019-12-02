@@ -4,10 +4,47 @@
   (ngSubmit)="onSubmit($event)"
 >
   <mat-form-field>
-    <input formControlName="login" matInput placeholder="Login" />
+    <input formControlName="username" matInput placeholder="Login" required />
+    <mat-error
+      *ngIf="
+        getControlError('username') && getControlError('username').required;
+        else minLengthErr
+      "
+      >Username is required</mat-error
+    >
+    <ng-template #minLengthErr>
+      <mat-error
+        *ngIf="
+          getControlError('username') && getControlError('username').minlength;
+          else userRegexErr
+        "
+        >Username must be at least 6 letters</mat-error
+      >
+    </ng-template>
+    <ng-template #userRegexErr>
+      <mat-error
+        *ngIf="
+          getControlError('username') && getControlError('username').pattern
+        "
+        >Username can't have any special characters</mat-error
+      >
+    </ng-template>
   </mat-form-field>
   <mat-form-field>
-    <input formControlName="email" matInput placeholder="Email" />
+    <input formControlName="email" matInput placeholder="Email" required />
+    <mat-error
+      *ngIf="
+        getControlError('email') && getControlError('email').required;
+        else emailErr
+      "
+      >Email is required</mat-error
+    >
+    <ng-template #emailErr>
+      <mat-error
+        *ngIf="getControlError('email') && getControlError('email').email"
+        >Input must contain email</mat-error
+      >
+    </ng-template>
   </mat-form-field>
   <mat-form-field>
     <input
@@ -15,7 +52,33 @@
       matInput
       placeholder="Password"
       type="password"
+      required
     />
+    <mat-error
+      *ngIf="
+        getControlError('password') && getControlError('password').required;
+        else minLength
+      "
+      >Password is required</mat-error
+    >
+    <ng-template #minLength>
+      <mat-error
+        *ngIf="
+          getControlError('password') && getControlError('password').minlength;
+          else passRegexErr
+        "
+        >Password must be at least 6 letters</mat-error
+      ></ng-template
+    >
+    <ng-template #passRegexErr>
+      <mat-error
+        *ngIf="
+          getControlError('password') && getControlError('password').pattern
+        "
+        >Password must contain 1 uppercase, 1 lowercase</mat-error
+      ></ng-template
+    >
+    <!-- TODO -->
   </mat-form-field>
   <mat-form-field>
     <input
@@ -23,7 +86,24 @@
       matInput
       placeholder="Confirm password"
       type="password"
+      required
     />
+    <mat-error
+      *ngIf="
+        getControlError('cpassword') && getControlError('cpassword').required;
+        else mustMatchErr
+      "
+      >Confirm password is required</mat-error
+    >
+    <ng-template #mustMatchErr>
+      <mat-error
+        *ngIf="
+          getControlError('cpassword') && getControlError('cpassword').mustMatch
+        "
+        >Confirm password must match password</mat-error
+      >
+    </ng-template>
+    <!-- TODO -->
   </mat-form-field>
   <button class="login-form-button">SIGN UP</button>
 </form>

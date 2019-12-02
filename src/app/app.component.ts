@@ -15,7 +15,7 @@ export class AppComponent {
   loadingInterceptor: LoadingInterceptorComponent;
 
   HTTPActivity: boolean;
-  token: boolean;
+  token: string;
 
   constructor(
     private httpStatus: HttpStatusService,
