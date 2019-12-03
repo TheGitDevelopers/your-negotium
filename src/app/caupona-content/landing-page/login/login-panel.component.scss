@@ -33,7 +33,7 @@ main {
         margin: 0;
         font-family: Reem Kufi;
       }
-      span.welcome-text-small {
+      span.sub-welcome-text {
         font-size: $sub-heading-size-2;
         color: $white;
         width: max-content;
@@ -128,7 +128,7 @@ main {
         .welcome-text {
           font-size: $heading-size-2-hd !important;
         }
-        .welcome-text-small {
+        .sub-welcome-text {
           font-size: $sub-heading-size-2-hd !important;
         }
       }

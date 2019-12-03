@@ -1,17 +1,19 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginAuthService } from "src/app/services/login-auth.service";
-import regexExpression from "src/app/helpers/regexExpression";
+import regexExpression from "src/app/constants/regexExpression";
+import { Translations } from "src/app/constants/texts";
 
 @Component({
   selector: "app-login-form",
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"]
 })
-export class LoginFormComponent {
+export class LoginFormComponent extends Translations {
   loginForm: FormGroup;
 
   constructor(fb: FormBuilder, private loginAuth: LoginAuthService) {
+    super();
     this.loginForm = fb.group({
       username: [
         "",
