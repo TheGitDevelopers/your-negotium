@@ -34,8 +34,20 @@ export class LoginFormComponent extends Translations {
     });
   }
 
+  getControlError(control) {
+    return this.loginForm.controls[control].errors;
+  }
+
   onSubmit(event) {
     console.log(event, this.loginForm.value);
-    if (this.loginForm.valid) this.loginAuth.login(this.loginForm.value);
+    if (this.loginForm.valid) {
+      this.loginAuth.login(this.loginForm.value).then(res => {
+        if (res.error) {
+          this.loginForm.controls["username"].setErrors({
+            incorrectInputs: true
+          });
+        }
+      });
+    }
   }
 }

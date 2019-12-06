@@ -10,6 +10,13 @@
       [placeholder]="LOGIN_INPUT_PLACEHOLDER"
       required
     />
+
+    <mat-error
+      *ngIf="
+        getControlError('username') && getControlError('username').userExist
+      "
+      >{{ USERNAME_USER_EXIST_ERR }}</mat-error
+    >
     <mat-error
       *ngIf="
         getControlError('username') && getControlError('username').required;

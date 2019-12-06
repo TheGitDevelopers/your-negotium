@@ -5,6 +5,9 @@
       matInput
       [placeholder]="LOGIN_INPUT_PLACEHOLDER"
     />
+    <mat-error *ngIf="getControlError('username')">{{
+      LOGIN_INCORRECT_ERR
+    }}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input

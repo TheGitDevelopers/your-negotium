@@ -59,41 +59,46 @@ export class LoginAuthService implements OnInit {
     }
   }
 
-  register({ username, email, password }) {
-    fetch(`${environment.mainAPIUrl}create-user`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password })
-    })
-      .then(response => response.json())
-      .then(res => {
-        if (res.token) {
-          this.setToken(res.token);
-          this.router.navigate(["/dashboard"]);
-          return true;
-        }
-        throw { mess: "Something went wrong", error: res };
-      })
-      .catch(console.log);
-  }
+  register = async ({ username, email, password }) => {
+    try {
+      const response = await fetch(`${environment.mainAPIUrl}create-user`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password })
+      });
+      const responseJSON = await response.json();
+      if (responseJSON.token) {
+        this.setToken(responseJSON.token);
+        this.router.navigate(["/dashboard"]);
+        return { success: true };
+      }
+      throw { mess: "Something went wrong", error: responseJSON };
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
 
-  login({ username, password }) {
-    fetch(`${environment.mainAPIUrl}token-auth`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
-    })
-      .then(response => response.json())
-      .then(res => {
-        if (res.token) {
-          this.setToken(res.token);
-          this.router.navigate(["/dashboard"]);
-          return true;
-        }
-        throw { mess: "Something went wrong", error: res };
-      })
-      .catch(console.log);
-  }
+  login = async ({ username, password }) => {
+    try {
+      const response = await fetch(`${environment.mainAPIUrl}token-auth`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const responseJSON = await response.json();
+      // .then(response => response.json())
+      if (responseJSON.token) {
+        this.setToken(responseJSON.token);
+        this.router.navigate(["/dashboard"]);
+        return { success: true };
+      }
+      throw { mess: "Something went wrong", error: response };
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
 
   logout() {
     this.setToken("");

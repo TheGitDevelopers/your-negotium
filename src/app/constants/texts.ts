@@ -32,8 +32,10 @@ class Translations {
   PASSWORD_MIN_LENGTH_ERR = this.MIN_LENGTH_ERROR("Password", 6);
   USERNAME_PATTERN_ERR = "Username can't have any special characters";
   PASSWORD_PATTERN_ERR = "Password must contain 1 uppercase, 1 lowercase";
+  USERNAME_USER_EXIST_ERR = "User with this name already exist";
   EMAIL_PATTERN_ERR = "Input must contain email";
   CPASSWORD_MUST_MATCH_ERR = "Confirm password must match password";
+  LOGIN_INCORRECT_ERR = "You have entered an invalid username or password";
 }
 
 export { Translations };

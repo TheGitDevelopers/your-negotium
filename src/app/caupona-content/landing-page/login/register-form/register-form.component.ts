@@ -55,7 +55,14 @@ export class RegisterFormComponent extends Translations {
 
   onSubmit(event) {
     console.log(event, this.registerForm);
-    if (this.registerForm.valid)
-      this.loginAuth.register(this.registerForm.value);
+    if (this.registerForm.valid) {
+      this.loginAuth.register(this.registerForm.value).then(res => {
+        if (res.error) {
+          this.registerForm.controls["username"].setErrors({
+            userExist: true
+          });
+        }
+      });
+    }
   }
 }
