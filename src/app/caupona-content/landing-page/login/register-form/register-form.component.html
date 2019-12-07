@@ -1,0 +1,126 @@
+<form
+  class="login-form"
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit($event)"
+>
+  <mat-form-field>
+    <input
+      formControlName="username"
+      matInput
+      [placeholder]="LOGIN_INPUT_PLACEHOLDER"
+      required
+    />
+
+    <mat-error
+      *ngIf="
+        getControlError('username') && getControlError('username').userExist
+      "
+      >{{ USERNAME_USER_EXIST_ERR }}</mat-error
+    >
+    <mat-error
+      *ngIf="
+        getControlError('username') && getControlError('username').required;
+        else minLengthErr
+      "
+      >{{ USERNAME_REQUIRED_ERR }}</mat-error
+    >
+    <ng-template #minLengthErr>
+      <mat-error
+        *ngIf="
+          getControlError('username') && getControlError('username').minlength;
+          else userRegexErr
+        "
+        >{{ USERNAME_MIN_LENGTH_ERR }}</mat-error
+      >
+    </ng-template>
+    <ng-template #userRegexErr>
+      <mat-error
+        *ngIf="
+          getControlError('username') && getControlError('username').pattern
+        "
+        >{{ USERNAME_PATTERN_ERR }}</mat-error
+      >
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="email"
+      matInput
+      [placeholder]="EMAIL_INPUT_PLACEHOLDER"
+      required
+    />
+    <mat-error
+      *ngIf="
+        getControlError('email') && getControlError('email').required;
+        else emailErr
+      "
+      >{{ EMAIL_REQUIRED_ERR }}</mat-error
+    >
+    <ng-template #emailErr>
+      <mat-error
+        *ngIf="getControlError('email') && getControlError('email').email"
+        >{{ EMAIL_PATTERN_ERR }}</mat-error
+      >
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="password"
+      matInput
+      [placeholder]="PASSWORD_INPUT_PLACEHOLDER"
+      type="password"
+      required
+    />
+    <mat-error
+      *ngIf="
+        getControlError('password') && getControlError('password').required;
+        else minLength
+      "
+      >{{ PASSWORD_REQUIRED_ERR }}</mat-error
+    >
+    <ng-template #minLength>
+      <mat-error
+        *ngIf="
+          getControlError('password') && getControlError('password').minlength;
+          else passRegexErr
+        "
+        >{{ PASSWORD_MIN_LENGTH_ERR }}</mat-error
+      ></ng-template
+    >
+    <ng-template #passRegexErr>
+      <mat-error
+        *ngIf="
+          getControlError('password') && getControlError('password').pattern
+        "
+        >{{ PASSWORD_PATTERN_ERR }}</mat-error
+      ></ng-template
+    >
+    <!-- TODO -->
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="cpassword"
+      matInput
+      [placeholder]="CONFIRM_PASSWORD_INPUT_PLACEHOLDER"
+      type="password"
+      required
+    />
+    <mat-error
+      *ngIf="
+        getControlError('cpassword') && getControlError('cpassword').required;
+        else mustMatchErr
+      "
+      >{{ CPASSWORD_REQUIRED_ERR }}</mat-error
+    >
+    <ng-template #mustMatchErr>
+      <mat-error
+        *ngIf="
+          getControlError('cpassword') && getControlError('cpassword').mustMatch
+        "
+        >{{ CPASSWORD_MUST_MATCH_ERR }}</mat-error
+      >
+    </ng-template>
+    <!-- TODO -->
+  </mat-form-field>
+  <button class="login-form-button">{{ SIGN_UP }}</button>
+</form>
