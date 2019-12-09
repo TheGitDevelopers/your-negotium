@@ -101,6 +101,10 @@ import { EmployeeSettingsComponent } from "./caupona-content/employees/employee-
 import { CircleGraphComponent } from "./global-components/circle-graph/circle-graph.component";
 import { CircleGraphFullComponent } from "./global-components/circle-graph-full/circle-graph-full.component";
 import { GraphComponent } from "./components-to-use/graph/graph.component";
+import { LoginPanelComponent } from "./caupona-content/landing-page/login/login-panel.component";
+import { LandingPageComponent } from "./caupona-content/landing-page/landing-page.component";
+import { LoginFormComponent } from "./caupona-content/landing-page/login/login-form/login-form.component";
+import { RegisterFormComponent } from "./caupona-content/landing-page/login/register-form/register-form.component";
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -171,7 +175,11 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EmployeeSettingsComponent,
     CircleGraphComponent,
     CircleGraphFullComponent,
-    GraphComponent
+    GraphComponent,
+    LoginPanelComponent,
+    LandingPageComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

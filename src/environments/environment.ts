@@ -21,7 +21,9 @@ export const environment = {
     ],
     scope: "https://www.googleapis.com/auth/calendar"
   },
-  calendarAPIUrl: "http://localhost:9000/api"
+  calendarAPIUrl: "http://localhost:9000/api",
+
+  mainAPIUrl: "http://localhost:8000/api/"
 };
 
 /*

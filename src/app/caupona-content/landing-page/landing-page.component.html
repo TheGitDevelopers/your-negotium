@@ -1,0 +1,20 @@
+<app-login-panel
+  [welcomeText]="LP_WELCOME_TEXT_LOGIN"
+  [subWelcomeText]="LP_SUB_WELCOME_TEXT_LOGIN"
+  [asideButton]="SIGN_UP"
+  [heading]="LP_HEADING_LOGIN"
+  (modeOutput)="changeMode()"
+  mode="login"
+  *ngIf="mode === 'login'"
+>
+</app-login-panel>
+<app-login-panel
+  [welcomeText]="LP_WELCOME_TEXT_REGISTER"
+  [subWelcomeText]="LP_SUB_WELCOME_TEXT_REGISTER"
+  [asideButton]="SIGN_IN"
+  [heading]="LP_HEADING_REGISTER"
+  (modeOutput)="changeMode()"
+  mode="register"
+  *ngIf="mode === 'register'"
+>
+</app-login-panel>

@@ -1,12 +1,21 @@
 <header>
   <div class="header-menu">
     <div class="banner">
-      <h4>Here is the little hint - {{hint}}</h4>
+      <h4>Here is the little hint - {{ hint }}</h4>
     </div>
     <ul>
-      <li><i class="far fa-user-circle"></i><p>Account</p></li>
-      <li><i class="fas fa-cogs"></i><p>Settings</p></li>
-      <li><i class="fas fa-sign-out-alt"></i><p>Log Out</p></li>
+      <li>
+        <i class="far fa-user-circle"></i>
+        <p>Account</p>
+      </li>
+      <li>
+        <i class="fas fa-cogs"></i>
+        <p>Settings</p>
+      </li>
+      <li (click)="handleLogout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <p>Log Out</p>
+      </li>
     </ul>
   </div>
 </header>
