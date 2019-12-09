@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Router, NavigationStart } from "@angular/router";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { environment } from "src/environments/environment";
+import { mainAPIPost } from "src/app/helpers/http/mainAPI";
 
 @Injectable({
   providedIn: "root"
@@ -44,11 +44,7 @@ export class LoginAuthService implements OnInit {
 
   async verifyToken() {
     try {
-      const response = await fetch(`${environment.mainAPIUrl}verify-token`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: this.token })
-      });
+      const response = await mainAPIPost("verify-token", { token: this.token });
       const responseJSON = await response.json();
       const { token } = responseJSON;
       this.setToken(token);
@@ -61,10 +57,10 @@ export class LoginAuthService implements OnInit {
 
   register = async ({ username, email, password }) => {
     try {
-      const response = await fetch(`${environment.mainAPIUrl}create-user`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password })
+      const response = await mainAPIPost("create-user", {
+        username,
+        email,
+        password
       });
       const responseJSON = await response.json();
       if (responseJSON.token) {
@@ -81,13 +77,8 @@ export class LoginAuthService implements OnInit {
 
   login = async ({ username, password }) => {
     try {
-      const response = await fetch(`${environment.mainAPIUrl}token-auth`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
+      const response = await mainAPIPost("token-auth", { username, password });
       const responseJSON = await response.json();
-      // .then(response => response.json())
       if (responseJSON.token) {
         this.setToken(responseJSON.token);
         this.router.navigate(["/dashboard"]);

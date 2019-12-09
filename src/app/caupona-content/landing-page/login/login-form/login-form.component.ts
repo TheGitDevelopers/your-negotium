@@ -1,8 +1,11 @@
 import { Component } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 import { LoginAuthService } from "src/app/services/login-auth.service";
-import regexExpression from "src/app/constants/regexExpression";
 import { Translations } from "src/app/constants/texts";
+import {
+  usernameValidators,
+  passwordValidators
+} from "src/app/helpers/validators";
 
 @Component({
   selector: "app-login-form",
@@ -15,22 +18,8 @@ export class LoginFormComponent extends Translations {
   constructor(fb: FormBuilder, private loginAuth: LoginAuthService) {
     super();
     this.loginForm = fb.group({
-      username: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.pattern(regexExpression.username)
-        ]
-      ],
-      password: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.pattern(regexExpression.password)
-        ]
-      ]
+      username: ["", usernameValidators],
+      password: ["", passwordValidators]
     });
   }
 

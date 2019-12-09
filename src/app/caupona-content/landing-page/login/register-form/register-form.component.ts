@@ -1,9 +1,13 @@
 import { Component } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 import { LoginAuthService } from "src/app/services/login-auth.service";
 import { MustMatch } from "src/app/helpers/validators/MustMatch";
-import regexExpression from "src/app/constants/regexExpression";
 import { Translations } from "src/app/constants/texts";
+import {
+  usernameValidators,
+  emailValidators,
+  passwordValidators
+} from "src/app/helpers/validators";
 
 @Component({
   selector: "app-register-form",
@@ -17,31 +21,10 @@ export class RegisterFormComponent extends Translations {
     super();
     this.registerForm = fb.group(
       {
-        username: [
-          "",
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.pattern(regexExpression.username)
-          ]
-        ],
-        email: ["", [Validators.required, , Validators.email]],
-        password: [
-          "",
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.pattern(regexExpression.password)
-          ]
-        ],
-        cpassword: [
-          "",
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.pattern(regexExpression.password)
-          ]
-        ]
+        username: ["", usernameValidators],
+        email: ["", emailValidators],
+        password: ["", passwordValidators],
+        cpassword: ["", passwordValidators]
       },
       {
         validator: MustMatch("password", "cpassword")
