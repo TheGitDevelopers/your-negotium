@@ -12,6 +12,7 @@ export const environment = {
     storageBucket: "caupona.appspot.com",
     messagingSenderId: "248599801913"
   },
+
   google: {
     apiKey: "AIzaSyD3qpODUvKs-enaIFtUI_utPG7odT_Fa6Q",
     clientId:
@@ -21,6 +22,14 @@ export const environment = {
     ],
     scope: "https://www.googleapis.com/auth/calendar"
   },
+
+  facebook: {
+    appId: "2527277050721991",
+    cookie: true,
+    xfbml: true,
+    version: "v5.0"
+  },
+
   calendarAPIUrl: "http://localhost:9000/api",
 
   mainAPIUrl: "http://localhost:8000/api/"

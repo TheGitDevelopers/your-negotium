@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { GoogleAuthService } from "src/app/services/googleauth.service";
+import { GoogleAuthService } from "src/app/services/auth/google-auth.service";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { SettingsPopupService } from "src/app/services/settings-popup.service";
 import { FromFirebaseDataSource } from "src/app/data-sources/fromFireBase-data-source";

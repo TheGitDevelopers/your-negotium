@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Translations } from "src/app/constants/texts";
+import { GoogleAuthService } from "src/app/services/auth/google-auth.service";
+import { LoginAuthService } from "src/app/services/auth/login-auth.service";
 
 @Component({
   selector: "app-login-panel",
@@ -14,7 +16,10 @@ export class LoginPanelComponent extends Translations {
   @Input() mode;
   @Output() modeOutput: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(
+    protected googleAuth: GoogleAuthService,
+    protected loginAuth: LoginAuthService
+  ) {
     super();
   }
 

@@ -2,7 +2,7 @@ import { Component, ViewChild } from "@angular/core";
 import { LoadingInterceptorComponent } from "./global-components/loading-interceptor/loading-interceptor.component";
 import { HttpStatusService } from "./services/httpstatus.service";
 import { HttpClient } from "@angular/common/http";
-import { LoginAuthService } from "./services/login-auth.service";
+import { LoginAuthService } from "./services/auth/login-auth.service";
 
 @Component({
   selector: "app-root",

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import { environment } from "src/environments/environment";
 
 declare let gapi: any;
 
@@ -29,15 +29,19 @@ export class GoogleAuthService {
     });
   }
   async login() {
-    const googleAuth = gapi.auth2.getAuthInstance();
-    const googleUser = await googleAuth.signIn();
-    const token = googleUser.getAuthResponse().id_token;
+    try {
+      const googleAuth = gapi.auth2.getAuthInstance();
+      const googleUser = await googleAuth.signIn();
+      const token = googleUser.getAuthResponse().id_token;
+      // SEND TOKEN
+      this.http
+        .post(`${environment.calendarAPIUrl}/token`, { tokenID: token })
+        .subscribe(e => console.log(e), e => console.log(e));
 
-    // SEND TOKEN
-
-    this.http
-      .post(`${environment.calendarAPIUrl}/token`, { tokenID: token })
-      .subscribe(e => console.log(e), e => console.log(e));
+      return googleUser;
+    } catch (error) {
+      return { error, message: "Something went wrong" };
+    }
   }
 
   async logout() {

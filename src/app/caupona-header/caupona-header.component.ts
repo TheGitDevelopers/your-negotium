@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { angularMath } from "angular-ts-math";
-import { LoginAuthService } from "../services/login-auth.service";
+import { LoginAuthService } from "../services/auth/login-auth.service";
 
 @Component({
   selector: "app-caupona-header",

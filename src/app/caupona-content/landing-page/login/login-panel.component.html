@@ -11,10 +11,13 @@
     <section>
       <h2 class="heading">{{ heading }}</h2>
       <div class="login-platforms">
-        <div class="login-platform-outer">
+        <div
+          class="login-platform-outer"
+          (click)="loginAuth.loginWithFacebook()"
+        >
           <img src="assets/icons/facebook-f-brands.svg" />
         </div>
-        <div class="login-platform-outer">
+        <div class="login-platform-outer" (click)="loginAuth.loginWithGoogle()">
           <img src="assets/icons/google-brands.svg" />
         </div>
       </div>

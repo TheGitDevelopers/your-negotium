@@ -10,7 +10,7 @@ import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE
 } from "@angular/material/core";
-import { GoogleAuthService } from "src/app/services/googleauth.service";
+import { GoogleAuthService } from "src/app/services/auth/google-auth.service";
 export interface EventData {
   event: any;
   description: string;

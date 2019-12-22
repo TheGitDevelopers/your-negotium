@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { GoogleAuthService } from "src/app/services/googleauth.service";
+import { GoogleAuthService } from "src/app/services/auth/google-auth.service";
 
 @Component({
   selector: "app-settings-popup",

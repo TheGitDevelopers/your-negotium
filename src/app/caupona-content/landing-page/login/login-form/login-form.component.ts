@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { LoginAuthService } from "src/app/services/login-auth.service";
+import { LoginAuthService } from "src/app/services/auth/login-auth.service";
 import { Translations } from "src/app/constants/texts";
 import {
   usernameValidators,
