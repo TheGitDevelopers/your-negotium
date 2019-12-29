@@ -30,7 +30,7 @@
       <div class="email-panel-inner">
         <span>On</span>
         <mat-form-field *ngFor="let email of emails">
-          <input matInput [(ngModel)]="email" />
+          <input matInput [ngModel]="email" />
         </mat-form-field>
         <span class="add-email" (click)="addEmail()"
           >+ another email adress</span

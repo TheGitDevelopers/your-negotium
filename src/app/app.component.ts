@@ -10,7 +10,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppComponent {
   title = "restaurant-reservation";
-  @ViewChild(LoadingInterceptorComponent)
+  @ViewChild(LoadingInterceptorComponent, { static: true })
   loadingInterceptor: LoadingInterceptorComponent;
 
   HTTPActivity: boolean;
