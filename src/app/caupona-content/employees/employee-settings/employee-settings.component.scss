@@ -23,7 +23,7 @@ h5 {
     > div {
       display: grid;
       grid-template-areas: "label toggle";
-      grid-template-columns: 160px auto;
+      grid-template-columns: 160px max-content;
     }
     > mat-slide-toggle.mat-slide-toggle {
       margin-left: 1em;
