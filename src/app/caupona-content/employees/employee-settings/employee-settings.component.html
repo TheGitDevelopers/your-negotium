@@ -29,8 +29,8 @@
       <h2>Send email</h2>
       <div class="email-panel-inner">
         <span>On</span>
-        <mat-form-field *ngFor="let email of emails">
-          <input matInput [(ngModel)]="email" />
+        <mat-form-field *ngFor="let email of emails; let i = index">
+          <input matInput [(ngModel)]="emails[i]" />
         </mat-form-field>
         <span class="add-email" (click)="addEmail()"
           >+ another email adress</span

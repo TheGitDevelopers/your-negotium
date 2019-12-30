@@ -19,7 +19,7 @@ interface EmployeeInfoInterface {
   styleUrls: ["./employee.component.scss"]
 })
 export class EmployeeComponent implements OnInit {
-  @ViewChild("formRef")
+  @ViewChild("formRef", { static: true })
   formRef: FormGroupDirective;
 
   employeeInfoTest = [

@@ -37,7 +37,8 @@ export class DashboardComponent implements AfterViewInit {
 
   transformedBar = [];
 
-  @ViewChild("saleGraph", { read: ElementRef }) saleGraph: ElementRef;
+  @ViewChild("saleGraph", { read: ElementRef, static: true })
+  saleGraph: ElementRef;
 
   constructor() {
     this.products.forEach(({ value }) => (this.productsSum += value));
