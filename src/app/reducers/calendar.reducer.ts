@@ -2,13 +2,10 @@ import { Action, createReducer, on } from "@ngrx/store";
 
 import * as CalendarActions from "../actions/calendar.actions";
 
-export interface Event {
-  time: string;
-  name: string;
-}
+import EventInf from "../interfaces/Event";
 
 export interface State {
-  events: Array<Event>;
+  events: Array<EventInf>;
   calendarInfo: string;
 }
 
@@ -30,6 +27,6 @@ const calendarReducer = createReducer(
   }))
 );
 
-export default (state: State | undefined, action: Action) => {
+export default (state: State, action: Action) => {
   return calendarReducer(state, action);
 };

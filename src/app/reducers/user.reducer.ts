@@ -2,13 +2,10 @@ import { Action, createReducer, on } from "@ngrx/store";
 
 import * as UserActions from "../actions/user.actions";
 
-export interface User {
-  name: string;
-  email: string;
-}
+import UserInf from "../interfaces/User";
 
 export interface State {
-  user: User;
+  user: UserInf;
   token: string;
 }
 

@@ -3,7 +3,7 @@ import Chart from "chart.js";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs/internal/Observable";
 import { LOGOUT_USER, LOGIN_USER } from "src/app/actions/user.actions";
-import { State } from "src/app/reducers/user.reducer";
+import { State as UserState } from "src/app/reducers/user.reducer";
 
 @Component({
   selector: "app-dashboard",
@@ -40,11 +40,11 @@ export class DashboardComponent implements AfterViewInit {
   maxBar = 0;
 
   transformedBar = [];
-  user$: Observable<State>;
+  user$: Observable<UserState>;
 
   @ViewChild("saleGraph", { read: ElementRef }) saleGraph: ElementRef;
 
-  constructor(private store: Store<{ userReducer: State }>) {
+  constructor(private store: Store<{ userReducer: UserState }>) {
     // TODO
     this.user$ = store.pipe(select("userReducer"));
     this.user$.subscribe(console.log);

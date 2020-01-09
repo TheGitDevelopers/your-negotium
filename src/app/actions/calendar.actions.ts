@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 
-import { Event } from "../reducers/calendar.reducer";
+import EventInf from "src/app/interfaces/Event";
 
 export const FETCH_CALENDAR = createAction(
   "[Calendar] Fetching calendar",
-  props<{ events: Array<Event> }>()
+  props<{ events: Array<EventInf> }>()
 );
