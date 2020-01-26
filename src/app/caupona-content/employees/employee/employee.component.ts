@@ -35,7 +35,7 @@ export class EmployeeComponent implements OnInit {
     { name: "Negotium role", value: "Employee", tooltip: "" },
     {
       name: "Additional information",
-      value: "This employee has already been paid \n <br/> The director",
+      value: "This employee has already been paid\nThe director",
       tooltip: ""
     }
   ];

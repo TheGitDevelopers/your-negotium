@@ -8,7 +8,7 @@ declare let FB: any;
 })
 export class FacebookAuthService {
   constructor() {
-    this.initClient();
+    window.fbAsyncInit = this.initClient();
   }
 
   initClient() {

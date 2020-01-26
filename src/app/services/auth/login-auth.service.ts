@@ -25,7 +25,7 @@ export class LoginAuthService implements OnInit {
     this.token = localStorage.getItem("token");
     this.setToken(this.token);
     // TODO validate token with backend
-    if (this.token) await this.verifyToken();
+    // if (this.token) await this.verifyToken();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (event["url"] === "/login" && this.token) {
