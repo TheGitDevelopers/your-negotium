@@ -1,16 +1,16 @@
-﻿# Getting started
+# Negotium frontend
 
-**Required setup**
+## Required setup
 Node.js
 
-**Installation**
+## Installation
 Open your terminal and type
 
 1.  `git clone https://github.com/TheGitDevelopers/your-negotium`
 2.  `cd your-negotium`
 3.  `npm install`
 
-**How to run**
+## How to run
 Open your terminal in negotium directory and type
 `npm start`
 
