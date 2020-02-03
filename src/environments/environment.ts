@@ -23,7 +23,7 @@ export const environment = {
   },
   calendarAPIUrl: "http://localhost:9000/api",
 
-  mainAPIUrl: "http://localhost:8000/api/"
+  mainAPIUrl: "http://localhost:8080/api"
 };
 
 /*

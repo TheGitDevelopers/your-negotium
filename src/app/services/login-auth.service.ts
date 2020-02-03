@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Router, NavigationStart } from "@angular/router";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { mainAPIPost } from "src/app/helpers/http/mainAPI";
+import { userAPIPost } from "src/app/helpers/http/mainAPI";
 
 @Injectable({
   providedIn: "root"
@@ -19,7 +19,6 @@ export class LoginAuthService implements OnInit {
     this.token = localStorage.getItem("token");
     this.setToken(this.token);
     // TODO validate token with backend
-    if (this.token) await this.verifyToken();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (event["url"] === "/login" && this.token) {
@@ -42,31 +41,16 @@ export class LoginAuthService implements OnInit {
     this.tokenSubject.next(token);
   }
 
-  async verifyToken() {
-    try {
-      const response = await mainAPIPost("verify-token", { token: this.token });
-      const responseJSON = await response.json();
-      const { token } = responseJSON;
-      this.setToken(token);
-      return true;
-    } catch (Exception) {
-      this.setToken("");
-      console.log(Exception);
-    }
-  }
-
   register = async ({ username, email, password }) => {
     try {
-      const response = await mainAPIPost("create-user", {
+      const response = await userAPIPost("register", {
         username,
         email,
         password
       });
       const responseJSON = await response.json();
-      if (responseJSON.token) {
-        this.setToken(responseJSON.token);
-        this.router.navigate(["/dashboard"]);
-        return { success: true };
+      if (response.status) {
+        return this.login({ username, password });
       }
       throw { mess: "Something went wrong", error: responseJSON };
     } catch (error) {
@@ -77,10 +61,13 @@ export class LoginAuthService implements OnInit {
 
   login = async ({ username, password }) => {
     try {
-      const response = await mainAPIPost("token-auth", { username, password });
+      const response = await userAPIPost("authenticate", {
+        username,
+        password
+      });
       const responseJSON = await response.json();
-      if (responseJSON.token) {
-        this.setToken(responseJSON.token);
+      if (responseJSON.jwtToken) {
+        this.setToken(responseJSON.jwtToken);
         this.router.navigate(["/dashboard"]);
         return { success: true };
       }

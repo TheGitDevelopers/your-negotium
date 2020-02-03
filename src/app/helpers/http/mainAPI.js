@@ -1,4 +1,5 @@
 import { environment } from "src/environments/environment";
+const userEndpoint = "user";
 
 const mainAPIPost = (destination, body) =>
   fetch(`${environment.mainAPIUrl}${destination}`, {
@@ -7,4 +8,11 @@ const mainAPIPost = (destination, body) =>
     body: JSON.stringify(body)
   });
 
-export { mainAPIPost };
+const userAPIPost = (destination, body) =>
+  fetch(`${environment.mainAPIUrl}/${userEndpoint}/${destination}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+
+export { mainAPIPost, userAPIPost };
