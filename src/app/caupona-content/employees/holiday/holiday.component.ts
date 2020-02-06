@@ -8,6 +8,7 @@ import { Component, OnInit } from "@angular/core";
 export class HolidayComponent implements OnInit {
   holidayList = [
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -16,6 +17,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -24,6 +26,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -32,6 +35,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -40,6 +44,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -48,6 +53,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -59,6 +65,7 @@ export class HolidayComponent implements OnInit {
 
   viewedRequestList = [
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -68,6 +75,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -77,6 +85,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -86,6 +95,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -95,6 +105,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -104,6 +115,7 @@ export class HolidayComponent implements OnInit {
       reject: false
     },
     {
+      id: 5,
       who: "James Adams",
       when: "From 14th of July to 2th of July",
       "Available days": "13",
@@ -125,4 +137,12 @@ export class HolidayComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  handleLabelClick(event) {
+    const { labelName, employee } = event;
+    if (labelName === "accept" || labelName === "reject") {
+      const status = labelName === "accept" ? true : false;
+      // this.employeeService.handleHolidayRequest(status, employee.id);
+    }
+  }
 }

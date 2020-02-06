@@ -6,5 +6,6 @@
 <app-employee-table
   [employeesLabel]="employeesLabel"
   [employeesList]="employeesList"
-  mode="employees"
+  mode="5-col"
+  (handleRowClickEmitter)="handleRowClick($event)"
 ></app-employee-table>

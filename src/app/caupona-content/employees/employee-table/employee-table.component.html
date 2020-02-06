@@ -1,27 +1,37 @@
 <main
   [ngClass]="{
-    employees: mode === 'employees',
-    holidays: mode === 'holidays'
+    fiveCol: mode === '5-col',
+    sixCol: mode === '6-col',
+    sevenCol: mode === '7-col'
   }"
 >
   <h2 *ngIf="mainText" class="table-main-text">{{ mainText }}</h2>
   <p *ngIf="secondaryText" class="table-secondary-text">{{ secondaryText }}</p>
   <header>
     <ul class="employees-header list-outer">
-      <li *ngFor="let labelName of employeesLabel" class="header list-inner">
-        {{ labelName }}
-      </li>
+      <ng-container *ngFor="let labelName of employeesLabel">
+        <li *ngIf="labelName !== 'id'" class="header list-inner">
+          {{ labelName }}
+        </li>
+      </ng-container>
     </ul>
   </header>
   <section>
     <ul class="employees-main list-outer">
-      <li *ngFor="let employeer of employeesList" class="list-inner">
-        <ul class="list-outer">
-          <li
-            *ngFor="let labelName of employeesLabel"
-            class="list-inner label-name"
-            [innerHtml]="employeer[labelName] | checkStatus: labelName"
-          ></li>
+      <li
+        *ngFor="let employee of employeesList"
+        class="list-inner"
+        (click)="handleRowClick(employee)"
+      >
+        <ul class="column-wrapper">
+          <ng-container *ngFor="let labelName of employeesLabel">
+            <li
+              *ngIf="labelName !== 'id'"
+              class="column-item"
+              [innerHtml]="employee[labelName] | checkStatus: labelName"
+              (click)="handleLabelClick(labelName, employee)"
+            ></li>
+          </ng-container>
         </ul>
       </li>
     </ul>

@@ -80,16 +80,16 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(({ employee }) => {
-      if (employee === "employee") this.handleEmployeeMode();
-      if (employee === "add-employee" || employee === "employee")
-        this.mode = employee;
-      if (!(employee === "add-employee" || employee === "employee"))
-        this.routerNavigate.navigate(["/not-found"]);
-    });
+    this.mode = this.route.snapshot.url[1].path;
+    if (this.mode === "employee") this.handleEmployeeMode();
   }
 
   handleEmployeeMode() {
+    this.route.params.subscribe(({ id }) => {
+      // this.employeeService.fetchEmployee(parseInt(id)).then(employee=>{
+      //  this.employeeInfo = employee;
+      // }); // TODO
+    });
     this.employeeInfoTest.forEach(label => {
       this.form.controls[label.name].disable();
       this.form.controls[label.name].setValue(label.value);

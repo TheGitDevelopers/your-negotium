@@ -87,7 +87,8 @@ const appRoutes: Routes = [
   { path: "employees/availability", component: AvailabilityComponent },
   { path: "employees/trainings", component: TrainingsComponent },
   { path: "employees/employee-settings", component: EmployeeSettingsComponent },
-  { path: "employees/:employee", component: EmployeeComponent },
+  { path: "employees/add-employee", component: EmployeeComponent },
+  { path: "employees/employee/:id", component: EmployeeComponent },
   { path: "reservations/general", component: GeneralReservationsComponent },
   {
     path: "reservations/add-new-reservation",

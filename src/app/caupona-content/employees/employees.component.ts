@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-employees",
@@ -8,6 +9,7 @@ import { Component } from "@angular/core";
 export class EmployeesComponent {
   employeesList = [
     {
+      id: 5,
       index: "Z1",
       name: "James Adams",
       status: true,
@@ -15,6 +17,7 @@ export class EmployeesComponent {
       email: "name@email.com"
     },
     {
+      id: 5,
       index: "Z1",
       name: "James Adams",
       status: true,
@@ -22,6 +25,7 @@ export class EmployeesComponent {
       email: "name@email.com"
     },
     {
+      id: 5,
       index: "Z1",
       name: "James Adams",
       status: true,
@@ -29,6 +33,7 @@ export class EmployeesComponent {
       email: "name@email.com"
     },
     {
+      id: 5,
       index: "Z1",
       name: "James Adams",
       status: true,
@@ -36,6 +41,7 @@ export class EmployeesComponent {
       email: "name@email.com"
     },
     {
+      id: 5,
       index: "Z1",
       name: "James Adams",
       status: true,
@@ -43,6 +49,7 @@ export class EmployeesComponent {
       email: "name@email.com"
     },
     {
+      id: 5,
       index: "Z1",
       name: "James Adams",
       status: true,
@@ -53,7 +60,11 @@ export class EmployeesComponent {
 
   employeesLabel: Object;
 
-  constructor() {
+  constructor(private routerNavigate: Router) {
     this.employeesLabel = Object.keys(this.employeesList[0]);
+  }
+
+  handleRowClick(event) {
+    this.routerNavigate.navigate([`/employees/employee/${event.id}`]);
   }
 }

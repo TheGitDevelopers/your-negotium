@@ -8,12 +8,14 @@
   [employeesList]="holidayList"
   mainText="Holiday requests"
   secondaryText="Search for holiday requests, or choose the specific employee."
-  mode="holidays"
+  mode="6-col"
+  (handleLabelClickEmitter)="handleLabelClick($event)"
 ></app-employee-table>
 <app-employee-table
   [employeesLabel]="viewedRequestLabel"
   [employeesList]="viewedRequestList"
   mainText="Accepted/Rejected requests"
   secondaryText="If you want to accept or reject the old request you can still do it here."
-  mode="holidays"
+  mode="7-col"
+  (handleLabelClickEmitter)="handleLabelClick($event)"
 ></app-employee-table>
