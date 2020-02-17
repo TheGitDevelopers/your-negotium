@@ -1,3 +1,57 @@
-<p>
-  customers works!
-</p>
+<div class="customers">
+  <main>
+    <header class="customers-header">
+      <span class="customers-header__name">{{ customer.name }}</span>
+      <span class="customers-header__activity">{{ customer.activity }}</span>
+    </header>
+    <section>
+      <header>
+        <span>Payments</span>
+        <ul class="visits-head">
+          <li>When</li>
+          <li>Amount</li>
+          <li>Tip</li>
+        </ul>
+      </header>
+      <article>
+        <ul class="visits-body" *ngFor="let visit of visits">
+          <li>{{ visit.date }}</li>
+          <li>${{ visit.amount }}</li>
+          <li>
+            <span
+              class="visits-body__tip"
+              *ngIf="visit.wasTip"
+              matTooltipPosition="above"
+              [matTooltip]="visit.tipValue ? '$' + visit.tipValue : null"
+              >YES</span
+            >
+            <span class="visits-body__notip" *ngIf="!visit.wasTip">NO</span>
+          </li>
+        </ul>
+      </article>
+    </section>
+  </main>
+  <aside>
+    <header class="aside-header">
+      <button class="aside-button__remove">Remove</button>
+      <button class="aside-button__details">Show details</button>
+    </header>
+    <section>
+      <ul class="aside-list">
+        <li
+          class="aside-list__item"
+          *ngFor="let customer of customers"
+          (click)="customer.checked = !customer.checked"
+        >
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            [(ngModel)]="customer.checked"
+          >
+          </mat-checkbox>
+          <span class="list-item__name">{{ customer.name }}</span>
+          <span class="list-item__activity">{{ customer.activity }}</span>
+        </li>
+      </ul>
+    </section>
+  </aside>
+</div>

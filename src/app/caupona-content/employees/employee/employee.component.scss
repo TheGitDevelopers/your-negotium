@@ -1,7 +1,5 @@
-$main-color: rgb(75, 177, 190);
-$main-color-darker: rgb(95, 197, 210);
-$dark-grey: rgb(100, 100, 100);
-$light-grey: rgb(235, 235, 235);
+@import "../../../../variables.scss";
+@import "../../../../templates.scss";
 
 .employee {
   font-family: "Reem Kufi", sans-serif;
@@ -11,9 +9,7 @@ $light-grey: rgb(235, 235, 235);
     justify-content: space-between;
     .nav {
       &-button-back {
-        background: #fff;
-        @extend %grey-border;
-        @extend %button-in-common;
+        @include button($border-color: $light-grey, $padding: 0.75em);
         margin-bottom: 2em;
         transition: transform 0.1s;
         &::before {
@@ -31,7 +27,7 @@ $light-grey: rgb(235, 235, 235);
       &-buttons-group {
         margin-top: 2em;
         &-button {
-          @extend %button-in-common;
+          @include button($padding: 0.75em);
           &.block-button {
             background: #fff;
             border: 1px solid #e53935;
@@ -83,12 +79,11 @@ $light-grey: rgb(235, 235, 235);
         color: $dark-grey;
       }
       .button-details {
-        @extend %button-in-common;
-        background: #fff;
-        border: 1px solid $main-color;
-        padding: 0.5em 2.5em;
-        color: #000;
-        font-weight: 300;
+        @include button(
+          $border-color: $main-color,
+          $padding: 0.5em 2.5em,
+          $color: #000
+        );
         position: absolute;
         right: 0;
         bottom: 0;
@@ -232,14 +227,6 @@ $light-grey: rgb(235, 235, 235);
   border: 1px solid $light-grey;
 }
 
-%button-in-common {
-  border-radius: 10px;
-  padding: 0.75em;
-  font-weight: 300;
-  outline: none;
-  cursor: pointer;
-}
-
 ::ng-deep.mat-form-field-underline {
   background-color: $main-color !important;
 }
@@ -249,7 +236,7 @@ main.employee-info-values.isDisabled ::ng-deep.mat-form-field-underline {
 }
 
 ::ng-deep.mat-form-field-ripple {
-  background-color: $main-color-darker !important;
+  background-color: $main-color-light-2 !important;
 }
 
 ::ng-deep.mat-checkbox-checked .mat-checkbox-background {
