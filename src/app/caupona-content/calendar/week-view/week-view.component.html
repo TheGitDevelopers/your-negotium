@@ -1,0 +1,46 @@
+<div class="calendar">
+  <nav class="calendar-navbar">
+    <div class="select-date">
+      <input [matDatepicker]="picker" [ngStyle]="{
+          visibility: 'hidden',
+          border: 'none',
+          width: 0,
+          height: 0,
+          padding: 0,
+          margin: 0
+        }" (dateInput)="changeStartDate($event)" />
+      <mat-datepicker #picker></mat-datepicker>
+      <button class="select-date-button" (click)="picker.open()">
+        Select date
+      </button>
+    </div>
+    <app-dropdown-menu (changeMode)="handleChangeMode($event)" [actualModeParams]="actualMode"></app-dropdown-menu>
+  </nav>
+  <div class="week-days">
+    <header *ngFor="let headerItem of createArray(7); let index = index"
+      class="calendar-header aspect-ratio-out-70 week-mode">
+      <div class="aspect-ratio-in flex-center" [class.highlight]="isHighLight(index)">
+        <div class="cal-head-in">
+          <b class="day-of-week">{{ addDay(index) | date: "dd" }}</b>
+          <b class="date">{{ addDay(index) | date: "EEE" }}</b>
+        </div>
+      </div>
+    </header>
+  </div>
+  <section *ngFor="let day of days; let index = index" class="day">
+    <div class="day-inner">
+      <section class="event aspect-ratio-out-90" *ngFor="let event of day.events"
+        (click)="EventOperations.updateEvent(event)">
+        <div class="aspect-ratio-in event-inner">
+          <time>{{ event.start.date | date: "HH:mm" }}</time>
+          <b class="event-name" [class.outdated]="checkOutdated(event.start.date)"
+            [class.incoming]="checkIncoming(event.start.date)">{{ event.summary }}</b>
+          <span class="event-location">
+            <b>United States, 13px</b>
+            <img class="location-icon" width="13" height="13" src="assets/icons/location-pin.svg" />
+          </span>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>

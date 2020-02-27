@@ -93,8 +93,12 @@ const appRoutes: Routes = [
     path: "reservations/add-new-reservation",
     component: NewReservationComponent
   },
-  { path: "calendar/:mode", component: CalendarComponent },
-  { path: "calendar/:mode/:y/:m/:d", component: CalendarComponent },
+  { path: "calendar/day/:y/:m/:d", component: CalendarComponent },
+  { path: "calendar/day", component: CalendarComponent },
+  { path: "calendar/week", component: CalendarComponent },
+  { path: "calendar/week/:y/:m/:d", component: CalendarComponent },
+  { path: "calendar/month", component: CalendarComponent },
+  { path: "calendar/month/:y/:m/:d", component: CalendarComponent },
   { path: "targets/general", component: GeneralTargetsComponent },
   { path: "targets/add-new-target", component: NewTargetComponent },
   { path: "partners/general", component: GeneralPartnersComponent },
@@ -119,4 +123,4 @@ const appRoutes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

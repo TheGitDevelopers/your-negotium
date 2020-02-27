@@ -1,0 +1,60 @@
+<div class="calendar">
+  <nav class="calendar-navbar">
+    <header class="calendar-header aspect-ratio-out-70 week-mode" [class.current-day]="checkCurrentDay()">
+      <div class="flex-center">
+        <div class="cal-head-in">
+          <b class="day-of-week">{{ startDate | date: "dd" }}</b>
+          <b class="date">{{ startDate | date: "EEE" }}</b>
+        </div>
+      </div>
+    </header>
+    <div class="select-date">
+      <input [matDatepicker]="picker" [ngStyle]="{
+          visibility: 'hidden',
+          border: 'none',
+          width: 0,
+          height: 0,
+          padding: 0,
+          margin: 0
+        }" (dateInput)="changeStartDate($event)" />
+      <mat-datepicker #picker></mat-datepicker>
+      <button class="select-date-button" (click)="picker.open()">
+        Select date
+      </button>
+    </div>
+    <app-dropdown-menu (changeMode)="handleChangeMode($event)" [actualModeParams]="actualMode"></app-dropdown-menu>
+  </nav>
+  <section class="day">
+    <div class='day-inner'>
+      <div *ngFor="let hour of createArray(24); let hourIndex = index" class="hour-block">
+        <div class="cal-sidebar">
+          <div class="cal-sidebar-hour">
+            {{ getHour(hourIndex) | date: "HH" }}
+          </div>
+          <div class="cal-sidebar-spacing"></div>
+        </div>
+        <div class="white-box" (click)="EventOperations.addEvent(hour)"></div>
+        <section class="event day-mode" *ngFor="
+          let event of getHourEvents(hourIndex);
+          let eventIndex = index
+        " (click)="EventOperations.updateEvent(event)">
+          <div class="event-inner">
+            <time>{{ event.start.date | getDate: "hour" }}</time>
+            <b class="event-name" [class.outdated]="checkOutdated(event.start.date)"
+              [class.incoming]="checkIncoming(event.start.date)">{{ event.summary }}</b>
+            <span class="event-location">
+              <b>United States, 13px</b>
+              <img class="location-icon" width="13" height="13" src="assets/icons/location-pin.svg" />
+            </span>
+            <span class="event-outdated" *ngIf="checkOutdated(event.start.date)">
+              Outdated
+            </span>
+            <span class="event-incoming" *ngIf="checkIncoming(event.start.date)">
+              Incoming
+            </span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>

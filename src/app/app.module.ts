@@ -101,6 +101,9 @@ import { EmployeeSettingsComponent } from "./caupona-content/employees/employee-
 import { CircleGraphComponent } from "./global-components/circle-graph/circle-graph.component";
 import { CircleGraphFullComponent } from "./global-components/circle-graph-full/circle-graph-full.component";
 import { GraphComponent } from "./components-to-use/graph/graph.component";
+import { DayViewComponent } from './caupona-content/calendar/day-view/day-view.component';
+import { WeekViewComponent } from './caupona-content/calendar/week-view/week-view.component';
+import { MonthViewComponent } from './caupona-content/calendar/month-view/month-view.component';
 
 const RxJS_Services = [HttpListenerService, HttpStatusService];
 
@@ -171,7 +174,10 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     EmployeeSettingsComponent,
     CircleGraphComponent,
     CircleGraphFullComponent,
-    GraphComponent
+    GraphComponent,
+    DayViewComponent,
+    WeekViewComponent,
+    MonthViewComponent
   ],
   imports: [
     BrowserModule,

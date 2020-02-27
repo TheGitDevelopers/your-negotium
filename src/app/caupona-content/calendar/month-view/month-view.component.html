@@ -1,0 +1,36 @@
+<nav class="calendar-navbar standalone">
+  <div class="date-changer">
+    <i class="fas fa-chevron-left" (click)="pastDays()"></i>
+    <span> {{ monthName }}&nbsp;</span>
+    <span>{{ currentYear }}&nbsp;</span>
+    <i class="fas fa-chevron-right" (click)="futureDays()"></i>
+  </div>
+  <app-dropdown-menu (changeMode)="handleChangeMode($event)" [actualModeParams]="actualMode"></app-dropdown-menu>
+</nav>
+<div class="calendar">
+  <div class="week-days">
+    <header *ngFor="let weekDay of weekDays" class="calendar-header month-mode">
+      <div class="flex-center">
+        <div class="cal-head-in">
+          <b class="day-of-week">{{ weekDay }}</b>
+        </div>
+      </div>
+    </header>
+  </div>
+  <section *ngFor="let day of days; let index = index" class="day aspect-ratio-out-70 month-mode" [routerLink]="[
+          '/calendar/day/',
+          addDay(index).getFullYear(),
+          addDay(index).getMonth() + 1,
+          addDay(index).getDate()
+        ]">
+    <div class="aspect-ratio-in day-inner">
+      <button class="btn-add-event" (click)="addEvent($event, week[index])">
+        +
+      </button>
+      <header class="day-header" [class.unactive]="checkOutOfMonth(index)">
+        <b class="date" [class.out-of-month]="checkOutOfMonth(index)">{{ addDay(index) | date: "dd" }}</b>
+      </header>
+      <b>{{day.events[0].summary}}</b>
+    </div>
+  </section>
+</div>
