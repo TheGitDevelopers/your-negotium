@@ -1,45 +1,61 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Router } from "@angular/router";
+import { Store } from '@ngrx/store';
+import { CHANGE_CALENDAR_START_DATE, CHANGE_CALENDAR_END_DATE } from 'src/app/actions/calendar.actions';
+
 
 @Component({
   selector: 'app-month-view',
   templateUrl: './month-view.component.html',
   styleUrls: ['./month-view.component.scss']
 })
-export class MonthViewComponent implements OnInit {
+export class MonthViewComponent implements OnInit, OnChanges {
 
   @Input() paramsDate;
   @Input() changeDate;
+  @Input() events;
 
+  propsDate;
   startDate;
   endDate;
   days = [];
-  events;
   beforeMonthDays;
   monthDays;
   afterMonthDays;
   weekDays = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  mode;
 
 
-  constructor() { }
+  constructor(private store: Store<{}>,
+    private routerNavigate: Router, ) { }
 
   ngOnInit() {
-    // GET with redux
-    this.restartView();
+    this.initView();
   }
 
-  initDate() {
+  ngOnChanges() {
+    this.initView();
+  }
+
+  initView() {
     const now = new Date();
-    this.paramsDate = false;
-    this.startDate = this.paramsDate
+    const { y, m, d } = this.paramsDate
+    const actualDate = y && m && d ? new Date(y, m - 1, d) : { y: null, m: null, d: null };
+
+    this.startDate = actualDate instanceof Date
       ? new Date(
-        this.paramsDate.getFullYear(),
-        this.paramsDate.getMonth(),
+        actualDate.getFullYear(),
+        actualDate.getMonth(),
         1,
         0,
         0,
         0
       )
       : new Date(now.getFullYear(), now.getMonth(), 1);
+    this.restartView();
+  }
+
+  initDate() {
     this.endDate = new Date(
       this.startDate.getFullYear(),
       this.startDate.getMonth() + 1,
@@ -49,15 +65,16 @@ export class MonthViewComponent implements OnInit {
       59,
       999
     );
+    this.store.dispatch(CHANGE_CALENDAR_START_DATE({ startDate: this.startDate }))
+    this.store.dispatch(CHANGE_CALENDAR_END_DATE({ endDate: this.endDate }))
   }
 
   restartDays() {
     this.days = [];
 
-    // TODO new function?
     this.beforeMonthDays = this.startDate.getDay() === 0 ? 6 : this.startDate.getDay() - 1;
     this.monthDays = this.endDate.getDate();
-    this.afterMonthDays = this.startDate.getDay() === 0 ? 0 : 7 - this.startDate.getDay();
+    this.afterMonthDays = this.endDate.getDay() === 0 ? 0 : 7 - this.endDate.getDay();
 
     const totalDays = this.beforeMonthDays + this.monthDays + this.afterMonthDays;
     for (let i = totalDays; i > 0; i--) {
@@ -66,7 +83,7 @@ export class MonthViewComponent implements OnInit {
   }
 
   trimEvents() {
-    this.events = this.events
+    this.events = this.events && this.events
       .filter(({ start: { date: comparedDate } }) => (
         this.getStartOfGrid().getTime() <=
         new Date(comparedDate).getTime() &&
@@ -76,7 +93,7 @@ export class MonthViewComponent implements OnInit {
   }
 
   sortEvents() {
-    this.events
+    this.events && this.events
       .sort(
         ({ start: { date: compared } }, { start: { date: comparing } }) =>
           new Date(compared).getTime() - new Date(comparing).getTime()
@@ -85,7 +102,7 @@ export class MonthViewComponent implements OnInit {
 
   createDays() {
     let index;
-    this.events
+    this.events && this.events
       .forEach(event => {
         if (
           this.getStartOfGrid().getTime() <=
@@ -112,13 +129,37 @@ export class MonthViewComponent implements OnInit {
   restartView() {
     this.initDate();
     this.restartDays();
-    this.events = Array(99).fill(undefined).map((item, index) => {
-      return { start: { date: new Date(this.startDate.getTime() + 40000000 * index - 480000000) }, summary: 'Event name - ' + index }
-    }
-    ); // TODO
+    // this.events = Array(99).fill(undefined).map((item, index) => {
+    //   return { start: { date: new Date(this.startDate.getTime() + 40000000 * index - 480000000) }, summary: 'Event name - ' + index }
+    // }
+    // ); // TODO
     this.trimEvents();
     this.sortEvents();
     this.createDays();
+  }
+
+  pastDays() {
+    let tempDate = new Date(this.startDate);
+    let newDate = new Date(tempDate.setMonth(tempDate.getMonth() - 1))
+    this.startDate = newDate;
+    this.routerNavigate.navigate(["/calendar/month",
+      newDate.getFullYear(),
+      newDate.getMonth() + 1,
+      1]).then(() => this.restartView());
+  }
+
+  futureDays() {
+    let tempDate = new Date(this.startDate);
+    let newDate = new Date(tempDate.setMonth(tempDate.getMonth() + 1))
+    this.startDate = newDate;
+    this.routerNavigate.navigate(["/calendar/month",
+      newDate.getFullYear(),
+      newDate.getMonth() + 1,
+      1]).then(() => this.restartView());
+  }
+
+  getTitle(events) {
+    return events.length && events[0].summary ? events[0].summary : '';
   }
 
   addDay(addDays) {

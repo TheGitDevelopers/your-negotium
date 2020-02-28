@@ -14,7 +14,7 @@
         Select date
       </button>
     </div>
-    <app-dropdown-menu (changeMode)="handleChangeMode($event)" [actualModeParams]="actualMode"></app-dropdown-menu>
+    <app-dropdown-menu (changeMode)="handleChangeMode($event)"></app-dropdown-menu>
   </nav>
   <div class="week-days">
     <header *ngFor="let headerItem of createArray(7); let index = index"

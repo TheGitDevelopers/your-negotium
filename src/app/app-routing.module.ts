@@ -93,8 +93,8 @@ const appRoutes: Routes = [
     path: "reservations/add-new-reservation",
     component: NewReservationComponent
   },
-  { path: "calendar/day/:y/:m/:d", component: CalendarComponent },
   { path: "calendar/day", component: CalendarComponent },
+  { path: "calendar/day/:y/:m/:d", component: CalendarComponent },
   { path: "calendar/week", component: CalendarComponent },
   { path: "calendar/week/:y/:m/:d", component: CalendarComponent },
   { path: "calendar/month", component: CalendarComponent },

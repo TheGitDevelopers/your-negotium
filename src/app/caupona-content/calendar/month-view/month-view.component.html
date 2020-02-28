@@ -5,7 +5,7 @@
     <span>{{ currentYear }}&nbsp;</span>
     <i class="fas fa-chevron-right" (click)="futureDays()"></i>
   </div>
-  <app-dropdown-menu (changeMode)="handleChangeMode($event)" [actualModeParams]="actualMode"></app-dropdown-menu>
+  <app-dropdown-menu (changeMode)="handleChangeMode($event)"></app-dropdown-menu>
 </nav>
 <div class="calendar">
   <div class="week-days">
@@ -30,7 +30,7 @@
       <header class="day-header" [class.unactive]="checkOutOfMonth(index)">
         <b class="date" [class.out-of-month]="checkOutOfMonth(index)">{{ addDay(index) | date: "dd" }}</b>
       </header>
-      <b>{{day.events[0].summary}}</b>
+      <b>{{getTitle(day.events)}}</b>
     </div>
   </section>
 </div>

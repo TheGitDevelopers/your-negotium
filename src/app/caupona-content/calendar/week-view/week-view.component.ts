@@ -1,38 +1,45 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CHANGE_CALENDAR_START_DATE, CHANGE_CALENDAR_END_DATE } from 'src/app/actions/calendar.actions';
 
 @Component({
   selector: 'app-week-view',
   templateUrl: './week-view.component.html',
   styleUrls: ['./week-view.component.scss']
 })
-export class WeekViewComponent implements OnInit {
+export class WeekViewComponent implements OnInit, OnChanges {
 
   @Input() paramsDate;
   @Input() changeDate;
+  @Input() mode;
+  @Input() events;
 
   startDate;
   endDate;
   days = [];
-  events;
 
 
-  constructor() { }
+  constructor(private store: Store<{}>) { }
 
   ngOnInit() {
-
-    // GET with redux
-    this.restartView();
+    this.initView();
   }
 
-  initDate() {
+  ngOnChanges() {
+    this.initView();
+  }
+
+  initView() {
+    const { y, m, d } = this.paramsDate
+    const actualDate = y && m && d ? new Date(y, m - 1, d) : { y: null, m: null, d: null };
     const now = new Date();
-    this.startDate = this.paramsDate
+    this.startDate = actualDate instanceof Date
       ? new Date(
-        this.paramsDate.getFullYear(),
-        this.paramsDate.getMonth(),
-        this.paramsDate.getDate() -
-        this.paramsDate.getDay() +
-        (this.paramsDate.getDay() === 0 ? -6 : 1),
+        actualDate.getFullYear(),
+        actualDate.getMonth(),
+        actualDate.getDate() -
+        actualDate.getDay() +
+        (actualDate.getDay() === 0 ? -6 : 1),
         0,
         0,
         0
@@ -45,6 +52,10 @@ export class WeekViewComponent implements OnInit {
         0,
         0
       );
+    this.restartView();
+  }
+
+  initDate() {
     this.endDate = new Date(
       this.startDate.getFullYear(),
       this.startDate.getMonth(),
@@ -54,6 +65,8 @@ export class WeekViewComponent implements OnInit {
       59,
       999
     );
+    this.store.dispatch(CHANGE_CALENDAR_START_DATE({ startDate: this.startDate }))
+    this.store.dispatch(CHANGE_CALENDAR_END_DATE({ endDate: this.endDate }))
   }
 
   restartDays() {
@@ -64,17 +77,17 @@ export class WeekViewComponent implements OnInit {
   }
 
   trimEvents() {
-    this.events = this.events
-      .filter(({ start: { date: comparedDate } }) => (
-        new Date(this.startDate).getTime() <=
-        new Date(comparedDate).getTime() &&
-        new Date(this.endDate).getTime() >=
-        new Date(comparedDate).getTime()
-      ))
+    this.events = this.events && this.events
+      .filter(({ start: { date: comparedDate } }) => {
+        return new Date(this.startDate).getTime() <=
+          new Date(comparedDate).getTime() &&
+          new Date(this.endDate).getTime() >=
+          new Date(comparedDate).getTime()
+      })
   }
 
   sortEvents() {
-    this.events
+    this.events && this.events
       .sort(
         ({ start: { date: compared } }, { start: { date: comparing } }) =>
           new Date(compared).getTime() - new Date(comparing).getTime()
@@ -82,7 +95,7 @@ export class WeekViewComponent implements OnInit {
   }
 
   createDays() {
-    this.events
+    this.events && this.events
       .forEach(event => {
         if (
           new Date(this.startDate).getTime() <=
@@ -103,10 +116,10 @@ export class WeekViewComponent implements OnInit {
   restartView() {
     this.initDate();
     this.restartDays();
-    this.events = Array(19).fill(undefined).map((item, index) => {
-      return { start: { date: new Date(this.startDate.getTime() + 40000000 * index) }, summary: 'Event name - ' + index }
-    }
-    );
+    // this.events = Array(19).fill(undefined).map((item, index) => {
+    //   return { start: { date: new Date(this.startDate.getTime() + 40000000 * index) }, summary: 'Event name - ' + index }
+    // }
+    // ); // TODO
     this.trimEvents();
     this.sortEvents();
     this.createDays();

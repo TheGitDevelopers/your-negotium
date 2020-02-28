@@ -5,6 +5,7 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import reducers from "./reducers";
 
 import {
@@ -86,13 +87,8 @@ import { LoadingInterceptorComponent } from "./global-components/loading-interce
 import { HttpListenerService } from "./services/httplistener.service";
 import { HttpStatusService } from "./services/httpstatus.service";
 import { EventFormComponent } from "./custom-components/event-form/event-form.component";
-import { EventsLengthDirective } from "./directives/events-length.directive";
 import { CheckMonthDayDirective } from "./check-month-day.directive";
 import { GetDatePipe } from "./get-date.pipe";
-import { DayComponent } from "./caupona-content/calendar/day/day.component";
-import { EventComponent } from "./caupona-content/calendar/event/event.component";
-import { CalendarHeaderComponent } from "./caupona-content/calendar/calendar-header/calendar-header.component";
-import { FilterEventsPipe } from "./pipes/filter-events.pipe";
 import { EditEventPopUpComponent } from "./popups/edit-event-pop-up/edit-event-pop-up.component";
 import { SettingsPopupComponent } from "./popups/settings-popup/settings-popup.component";
 import { DropdownMenuComponent } from "./caupona-content/calendar/dropdown-menu/dropdown-menu.component";
@@ -160,13 +156,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     DownloadReportComponent,
     LoadingInterceptorComponent,
     EventFormComponent,
-    EventsLengthDirective,
     CheckMonthDayDirective,
     GetDatePipe,
-    DayComponent,
-    EventComponent,
-    CalendarHeaderComponent,
-    FilterEventsPipe,
     EditEventPopUpComponent,
     SettingsPopupComponent,
     DropdownMenuComponent,
@@ -214,7 +205,10 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    })
   ],
   providers: [
     ...RxJS_Services,
@@ -222,10 +216,9 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
       provide: HTTP_INTERCEPTORS,
       useClass: HttpListenerService,
       multi: true
-    },
-    FilterEventsPipe
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [EditEventPopUpComponent, SettingsPopupComponent]
 })
-export class AppModule {}
+export class AppModule { }

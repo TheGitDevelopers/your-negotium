@@ -1,6 +1,12 @@
-<app-day-view></app-day-view>
-<app-week-view></app-week-view>
-<app-month-view></app-month-view>
+<app-day-view *ngIf="mode === 'day'" [paramsDate]="paramsDate" [events]="events"
+  (handleChangeMode)="handleChangeMode($event)">
+</app-day-view>
+<app-week-view *ngIf="mode === 'week'" [paramsDate]="paramsDate" [events]="events"
+  (handleChangeMode)="handleChangeMode($event)">
+</app-week-view>
+<app-month-view *ngIf="mode === 'month'" [paramsDate]="paramsDate" [events]="events"
+  (handleChangeMode)="handleChangeMode($event)">
+</app-month-view>
 <div class="settings-icon" (click)="settings.open()">
   <i class="fas fa-cogs"></i>
-</div> -->
+</div>
