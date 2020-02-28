@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Router } from "@angular/router";
 import { Store } from '@ngrx/store';
 import { CHANGE_CALENDAR_START_DATE, CHANGE_CALENDAR_END_DATE } from 'src/app/actions/calendar.actions';
+import calendarProperties from '../calendarProperties'
 
 
 @Component({
@@ -22,7 +23,7 @@ export class MonthViewComponent implements OnInit, OnChanges {
   beforeMonthDays;
   monthDays;
   afterMonthDays;
-  weekDays = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  daysOfWeek = calendarProperties.daysOfWeek;
   mode;
 
 
