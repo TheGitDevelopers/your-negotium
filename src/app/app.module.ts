@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutModule } from "@angular/cdk/layout";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { StoreModule } from "@ngrx/store";
+import reducers from "./reducers";
+
 import {
   MatButtonModule,
   MatIconModule,
@@ -210,7 +213,8 @@ const RxJS_Services = [HttpListenerService, HttpStatusService];
     HttpClientModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [
     ...RxJS_Services,
