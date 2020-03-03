@@ -40,6 +40,7 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild("saleGraph", { read: ElementRef }) saleGraph: ElementRef;
 
   constructor() {
+
     this.products.forEach(({ value }) => (this.productsSum += value));
     this.transformedProducts = this.products.map((product, index) => {
       this.maxValue =
